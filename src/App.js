@@ -3,6 +3,7 @@ import './App.css';
 import NavbarMunch from './components/NavbarMunch';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './components/Home'
+import Signup from './components/Signup';
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
     <NavbarMunch />
       <Switch>
         <Route path='/' exact component={Home} />
+        <Route path='/signup' exact component={Signup} />
       </Switch>
     </Router>
     </>

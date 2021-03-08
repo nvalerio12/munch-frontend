@@ -1,9 +1,8 @@
 /* Home page */
 .home-main {
-    background-image: 
-      url("https://images.unsplash.com/photo-1550949987-33f716ccc232?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1308&q=80");
-    background-repeat: no-repeat;
+    background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Ffood%2F&psig=AOvVaw3BmNgpSR10X3yfegxREfPX&ust=1615330427060000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKjRgoPloe8CFQAAAAAdAAAAABAD");
     background-size: cover;
+    background-repeat: no-repeat;
     padding: 50px 0 50px 0;
     height: 750px;
     width: 100%;
@@ -15,8 +14,8 @@
   .search-form-control {
     width: 350px;
   }
-  
-  .title {
-    color: white;
-    font-family: 'Fascinate', cursive;
-  }
+ { 
+    background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Ffood%2F&psig=AOvVaw3BmNgpSR10X3yfegxREfPX&ust=1615330427060000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKjRgoPloe8CFQAAAAAdAAAAABAD");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
