@@ -1,0 +1,22 @@
+/* Home page */
+.home-main {
+    background-image: 
+      url("https://images.unsplash.com/photo-1550949987-33f716ccc232?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1308&q=80");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 50px 0 50px 0;
+    height: 750px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .search-form-control {
+    width: 350px;
+  }
+  
+  .title {
+    color: white;
+    font-family: 'Fascinate', cursive;
+  }

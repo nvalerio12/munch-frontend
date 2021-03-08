@@ -1,10 +1,20 @@
+import React from 'react';
 import './App.css';
+import NavbarMunch from './components/NavbarMunch';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from './components/Home'
+
 
 function App() {
   return (
-    <div>
-
-    </div>
+    <>
+    <Router>
+    <NavbarMunch />
+      <Switch>
+        <Route path='/' exact component={Home} />
+      </Switch>
+    </Router>
+    </>
   );
 }
 
