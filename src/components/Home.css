@@ -1,6 +1,5 @@
 /* Home page */
 .home-main {
-    background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Ffood%2F&psig=AOvVaw3BmNgpSR10X3yfegxREfPX&ust=1615330427060000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKjRgoPloe8CFQAAAAAdAAAAABAD");
     background-size: cover;
     background-repeat: no-repeat;
     padding: 50px 0 50px 0;
@@ -14,8 +13,7 @@
   .search-form-control {
     width: 350px;
   }
- { 
-    background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Ffood%2F&psig=AOvVaw3BmNgpSR10X3yfegxREfPX&ust=1615330427060000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKjRgoPloe8CFQAAAAAdAAAAABAD");
-    background-size: cover;
-    background-repeat: no-repeat;
+
+body {
+  background-color: grey;
 }
