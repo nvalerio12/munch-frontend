@@ -7,7 +7,7 @@ import * as FcIcons from 'react-icons/fc';
 export const SidebarData = [
   {
     title: 'About Us',
-    path: '',
+    path: '/aboutus',
     icon: <FcIcons.FcHome/>, 
     cName: 'nav-text'
   },
@@ -21,7 +21,7 @@ export const SidebarData = [
 
   {
     title: 'Log in',
-    path: '',
+    path: '/login',
     icon: <FcIcons.FcSearch/>, 
     cName: 'nav-text'
   },
