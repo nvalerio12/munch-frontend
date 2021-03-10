@@ -7,9 +7,11 @@ import './NavbarMunch.css';
 import { IconContext } from 'react-icons';
 
 function NavbarMunch(props) {
+  const [currentUser, setCurrentUser] = useState(props.currentUser)
+  const [isAuthenticated, setIsAuthenticated] = useState(props.isAuthenticated)
   const [sidebar, setSidebar] = useState(false);
 
-  const showSidebar = () => setSidebar(!sidebar);
+  const showSidebar = () => setSidebar(!sidebar); // setting state to opposite of current sidebar state
 
   return (
     <>

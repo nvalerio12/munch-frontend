@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import NavbarMunch from "./components/NavbarMunch";
+import NavbarMunch from "./components/partials/navbars/NavbarMunch";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import Home from "./components/Home";
 import Signup from "./components/Signup";
@@ -55,7 +55,7 @@ function App() {
   return (
     <>
       <Router>
-        <NavbarMunch />
+        <NavbarMunch currentUser={currentUser} isAuthenticated={isAuthenticated} />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/signup" exact component={Signup} />
