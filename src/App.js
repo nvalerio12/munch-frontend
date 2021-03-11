@@ -1,5 +1,15 @@
 import React from "react";
-import { Navbar, SideNav, Home, About, Profile, Signup, Login } from "./components/"; // export from components/index.js
+import {
+  Navbar,
+  SideNav,
+  Home,
+  About,
+  Profile,
+  Signup,
+  Login,
+  Feed
+} from "./components/"; // export from components/index.js
+
 
 import { ThemeProvider } from "styled-components"; // used styled components to create components :navbar and sidenav
 import { GlobalStyles } from "./global";
@@ -12,10 +22,9 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import { useEffect, useState } from 'react';
-import jwt_decode from 'jwt-decode';
-import setAuthToken from './utils/setAuthToken';
-import Feed from "./components/Feed/Feed";
+import { useEffect, useState } from "react";
+import jwt_decode from "jwt-decode";
+import setAuthToken from "./utils/setAuthToken";
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -74,13 +83,13 @@ function App() {
     <>
       <Router>
         <>
-        <ThemeProvider theme={theme}>
-        <GlobalStyles />
-        <div>
-          <Navbar open={open} setOpen={setOpen} />
-          <SideNav open={open} setOpen={setOpen} />
-        </div>
-      </ThemeProvider>
+          <ThemeProvider theme={theme}>
+            <GlobalStyles />
+            <div>
+              <Navbar open={open} setOpen={setOpen} />
+              <SideNav open={open} setOpen={setOpen} />
+            </div>
+          </ThemeProvider>
         </>
         <Switch>
           <Route path="/" exact component={Home} />
