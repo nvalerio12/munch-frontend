@@ -10,6 +10,9 @@ const SideNav = ({ open, ...props }) => {
   return (
     <StyledSideNav open={open} aria-hidden={!isHidden} {...props}>
       <a href="/" tabIndex={tabIndex}>
+        Home
+      </a>
+      <a href="/" tabIndex={tabIndex}>
         <span aria-hidden="true">💁🏻‍♂️</span>
         About us
       </a>

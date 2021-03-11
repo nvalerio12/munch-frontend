@@ -1,8 +1,8 @@
 // we can export these variables and use them through out our react app
 
 export const theme = {
-    primaryDark: '#e7e6e1',
-    primaryLight: '#f2a154',
-    primaryHover: '#f7f6e7',
+    primaryDark: '#686d76',
+    primaryLight: '#eeeeee',
+    primaryHover: '#f6830f',
     mobile: '576px',
   }

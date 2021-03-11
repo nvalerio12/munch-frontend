@@ -1,10 +1,8 @@
 /* Home page */
 .home-main {
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding: 50px 0 50px 0;
+    background-size: 100%;
+    background-image: url('../images/homepage-bg.png');
     height: 750px;
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,7 +11,3 @@
   .search-form-control {
     width: 350px;
   }
-
-body {
-background-color: grey;
-}
