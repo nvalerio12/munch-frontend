@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+// This basically created a new component that is already styled
+// we call this StyledNavbar and we use it in our NavBar component
 
 export const StyledNavbar = styled.button`
   position: absolute;
@@ -14,12 +16,11 @@ export const StyledNavbar = styled.button`
   cursor: pointer;
   padding: 0;
   z-index: 10;
-
   &:focus {
     outline: none;
   }
 
-  div {
+  .threeLines {
     width: 2rem;
     height: 0.25rem;
     background: ${({ theme, open }) => open ? theme.primaryDark : theme.primaryLight};
