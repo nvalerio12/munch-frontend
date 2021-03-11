@@ -17,9 +17,10 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 import About from "./components/About";
 import Profile from "./components/Profile";
-import { useEffect, useState } from "react";
-import jwt_decode from "jwt-decode";
-import setAuthToken from "./utils/setAuthToken";
+import { useEffect, useState } from 'react';
+import jwt_decode from 'jwt-decode';
+import setAuthToken from './utils/setAuthToken';
+import Feed from "./components/Feed/Feed";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   let token = localStorage.getItem("jwtToken");
@@ -87,7 +88,6 @@ function App() {
         </>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/signup" exact component={Signup} />
           <Route path="/signup" component={Signup} />
           <Route
             path="/login"
@@ -99,6 +99,13 @@ function App() {
                 user={currentUser}
               />
             )}
+          />
+          <Route
+            path="/feed"
+            exact
+            component={Feed}
+            user={currentUser}
+            isAuth={isAuthenticated}
           />
           <PrivateRoute
             path="/profile"
