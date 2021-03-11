@@ -1,26 +1,22 @@
 import React from "react";
-import Navbar from "./components/Navbar";
-import SideNav from "./components/SideNav";
-import { ThemeProvider } from "styled-components";
+import { Navbar, SideNav, Home, About, Profile, Signup, Login } from "./components/"; // export from components/index.js
+
+import { ThemeProvider } from "styled-components"; // used styled components to create components :navbar and sidenav
 import { GlobalStyles } from "./global";
 import { theme } from "./theme";
 
-import NavbarMunch from "./components/partials/navbars/NavbarMunch";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
 } from "react-router-dom";
-import Home from "./components/Home";
-import Signup from "./components/Signup";
-import Login from "./components/Login";
-import About from "./components/About";
-import Profile from "./components/Profile";
+
 import { useEffect, useState } from 'react';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import Feed from "./components/Feed/Feed";
+
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   let token = localStorage.getItem("jwtToken");

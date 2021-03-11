@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+// This basically creates a component that is already styled
+// we call it StyledSideNav - we use it in our SideNav component
 
 export const StyledSideNav = styled.nav`
 display: flex;
