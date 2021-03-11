@@ -14,8 +14,11 @@ import StepConnector from "@material-ui/core/StepConnector";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
+import Select from "@material-ui/core/Select";
+import { MenuItem, FormControl } from "@material-ui/core";
 
-import { Form, FormControl, Row, Col } from "react-bootstrap";
+import { Form, Row, Col } from "react-bootstrap";
+import "./Signup.css";
 
 const { REACT_APP_SERVER_URL } = process.env;
 
@@ -106,18 +109,22 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
   },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
 }));
 
 // title of the steps for our stepper
 function getSteps() {
-  return [
-    "Account",
-    "Information",
-    "Wallet",
-  ];
+  return ["Account", "Information", "Wallet"];
 }
 
 export default function CustomizedSteppers() {
+  // first step states
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -135,6 +142,37 @@ export default function CustomizedSteppers() {
   };
   const handleConfirmPassword = (e) => {
     setConfirmPassword(e.target.value);
+  };
+
+  // second step states
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [address, setAddress] = useState("");
+  const [address2, setAddress2] = useState("");
+  const [city, setCity] = useState("");
+  const [locState, setLocState] = useState("");
+  const [zipcode, setZipcode] = useState("");
+
+  const handleFirstName = (e) => {
+    setFirstName(e.target.value);
+  };
+  const handleLastName = (e) => {
+    setLastName(e.target.value);
+  };
+  const handleAddress = (e) => {
+    setAddress(e.target.value);
+  };
+  const handleAddress2 = (e) => {
+    setAddress2(e.target.value);
+  };
+  const handleCity = (e) => {
+    setCity(e.target.value);
+  };
+  const handleLocState = (e) => {
+    setLocState(e.target.value);
+  };
+  const handleZipcode = (e) => {
+    setZipcode(e.target.value);
   };
 
   const classes = useStyles();
@@ -174,11 +212,12 @@ export default function CustomizedSteppers() {
   };
 
   function getStepContent(step) {
+    // This is the content for our steps
     switch (step) {
       case 0:
-        // Step 1
+        // ********************* STEP 1 *************************
         return (
-          <Form className={classes.root} noValidate autoComplete="off">
+          <FormControl className={classes.root} noValidate autoComplete="off">
             <Row>
               <Col>
                 <div className="form-group">
@@ -195,6 +234,7 @@ export default function CustomizedSteppers() {
                 <div className="form-group">
                   <TextField
                     id="standard-basic"
+                    type="Email"
                     label="Email"
                     name="email"
                     value={email}
@@ -230,64 +270,159 @@ export default function CustomizedSteppers() {
                 </div>
               </Col>
             </Row>
-          </Form>
+          </FormControl>
         );
       case 1:
+        // ********************* STEP 2 *************************
         return (
-            <Form className={classes.root} noValidate autoComplete="off">
-              <Row>
-                <Col>
-                  <div className="form-group">
-                    <TextField
-                      id="standard-basic"
-                      label="Username"
-                      name="userName"
-                      value={userName}
-                      onChange={handleUserName}
-                    />
-                  </div>
-                </Col>
-                <Col>
-                  <div className="form-group">
-                    <TextField
-                      id="standard-basic"
-                      label="Email"
-                      name="email"
-                      value={email}
-                      onChange={handleEmail}
-                    />
-                  </div>
-                </Col>
-              </Row>
+          <FormControl className={classes.root} noValidate autoComplete="off">
+            <Row>
+              <Col>
+                <div className="form-group">
+                  <TextField
+                    id="standard-basic"
+                    label="First Name"
+                    name="firstName"
+                    value={firstName}
+                    onChange={handleFirstName}
+                  />
+                </div>
+              </Col>
+              <Col>
+                <div className="form-group">
+                  <TextField
+                    id="standard-basic"
+                    label="Last Name"
+                    name="lastName"
+                    value={lastName}
+                    onChange={handleLastName}
+                  />
+                </div>
+              </Col>
+            </Row>
+            <br />
+            <Row>
+              <div className="form-group addressInput">
+                <TextField
+                  id="standard-basic"
+                  className="addressInput"
+                  label="Address"
+                  name="address"
+                  value={address}
+                  onChange={handleAddress}
+                />
+              </div>
+            </Row>
+            <Row>
+              <Col>
+                <div className="form-group">
+                  <TextField
+                    id="standard-basic"
+                    label="Apt/Unit"
+                    name="address2"
+                    value={address2}
+                    onChange={handleAddress2}
+                  />
+                </div>
+              </Col>
+
               <br />
-              <Row>
-                <Col>
-                  <div className="form-group">
-                    <TextField
-                      type="password"
-                      id="standard-basic"
-                      label="Password"
-                      name="password"
-                      value={password}
-                      onChange={handlePassword}
-                    />
-                  </div>
-                </Col>
-                <Col>
-                  <div className="form-group">
-                    <TextField
-                      type="password"
-                      id="standard-basic"
-                      label="Confirm Password"
-                      name="confirmPassword"
-                      value={confirmPassword}
-                      onChange={handleConfirmPassword}
-                    />
-                  </div>
-                </Col>
-              </Row>
-            </Form>
-          );
+              <Col>
+                <div className="form-group">
+                  <TextField
+                    id="standard-basic"
+                    label="City"
+                    name="city"
+                    value={city}
+                    onChange={handleCity}
+                  />
+                </div>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Select
+                  labelId="demo-simple-select-placeholder-label-label"
+                  id="demo-simple-select-placeholder-label"
+                  value={locState}
+                  onChange={handleLocState}
+                  displayEmpty
+                  className={classes.selectEmpty}
+                >
+                  {/***************** STATE SELECTOR  ****************************/}
+                  <MenuItem value="">State</MenuItem>
+                  <MenuItem value={"AL"}>AL</MenuItem>
+                  <MenuItem value={"AK"}>AK</MenuItem>
+                  <MenuItem value={"AS"}>AS</MenuItem>
+                  <MenuItem value={"AZ"}>AZ</MenuItem>
+                  <MenuItem value={"AR"}>AR</MenuItem>
+                  <MenuItem value={"CA"}>CA</MenuItem>
+                  <MenuItem value={"CO"}>CO</MenuItem>
+                  <MenuItem value={"CT"}>CT</MenuItem>
+                  <MenuItem value={"DE"}>DE</MenuItem>
+                  <MenuItem value={"DC"}>DC</MenuItem>
+                  <MenuItem value={"FL"}>FL</MenuItem>
+                  <MenuItem value={"GA"}>GA</MenuItem>
+                  <MenuItem value={"GU"}>GU</MenuItem>
+                  <MenuItem value={"HI"}>HI</MenuItem>
+                  <MenuItem value={"ID"}>ID</MenuItem>
+                  <MenuItem value={"IL"}>IL</MenuItem>
+                  <MenuItem value={"IN"}>IN</MenuItem>
+                  <MenuItem value={"IA"}>IA</MenuItem>
+                  <MenuItem value={"KS"}>KS</MenuItem>
+                  <MenuItem value={"LA"}>LA</MenuItem>
+                  <MenuItem value={"ME"}>ME</MenuItem>
+                  <MenuItem value={"MD"}>MD</MenuItem>
+                  <MenuItem value={"MA"}>MA</MenuItem>
+                  <MenuItem value={"MI"}>MI</MenuItem>
+                  <MenuItem value={"MN"}>MN</MenuItem>
+                  <MenuItem value={"MS"}>MS</MenuItem>
+                  <MenuItem value={"MO"}>MO</MenuItem>
+                  <MenuItem value={"MT"}>MT</MenuItem>
+                  <MenuItem value={"NE"}>NE</MenuItem>
+                  <MenuItem value={"NV"}>NV</MenuItem>
+                  <MenuItem value={"NH"}>NH</MenuItem>
+                  <MenuItem value={"NJ"}>NJ</MenuItem>
+                  <MenuItem value={"NM"}>NM</MenuItem>
+                  <MenuItem value={"NY"}>NY</MenuItem>
+                  <MenuItem value={"NC"}>NC</MenuItem>
+                  <MenuItem value={"ND"}>ND</MenuItem>
+                  <MenuItem value={"MP"}>MP</MenuItem>
+                  <MenuItem value={"OH"}>OH</MenuItem>
+                  <MenuItem value={"OK"}>OK</MenuItem>
+                  <MenuItem value={"OR"}>OR</MenuItem>
+                  <MenuItem value={"PA"}>PA</MenuItem>
+                  <MenuItem value={"PR"}>PR</MenuItem>
+                  <MenuItem value={"RI"}>RI</MenuItem>
+                  <MenuItem value={"SC"}>SC</MenuItem>
+                  <MenuItem value={"SD"}>SD</MenuItem>
+                  <MenuItem value={"TN"}>TN</MenuItem>
+                  <MenuItem value={"TX"}>TX</MenuItem>
+                  <MenuItem value={"UT"}>UT</MenuItem>
+                  <MenuItem value={"VT"}>VT</MenuItem>
+                  <MenuItem value={"VA"}>VA</MenuItem>
+                  <MenuItem value={"VI"}>VI</MenuItem>
+                  <MenuItem value={"WA"}>WA</MenuItem>
+                  <MenuItem value={"WV"}>WV</MenuItem>
+                  <MenuItem value={"WI"}>WI</MenuItem>
+                  <MenuItem value={"WY"}>WY</MenuItem>
+                  {/***************************************************/}
+                </Select>
+              </Col>
+              <Col>
+                <div className="form-group">
+                  <TextField
+                    id="standard-basic"
+                    label="Zipcode"
+                    name="zipcode"
+                    value={zipcode}
+                    onChange={handleZipcode}
+                  />
+                </div>
+              </Col>
+            </Row>
+          </FormControl>
+        );
       case 2:
         return "This is the bit I really care about!";
       case 3:
