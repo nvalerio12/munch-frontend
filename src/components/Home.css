@@ -1,4 +1,5 @@
 /* Home page */
+
 .home-main {
     background-size: 100%;
     background-image: url('../images/homepage-bg.png');
@@ -6,8 +7,31 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
   
-  .search-form-control {
-    width: 350px;
-  }
+.hp-search-container {
+  display: flex;
+  justify-content: center;
+}
+
+.pd-l-0 {
+  padding-left: 0;
+}
+.pd-r-0 {
+  padding-right: 0;
+}
+.hp-search {
+margin: 0;
+width: 35vh;
+padding-left: 1em;
+border-radius: 0;
+height: 3em;
+}
+
+.hp-search-btn {
+  height: 3em;
+  border-style: none;
+  border-radius: 0;
+  color:#eeeeee;
+  background-color: #686d76;
+}
