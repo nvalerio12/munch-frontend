@@ -1,0 +1,26 @@
+.restaurant-info {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.restaurant-div {
+  cursor: pointer;
+}
+
+.restaurant-div:hover {
+  box-shadow: 10px 5px 5px red;
+  transition: 1s;
+}
+
+.favorite-btn {
+  fill: white;
+  transition: 0.25s;
+}
+
+.favorite-btn:hover {
+  fill: gold;
+}
+
+.card-img {
+  max-height: 250px;
+}
+
