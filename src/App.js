@@ -7,13 +7,12 @@ import {
   Profile,
   Signup,
   Login,
-  Feed
+  Feed,
 } from "./components/"; // export from components/index.js
 
-
 import { ThemeProvider } from "styled-components"; // used styled components to create components :navbar and sidenav
-import { GlobalStyles } from "./global";
-import { theme } from "./theme";
+import { GlobalStyles } from "./global"; // global styles for the application
+import { theme } from "./theme"; // theme colors set up for the application - copy values in css files - call variables in style.js files
 
 import {
   BrowserRouter as Router,
@@ -25,7 +24,6 @@ import {
 import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
-
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   let token = localStorage.getItem("jwtToken");
@@ -87,7 +85,14 @@ function App() {
             <GlobalStyles />
             <div>
               <Navbar open={open} setOpen={setOpen} />
-              <SideNav open={open} setOpen={setOpen} />
+              <SideNav
+                open={open}
+                setOpen={setOpen}
+                user={currentUser}
+                nowCurrentUser={nowCurrentUser}
+                isAuthenticated={isAuthenticated}
+                setIsAuthenticated={setIsAuthenticated}
+              />
             </div>
           </ThemeProvider>
         </>

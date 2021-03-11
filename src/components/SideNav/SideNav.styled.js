@@ -37,6 +37,10 @@ a {
   }
 }
 .login-btn, .signup-btn {
+  background: ${({ theme }) => theme.primaryLight};
+  color: ${({ theme }) => theme.primaryDark};
+  border-radius: 0;
+  border: 1px solid black;
   margin: 1em 0;
   font-size: .75rem;
   text-transform: uppercase;
@@ -51,5 +55,7 @@ a {
 &:hover {
   background-color: ${({ theme }) => theme.primaryHover};
 }
+
+
 }
 `;
