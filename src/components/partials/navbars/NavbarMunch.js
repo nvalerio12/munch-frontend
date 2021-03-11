@@ -19,12 +19,13 @@ function NavbarMunch(props) {
         <FaIcons.FaBars onClick={showSidebar} />
       </Link>
     </div>
-    <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-      <ul className='nav-menu-items' onClick={showSidebar}>
+    <div class="nav-icon">
+      <div></div>
+    </div>
+    <nav className={sidebar ? 'nav-menu active tabindex=`1`' : 'nav-menu'}>
+      <ul className='nav-menu-items' >
         <li className='navbar-toggle'>
-          <Link to='#' className='menu-bars'>
-            <AiIcons.AiOutlineClose />
-          </Link>
+          
         </li>
         {SidebarData.map((item, index) => {
           return (
