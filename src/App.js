@@ -85,11 +85,13 @@ function App() {
             <GlobalStyles />
             <div>
               <Navbar open={open} setOpen={setOpen} />
-              <SideNav
+              <SideNav 
                 open={open}
                 setOpen={setOpen}
                 user={currentUser}
                 nowCurrentUser={nowCurrentUser}
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
                 isAuthenticated={isAuthenticated}
                 setIsAuthenticated={setIsAuthenticated}
               />

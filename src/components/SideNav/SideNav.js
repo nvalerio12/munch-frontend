@@ -19,7 +19,7 @@ const SideNav = ({ open, ...props }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleEmail = (e) => {
+  const handleEmail = (e) => { 
     setEmail(e.target.value);
   };
 
@@ -35,7 +35,6 @@ const SideNav = ({ open, ...props }) => {
       .post(`${REACT_APP_SERVER_URL}/users/login`, userData)
       .then((response) => {
         const { token } = response.data;
-   
         // save token to localStorage
         localStorage.setItem("jwtToken", token);
         // set token to headers
@@ -52,20 +51,37 @@ const SideNav = ({ open, ...props }) => {
       });
   };
 
+  const handleLogout = () => {
+    if (localStorage.getItem('jwtToken')) {
+      // remove token for localStorage
+      localStorage.removeItem('jwtToken');
+      props.setOpen(!open);
+      props.setCurrentUser(null);
+      props.setIsAuthenticated(false);
+    }
+  }
+
   // Login Modal
-  const handleLoginClose = () => setLoginShow(false);
-  const handleLoginShow = () => setLoginShow(true);
+  const handleLoginClose = () => {
+    setLoginShow(false) // closing the modal
+    props.setOpen(!open) // closing the sidenav
+  };
+  const handleLoginShow = () => setLoginShow(true); // opening modal
 
   // Sign Up Modal
-  const handleSignUpClose = () => setSignUpShow(false);
-  const handleSignUpShow = () => setSignUpShow(true);
+  const handleSignUpClose = () => {
+    setSignUpShow(false) // closing the modal
+    props.setOpen(!open) // closing the sidenav
+  };
+  const handleSignUpShow = () => setSignUpShow(true); // opening modal
 
   // State of Side Nav
   const isHidden = open ? true : false;
   const tabIndex = isHidden ? 1 : 0;
 
   console.log(props.isAuthenticated);
-
+    // **************************** USER IS NOT IN ********************************
+  if (props.isAuthenticated === false) {
   return (
     <>
       <StyledSideNav open={open} aria-hidden={!isHidden} {...props}>
@@ -87,9 +103,6 @@ const SideNav = ({ open, ...props }) => {
         <a href="/" tabIndex={tabIndex}>
           #Plaid
         </a>
-        <Button onClick={handleSignUpShow} className="login-btn">
-          #Log Out
-        </Button>
       </StyledSideNav>
 
       {/************************** Login Modal  **************************/}
@@ -122,9 +135,6 @@ const SideNav = ({ open, ...props }) => {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleLoginClose}>
-              Close
-            </Button>
             <Button type="submit" variant="primary" onClick={handleLoginClose}>
               Login
             </Button>
@@ -150,6 +160,30 @@ const SideNav = ({ open, ...props }) => {
       </Modal>
     </>
   );
+  // **************************** USER IS LOGGED IN ********************************
+  } else {
+    return(
+      <>
+      <StyledSideNav open={open} aria-hidden={!isHidden} {...props}>
+        <a href="/" tabIndex={tabIndex}>
+          #Home
+        </a>
+        <a href="/" tabIndex={tabIndex}>
+          #About us
+        </a>
+        <a href="/" tabIndex={tabIndex}>
+          #Contact us
+        </a>
+        <a href="/" tabIndex={tabIndex}>
+          #Plaid
+        </a>
+        <Button onClick={handleLogout} className="login-btn">
+          #Log Out
+        </Button>
+      </StyledSideNav>
+      </>
+    )
+  }
 };
 
 SideNav.propTypes = {
