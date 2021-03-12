@@ -47,6 +47,9 @@ const SideNav = ({ open, ...props }) => {
       .post(`${REACT_APP_SERVER_URL}/users/login`, userData)
       .then((response) => {
         const { token } = response.data;
+        // throw an error if there is a mistake.
+        if (!token) throw new Error('Token Not Returned');
+
         // save token to localStorage
         localStorage.setItem("jwtToken", token);
         // set token to headers
