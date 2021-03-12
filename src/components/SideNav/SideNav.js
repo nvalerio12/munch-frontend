@@ -186,6 +186,9 @@ const SideNav = ({ open, ...props }) => {
       <>
         <StyledSideNav open={open} aria-hidden={!isHidden} {...props}>
           <a href="/" tabIndex={tabIndex}>
+            #Hello {props.user.userName}
+          </a>
+          <a href="/" tabIndex={tabIndex}>
             #Home
           </a>
           <a href="/" tabIndex={tabIndex}>
