@@ -55,7 +55,30 @@ a {
 &:hover {
   background-color: ${({ theme }) => theme.primaryHover};
 }
-
-
 }
+.profile-picture-container{
+  width: 150px;
+  align-self:center;
+  text-align:center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: ${({ theme }) => theme.primaryLight};
+  transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-100%)'};
+  top: 0;
+  left: 0;
+  opacity: 0.9;
+  transition: transform 0.3s ease-in-out;
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+      width: 100%;
+    }
+}
+.profile-picture {
+  opacity:100;
+  border-radius:50%
+}
+.profile-picture:hover {
+  border: 3px solid orange;
+}
+
 `;
