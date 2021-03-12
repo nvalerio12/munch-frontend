@@ -1,23 +1,28 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import setAuthToken from "../../utils/setAuthToken";
 
 // Stepper imports //
 import PropTypes from "prop-types";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
+import {
+  Stepper,
+  Step,
+  StepLabel,
+  StepConnector,
+  Button,
+  Typography,
+  TextField,
+  Select,
+  MenuItem,
+  FormControl,
+} from "@material-ui/core";
 import clsx from "clsx";
-import Stepper from "@material-ui/core/Stepper";
-import Step from "@material-ui/core/Step";
-import StepLabel from "@material-ui/core/StepLabel";
-import Check from "@material-ui/icons/Check";
-import StepConnector from "@material-ui/core/StepConnector";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
-import Select from "@material-ui/core/Select";
-import { MenuItem, FormControl } from "@material-ui/core";
 
-import { Form, Row, Col } from "react-bootstrap";
+import Check from "@material-ui/icons/Check";
+import { Row, Col } from "react-bootstrap";
 import "./Signup.css";
 
 const { REACT_APP_SERVER_URL } = process.env;
@@ -123,7 +128,7 @@ function getSteps() {
   return ["Account", "Information", "Wallet"];
 }
 
-export default function CustomizedSteppers() {
+export default function CustomizedSteppers(props) {
   // first step states
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
@@ -175,34 +180,85 @@ export default function CustomizedSteppers() {
     setZipcode(e.target.value);
   };
 
+  // thrid step states
+  const [cardHolderName, setCardHolderName] = useState("");
+  const [cardNum, setCardNum] = useState("");
+  const [expDate, setExpDate] = useState("");
+  const [cvc, setCvc] = useState("");
+
+  const handleCardHolderName = (e) => {
+    setCardHolderName(e.target.value);
+  };
+  const handleCardNum = (e) => {
+    setCardNum(e.target.value);
+  };
+  const handleExpDate = (e) => {
+    setExpDate(e.target.value);
+  };
+  const handleCvc = (e) => {
+    setCvc(e.target.value);
+  };
+
+  // stepper states and functions
+
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    if (userName && email && password && confirmPassword) {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    }
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-  };
+//   const handleReset = () => {
+//     setActiveStep(0);
+//   };
 
   const handleSubmit = (e) => {
     e.preventDefault(); // at the beginning of a submit function
     // make sure password and confirm password are equal
     // password length >= 8 characters
+    console.log(props);
+
     if (password === confirmPassword && password.length >= 8) {
-      const newUser = { userName, email, password };
+      const newUser = {
+        userName,
+        email,
+        password,
+        firstName,
+        lastName,
+        address,
+        address2,
+        city,
+        locState,
+        zipcode,
+        cardHolderName,
+        cardNum,
+        expDate,
+        cvc,
+      };
       axios
         .post(`${REACT_APP_SERVER_URL}/users/register`, newUser)
         .then((response) => {
           console.log("===> Yay, new user");
           console.log(response);
           setRedirect(true);
+          props.setIsAuthenticated(true);
+          props.setSignUpShow(false)
+          const { token } = response.data;
+          // save token to localStorage
+          localStorage.setItem("jwtToken", token);
+          // set token to headers
+          setAuthToken(token);
+          // decode token to get the user data
+          const decoded = jwt_decode(token);
+          // set the current user
+          props.nowCurrentUser(decoded); // function passed down as props.
         })
         .catch((error) => console.log("===> Error in Signup", error));
     } else {
@@ -210,6 +266,8 @@ export default function CustomizedSteppers() {
       alert("Password needs to be at least 8 characters. Please try again.");
     }
   };
+
+  if (redirect) return <Redirect to="/" />;
 
   function getStepContent(step) {
     // This is the content for our steps
@@ -222,7 +280,7 @@ export default function CustomizedSteppers() {
               <Col>
                 <div className="form-group">
                   <TextField
-                    id="standard-basic"
+                    required
                     label="Username"
                     name="userName"
                     value={userName}
@@ -233,7 +291,7 @@ export default function CustomizedSteppers() {
               <Col>
                 <div className="form-group">
                   <TextField
-                    id="standard-basic"
+                    required
                     type="Email"
                     label="Email"
                     name="email"
@@ -248,8 +306,8 @@ export default function CustomizedSteppers() {
               <Col>
                 <div className="form-group">
                   <TextField
+                    required
                     type="password"
-                    id="standard-basic"
                     label="Password"
                     name="password"
                     value={password}
@@ -260,8 +318,8 @@ export default function CustomizedSteppers() {
               <Col>
                 <div className="form-group">
                   <TextField
+                    required
                     type="password"
-                    id="standard-basic"
                     label="Confirm Password"
                     name="confirmPassword"
                     value={confirmPassword}
@@ -280,7 +338,7 @@ export default function CustomizedSteppers() {
               <Col>
                 <div className="form-group">
                   <TextField
-                    id="standard-basic"
+                    required
                     label="First Name"
                     name="firstName"
                     value={firstName}
@@ -291,7 +349,7 @@ export default function CustomizedSteppers() {
               <Col>
                 <div className="form-group">
                   <TextField
-                    id="standard-basic"
+                    required
                     label="Last Name"
                     name="lastName"
                     value={lastName}
@@ -304,7 +362,6 @@ export default function CustomizedSteppers() {
             <Row>
               <div className="form-group addressInput">
                 <TextField
-                  id="standard-basic"
                   className="addressInput"
                   label="Address"
                   name="address"
@@ -313,11 +370,11 @@ export default function CustomizedSteppers() {
                 />
               </div>
             </Row>
+            <br />
             <Row>
               <Col>
                 <div className="form-group">
                   <TextField
-                    id="standard-basic"
                     label="Apt/Unit"
                     name="address2"
                     value={address2}
@@ -330,7 +387,6 @@ export default function CustomizedSteppers() {
               <Col>
                 <div className="form-group">
                   <TextField
-                    id="standard-basic"
                     label="City"
                     name="city"
                     value={city}
@@ -339,6 +395,7 @@ export default function CustomizedSteppers() {
                 </div>
               </Col>
             </Row>
+            <br />
             <Row>
               <Col>
                 <Select
@@ -412,7 +469,6 @@ export default function CustomizedSteppers() {
               <Col>
                 <div className="form-group">
                   <TextField
-                    id="standard-basic"
                     label="Zipcode"
                     name="zipcode"
                     value={zipcode}
@@ -423,12 +479,58 @@ export default function CustomizedSteppers() {
             </Row>
           </FormControl>
         );
-      case 2:
-        return "This is the bit I really care about!";
-      case 3:
-        return "This is the bit I really care about!";
       default:
-        return "Unknown step";
+          // **************************** STEP 3 *************************
+        return (
+          <FormControl className={classes.root} noValidate autoComplete="off">
+            <Row>
+              <div className="form-group cardHolderInput">
+                <TextField
+                  className="cardHolderInput"
+                  label="CardHolder's Name"
+                  name="cardHolderName"
+                  value={cardHolderName}
+                  onChange={handleCardHolderName}
+                />
+              </div>
+            </Row>
+            <br />
+            <Row>
+              <div className="form-group cardNumInput">
+                <TextField
+                  className="cardNumInput"
+                  label="Card Number"
+                  name="cardNum"
+                  value={cardNum}
+                  onChange={handleCardNum}
+                />
+              </div>
+            </Row>
+            <br />
+            <Row>
+              <Col>
+                <div className="form-group">
+                  <TextField
+                    label="Exp YY/MM"
+                    name="exp"
+                    value={expDate}
+                    onChange={handleExpDate}
+                  />
+                </div>
+              </Col>
+              <Col>
+                <div className="form-group">
+                  <TextField
+                    label="CVC"
+                    name="cvc"
+                    value={cvc}
+                    onChange={handleCvc}
+                  />
+                </div>
+              </Col>
+            </Row>
+          </FormControl>
+        );
     }
   }
 
@@ -446,39 +548,30 @@ export default function CustomizedSteppers() {
         ))}
       </Stepper>
       <div>
-        {activeStep === steps.length ? (
+        <div>
+          <Typography className={classes.instructions}>
+            {getStepContent(activeStep)}
+          </Typography>
           <div>
-            <Typography className={classes.instructions}>
-              All steps completed - you&apos;re finished
-            </Typography>
-            <Button onClick={handleSubmit} className={classes.button}>
-              Finish Sign Up
+            <Button
+              disabled={activeStep === 0}
+              onClick={handleBack}
+              className={classes.button}
+            >
+              Back
+            </Button>
+            <Button
+              type="submit"
+              variant="primary"
+              onClick={
+                activeStep === steps.length - 1 ? handleSubmit : handleNext
+              }
+              className={classes.button}
+            >
+              {activeStep === steps.length - 1 ? "Finish" : "Next"}
             </Button>
           </div>
-        ) : (
-          <div>
-            <Typography className={classes.instructions}>
-              {getStepContent(activeStep)}
-            </Typography>
-            <div>
-              <Button
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                className={classes.button}
-              >
-                Back
-              </Button>
-              <Button
-                type="submit"
-                variant="primary"
-                onClick={handleNext}
-                className={classes.button}
-              >
-                {activeStep === steps.length - 1 ? "Finish" : "Next"}
-              </Button>
-            </div>
-          </div>
-        )}
+        </div>
       </div>
     </div>
   );

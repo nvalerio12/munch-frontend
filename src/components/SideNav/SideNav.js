@@ -167,6 +167,7 @@ const SideNav = ({ open, ...props }) => {
             <HorizontalLinearStepper 
                 open={open}
                 setOpen={props.setOpen}
+                setSignUpShow={setSignUpShow}
                 user={props.currentUser}
                 nowCurrentUser={props.nowCurrentUser}
                 currentUser={props.currentUser}
