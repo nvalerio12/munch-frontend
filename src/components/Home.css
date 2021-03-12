@@ -1,19 +1,39 @@
 /* Home page */
+
 .home-main {
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding: 50px 0 50px 0;
+    background-size: 100%;
+    background-image: url('../images/homepage-bg.png');
     height: 750px;
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+    background-repeat: no-repeat;
+    
+}
   
-  .search-form-control {
-    width: 350px;
-  }
+.hp-search-container {
+  display: flex;
+  justify-content: center;
+}
 
-body {
-  background-color: grey;
+.pd-l-0 {
+  padding-left: 0;
+}
+.pd-r-0 {
+  padding-right: 0;
+}
+.hp-search {
+margin: 0;
+width: 35vh;
+padding-left: 1em;
+border-radius: 0;
+height: 3em;
+}
+
+.hp-search-btn {
+  height: 3em;
+  border-style: none;
+  border-radius: 0;
+  color:#eeeeee;
+  background-color: #686d76;
 }

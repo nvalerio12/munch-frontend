@@ -1,19 +1,23 @@
 import React from "react";
 import "./Home.css";
+import { Form, FormControl, Button, Row, Col } from "react-bootstrap";
 
 function Home(props) {
   return (
     <div>
       <div className="home-main">
-        <form className="d-flex justify-content-center">
-          <div className="form-group m-0">
-            <input
-              type="text"
-              className="form-control search-form-control"
-              placeholder="Enter ZipCode"
-            />
-          </div>
-        </form>
+        <div className="hp-search-container">
+          <Form>
+            <Row>
+              <Col className="pd-r-0 pd-l-0">
+            <FormControl type="text" placeholder="Zipcode" className="hp-search" />
+              </Col>
+              <Col className="pd-r-0 pd-l-0">
+            <Button variant="outline-success hp-search-btn">Let's Find Food</Button>
+              </Col>
+            </Row>
+          </Form>
+        </div>
       </div>
     </div>
   );
