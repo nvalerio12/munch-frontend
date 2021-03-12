@@ -4,6 +4,7 @@ import { StyledSideNav } from "./SideNav.styled";
 import { Modal, Form } from "react-bootstrap";
 import Button from '@material-ui/core/Button';
 import HorizontalLinearStepper from './Signup'
+import About from '../About';
 
 import jwt_decode from "jwt-decode";
 import { Redirect } from "react-router-dom";
@@ -105,7 +106,7 @@ const SideNav = ({ open, ...props }) => {
           <a href="/" tabIndex={tabIndex}>
             #Home
           </a>
-          <a href="/aboutus" tabIndex={tabIndex}>
+          <a href="/aboutus" tabIndex={tabIndex} onClick={About}>
             #About us
           </a>
           <a href="/" tabIndex={tabIndex}>

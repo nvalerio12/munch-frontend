@@ -1,10 +1,11 @@
 import React from "react";
 import { button } from 'react-router-dom';
 import Signup from "./Signup";
+import './About.css'
 function About() {
    
   return (
-    <div>
+    <div className='about'>
       <container>
         <h1>About Munch?</h1>
         <p>
