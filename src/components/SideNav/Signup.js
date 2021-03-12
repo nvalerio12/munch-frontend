@@ -223,7 +223,7 @@ export default function CustomizedSteppers(props) {
     e.preventDefault(); // at the beginning of a submit function
     // make sure password and confirm password are equal
     // password length >= 8 characters
-    console.log(props);
+    // console.log(props);
 
     if (password === confirmPassword && password.length >= 8) {
       const newUser = {
@@ -245,12 +245,15 @@ export default function CustomizedSteppers(props) {
       axios
         .post(`${REACT_APP_SERVER_URL}/users/register`, newUser)
         .then((response) => {
-          console.log("===> Yay, new user");
-          console.log(response);
+          // console.log("===> Yay, new user");
+          // console.log(response);
+          const { token } = response.data;
+
+          if (!token) throw new Error('Token Not Returned');
+
           setRedirect(true);
           props.setIsAuthenticated(true);
           props.setSignUpShow(false)
-          const { token } = response.data;
           // save token to localStorage
           localStorage.setItem("jwtToken", token);
           // set token to headers
@@ -260,7 +263,25 @@ export default function CustomizedSteppers(props) {
           // set the current user
           props.nowCurrentUser(decoded); // function passed down as props.
         })
-        .catch((error) => console.log("===> Error in Signup", error));
+        .catch((error) => {
+          try {
+            const list = Object.keys(error.response.data.needToChange).map((item) => {
+              if (item === 'userName') {
+                return 'Username Is Taken. \n';
+              } else if (item === 'email') {
+                return 'Email Already In Use. \n';
+              } else if (item === 'password') {
+                return 'Password Has To Be At Least 8 Charaters. \n';
+              } else {
+                return item;
+              }
+            });
+            alert(`An Error Occured: \n ${list}`);
+          } catch (error) {
+            alert(`An Error Occured, Please Try Again`);
+          }
+          console.log("===> Error in Signup", error);
+        });
     } else {
       if (password !== confirmPassword) return alert("Passwords don't match");
       alert("Password needs to be at least 8 characters. Please try again.");
