@@ -35,6 +35,7 @@ const Feed = (props) => {
     }
 
     return ( 
+      <>
       <Link
       to={{
         pathname: `restaurants/${restaurant._id}`,
@@ -61,7 +62,7 @@ const Feed = (props) => {
         </div>
       </div>
       </Link>
-     
+     </>
     )
   });
 

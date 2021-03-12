@@ -1,13 +1,16 @@
 .navbar {
     display: flex;
-    background-color: #aaaaaa;
+    background-color: #dddddd;
     position:fixed;
     width: 100%;
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
     border-bottom: 2px solid orange;
 }
-
 .spacer {
     height: 5em;
   }
+  .nav-bar-spacer {
+    background-color: transparent;
+    height: 6.1em;
+}
