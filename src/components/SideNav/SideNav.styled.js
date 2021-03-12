@@ -8,10 +8,11 @@ flex-direction: column;
 justify-content: center;
 background: ${({ theme }) => theme.primaryLight};
 transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-100%)'};
-height: 100vh;
+height: 100%;
 text-align: left;
 padding: 2rem;
-position: absolute;
+position: fixed;
+z-index: 1;
 top: 0;
 left: 0;
 opacity: 0.9;
@@ -36,6 +37,7 @@ a {
     color: ${({ theme }) => theme.primaryHover};
   }
 }
+
 .login-btn, .signup-btn {
   background: ${({ theme }) => theme.primaryLight};
   color: ${({ theme }) => theme.primaryDark};
@@ -75,7 +77,7 @@ a {
 }
 .profile-picture {
   opacity:100;
-  border-radius:50%
+  border-radius:50%;
 }
 .profile-picture:hover {
   border: 3px solid orange;

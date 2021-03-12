@@ -1,6 +1,5 @@
 import React from "react";
 import { button } from 'react-router-dom';
-import Signup from "./Signup";
 function About() {
    
   return (

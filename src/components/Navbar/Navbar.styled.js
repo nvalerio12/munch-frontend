@@ -3,7 +3,7 @@ import styled from 'styled-components';
 // we call this StyledNavbar and we use it in our NavBar component
 
 export const StyledNavbar = styled.button`
-  position: absolute;
+  position: fixed;
   top: 5%;
   left: 2rem;
   display: flex;
@@ -28,18 +28,22 @@ export const StyledNavbar = styled.button`
     transition: all 0.3s linear;
     position: relative;
     transform-origin: 1px;
+    z-index: 10;
 
     :first-child {
       transform: ${({ open }) => open ? 'rotate(45deg)' : 'rotate(0)'};
+  
     }
 
     :nth-child(2) {
       opacity: ${({ open }) => open ? '0' : '1'};
       transform: ${({ open }) => open ? 'translateX(20px)' : 'translateX(0)'};
+    
     }
 
     :nth-child(3) {
       transform: ${({ open }) => open ? 'rotate(-45deg)' : 'rotate(0)'};
+      
     }
   }
 `;

@@ -7,7 +7,7 @@ import HorizontalLinearStepper from './Signup'
 import profilePicture from '../../images/profile-image-placeholder.png'
 
 import jwt_decode from "jwt-decode";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link} from "react-router-dom";
 import setAuthToken from "../../utils/setAuthToken";
 
 import axios from "axios";
@@ -103,18 +103,18 @@ const SideNav = ({ open, ...props }) => {
           <Button onClick={handleSignUpShow} className="login-btn">
             #Sign Up
           </Button>
-          <a href="/" tabIndex={tabIndex}>
+          <Link to="/" tabIndex={tabIndex}>
             #Home
-          </a>
-          <a href="/" tabIndex={tabIndex}>
+          </Link>
+          <Link to="/aboutus" tabIndex={tabIndex}>
             #About us
-          </a>
-          <a href="/" tabIndex={tabIndex}>
-            #Contact us
-          </a>
-          <a href="/" tabIndex={tabIndex}>
+          </Link>
+          <Link to="/feed" tabIndex={tabIndex}>
+            #Feed
+          </Link>
+          <Link to="/" tabIndex={tabIndex}>
             #Plaid
-          </a>
+          </Link>
         </StyledSideNav>
 
         {/************************** Login Modal  **************************/}
@@ -187,23 +187,23 @@ const SideNav = ({ open, ...props }) => {
       <>
         <StyledSideNav open={open} aria-hidden={!isHidden} {...props}>
           <div className="profile-picture-container">
-          <a href="/">
+          <Link to="/">
             #{props.user.userName}
-            </a>
+            </Link>
           <img className="profile-picture" src={profilePicture} alt="profile-pic"/>
           </div>
-          <a href="/" tabIndex={tabIndex}>
+          <Link to="/" tabIndex={tabIndex}>
             #Home
-          </a>
-          <a href="/" tabIndex={tabIndex}>
+          </Link>
+          <Link to="/aboutus" tabIndex={tabIndex}>
             #About us
-          </a>
-          <a href="/" tabIndex={tabIndex}>
-            #Contact us
-          </a>
-          <a href="/" tabIndex={tabIndex}>
+          </Link>
+          <Link to="/feed" tabIndex={tabIndex}>
+            #Feed
+          </Link>
+          <Link to="/" tabIndex={tabIndex}>
             #Plaid
-          </a>
+          </Link>
           <Button onClick={handleLogout} className="login-btn">
             #Log Out
           </Button>
