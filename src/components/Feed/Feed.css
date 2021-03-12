@@ -4,6 +4,7 @@
 
 .restaurant-div {
   cursor: pointer;
+  z-index: -1;
 }
 
 .restaurant-div:hover {
