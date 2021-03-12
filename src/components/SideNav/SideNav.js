@@ -4,7 +4,6 @@ import { StyledSideNav } from "./SideNav.styled";
 import { Modal, Form } from "react-bootstrap";
 import Button from '@material-ui/core/Button';
 import HorizontalLinearStepper from './Signup'
-import profilePicture from '../../images/profile-image-placeholder.png'
 
 import jwt_decode from "jwt-decode";
 import { Redirect } from "react-router-dom";
@@ -47,9 +46,6 @@ const SideNav = ({ open, ...props }) => {
       .post(`${REACT_APP_SERVER_URL}/users/login`, userData)
       .then((response) => {
         const { token } = response.data;
-        // throw an error if there is a mistake.
-        if (!token) throw new Error('Token Not Returned');
-
         // save token to localStorage
         localStorage.setItem("jwtToken", token);
         // set token to headers
@@ -109,7 +105,7 @@ const SideNav = ({ open, ...props }) => {
           <a href="/" tabIndex={tabIndex}>
             #Home
           </a>
-          <a href="/" tabIndex={tabIndex}>
+          <a href="/aboutus" tabIndex={tabIndex}>
             #About us
           </a>
           <a href="/" tabIndex={tabIndex}>
@@ -189,16 +185,10 @@ const SideNav = ({ open, ...props }) => {
     return (
       <>
         <StyledSideNav open={open} aria-hidden={!isHidden} {...props}>
-          <div className="profile-picture-container">
-          <a href="/">
-            #{props.user.userName}
-            </a>
-          <img className="profile-picture" src={profilePicture} alt="profile-pic"/>
-          </div>
           <a href="/" tabIndex={tabIndex}>
             #Home
           </a>
-          <a href="/" tabIndex={tabIndex}>
+          <a href="/aboutus" tabIndex={tabIndex}>
             #About us
           </a>
           <a href="/" tabIndex={tabIndex}>
