@@ -15,6 +15,7 @@ position: absolute;
 top: 0;
 left: 0;
 opacity: 0.9;
+z-index: 1;
 transition: transform 0.3s ease-in-out;
 @media (max-width: ${({ theme }) => theme.mobile}) {
     width: 100%;
