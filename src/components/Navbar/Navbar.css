@@ -1,5 +1,19 @@
-.navBar {
+.navbar {
     display: flex;
-    background-color: black;
-    color: white;
+    opacity: .5;
+    background:transparent;
+    position:fixed;
+    width: 100%;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+}
+.spacer {
+  opacity: .5;
+  background:transparent;
+    height: 5em;
+  }
+  .nav-bar-spacer {
+    opacity: .5;
+    background:transparent;
+    height: 6.1em;
 }

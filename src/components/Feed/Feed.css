@@ -5,7 +5,10 @@
 .restaurant-div {
   cursor: pointer;
   z-index: 0;
+
+
   transition: 0.25s;
+
 }
 
 .restaurant-div:hover {
@@ -62,3 +65,4 @@
 .card-img {
   max-height: 250px;
 }
+

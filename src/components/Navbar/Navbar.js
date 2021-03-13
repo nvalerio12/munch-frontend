@@ -6,14 +6,19 @@ import './Navbar.css'
 const Navbar = ({ open, setOpen }) => {
   return (
     <>
-      <div className="navBar">
         <StyledNavbar open={open} onClick={() => setOpen(!open)}>
           <div className="threeLines"/>
           <div className="threeLines"/>
           <div className="threeLines"/>
         </StyledNavbar>
+      <div className="navbar">
+        <div className="spacer">
+
+        </div>
         
-      </div>
+        </div>
+    
+       
       
     </>
   );
