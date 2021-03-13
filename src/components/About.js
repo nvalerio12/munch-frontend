@@ -1,12 +1,12 @@
 import React from "react";
 import { button } from 'react-router-dom';
 
-import './About.css'
+import './About.css';
 
 function About() {
    
   return (
-    <div className='container'>
+    <div className='container about-container'>
       <container>
         <h1>About Munch?</h1>
         <p>
@@ -16,7 +16,9 @@ function About() {
           your foodie adventures.{" "}
         </p>
       </container>
-      <button className='btn' href='/Signup' >Sign Up Now</button>
+
+      <button className='btn' href='/Signup'>Sign Up Now</button>
+
     </div>
   );
 }

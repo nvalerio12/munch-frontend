@@ -4,10 +4,9 @@ import { StyledSideNav } from "./SideNav.styled";
 import { Modal, Form } from "react-bootstrap";
 import { Button, TextField } from '@material-ui/core/';
 import HorizontalLinearStepper from './Signup'
-import About from '../About';
 
 import jwt_decode from "jwt-decode";
-import { Redirect, Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import setAuthToken from "../../utils/setAuthToken";
 import profilePicture from "../../images/profile-image-placeholder.png";
 
@@ -33,11 +32,6 @@ const SideNav = ({ open, ...props }) => {
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
-
-  // SignUp Specific States - we will use email and password from the login states ^
-  const [userName, setUserName] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [redirect, setRedirect] = useState(false);
 
   // Functions to Handle Sign Up States
 
