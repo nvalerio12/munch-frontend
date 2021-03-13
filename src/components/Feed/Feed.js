@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./Feed.css";
-
-
 import { AiTwotoneStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import CategoryRow from "../partials/CategoryRow";
@@ -29,11 +27,13 @@ const Feed = (props) => {
       getRestaurants();
     }
 
+  }, [props.location.search]);
+
+  useEffect(() => {
     if (props.isAuth && props.user.type === 'user') {
       getFavoriteRestaurants();
     }
-
-  }, [props.location.search]);
+  }, [props.user])
 
   const getRestaurants = (query) => {
     let url = query
@@ -53,7 +53,6 @@ const Feed = (props) => {
   };
 
   const getFavoriteRestaurants = () => {
-    console.log(props.user);
     let url = `${REACT_APP_SERVER_URL}/users/${props.user.id}/public`;
 
     axios
@@ -67,25 +66,40 @@ const Feed = (props) => {
       });
   }
 
-  const handleFavorite = e => {
-
-    if (props.isAuth) {
-      const restaurantId = e.target.dataset.restaurant;
-      let url = `${REACT_APP_SERVER_URL}/users/addFavorite/${restaurantId}`;
-
-      axios
-        .put(url)
-        .then((response) => {
-          setCurrentUserFavorites(currentUserFavorites.concat([restaurantId]));
-        })
-        .catch((error) => {
-          console.log("===> Error When", error);
-          alert("Could Not Add Favorite!");
-        });
-
+  const handleFavorite = restaurantId => {
+    if (!props.isAuth) return alert("Please Sign In To Favorite Restaurants");
+    
+    if (currentUserFavorites.includes(restaurantId)) {
+      removeFavorite(restaurantId);
     } else {
-      alert("Please Sign In To Favorite Restaurants");
+      addFavorite(restaurantId);
     }
+  }
+
+  const addFavorite = restaurantId => {
+    const url = `${REACT_APP_SERVER_URL}/users/addFavorite/${restaurantId}`;
+    axios
+      .put(url)
+      .then((response) => {
+        setCurrentUserFavorites(currentUserFavorites.concat([restaurantId]));
+      })
+      .catch((error) => {
+        console.log("===> Error When", error);
+        alert(`Error: Could Not Add A Favorite.`);
+      });
+  }
+
+  const removeFavorite = restaurantId => {
+    const url = `${REACT_APP_SERVER_URL}/users/removeFavorite/${restaurantId}`;
+    axios
+      .put(url)
+      .then((response) => {
+        setCurrentUserFavorites(currentUserFavorites.filter(id => id !== restaurantId));
+      })
+      .catch((error) => {
+        console.log("===> Error When", error);
+        alert(`Error: Could Not Remove A Favorite`);
+      });
   }
 
   let restaurantArray = restaurants.map((result) => {
@@ -93,55 +107,50 @@ const Feed = (props) => {
 
     if (!result) {
       return (
-        <>
-          <></>
-        </>
+        <></>
       );
     }
 
     if (result.isGroup) {
       const subResults = result.results.map((restaurant) => {
-        return ( 
+        return (
           <>
-          <Link
-          to={{
-            pathname: `restaurants/${restaurant._id}`,
-            state: {restaurant}
-          }}
-            
-          className="restaurant-div card bg-transparent text-white col-xs col-md-3 m-3 p-0 shadow-lg rounded">
-          <div
-            key={restaurant._id}
-            className=""   
-          >
-            <img
-              src={
-                result.profileUrl ? result.profileUrl : "https://picsum.photos/200"
-              }
-              className="card-img img-fluid"
-              alt={`Profile Img for ${result.name}`}
-            />
-    
-            <div className="card-img-overlay">
-              <AiTwotoneStar
-                onClick={handleFavorite}
-                data-restaurant={restaurant._id}
-                className={
-                  props.isAuth && currentUserFavorites.includes(restaurant._id)
-                  ? "favorite-btn active-btn position-absolute end-0 me-4"
-                  : "favorite-btn position-absolute end-0 me-4"
+            <div key={restaurant._id} className="restaurant-div card bg-transparent text-white col-xs col-md-3 m-3 p-0 shadow-lg rounded">
+              <img
+                src={
+                  result.profileUrl
+                    ? result.profileUrl
+                    : "https://picsum.photos/200"
                 }
-                 />
-              <div className="container restaurant-info position-absolute bottom-0 start-50 translate-middle w-100 h-25 text-center">
-                <h5 className="card-title text-capitalize fw-bold mt-2">
-                  {result.name}
-                </h5>
-              </div>
+                className="card-img img-fluid"
+                alt={`Profile Img for ${result.name}`}
+              />
+              <AiTwotoneStar
+                onClick={() => handleFavorite(restaurant._id)}
+                className={
+                  props.isAuth &&
+                  currentUserFavorites.includes(restaurant._id)
+                    ? "favorite-btn active-btn position-absolute end-0 me-4 mt-2"
+                    : "favorite-btn position-absolute end-0 me-4 mt-2"
+                }
+              />
+              <Link
+                to={{
+                  pathname: `/restaurants/${restaurant._id}`,
+                  state: { restaurant },
+                }}
+              >
+                <div className="card-img-overlay">
+                  <div className="container restaurant-info position-absolute bottom-0 start-50 translate-middle w-100 h-25 text-center">
+                    <h5 className="card-title text-capitalize fw-bold mt-2">
+                      {restaurant.name}
+                    </h5>
+                  </div>
+                </div>
+              </Link>
             </div>
-          </div>
-          </Link>
-         </>
-        )
+          </>
+        );
       });
 
       const query = props.location.search;
@@ -196,22 +205,28 @@ const Feed = (props) => {
           className="card-img img-fluid"
           alt={`Profile Img for ${result.name}`}
         />
-        <div className="card-img-overlay">
-          <AiTwotoneStar
-            onClick={handleFavorite}
-            data-restaurant={result._id}
-            className={
-              props.isAuth && currentUserFavorites.includes(result._id)
-              ? "favorite-btn active-btn position-absolute end-0 me-4"
-              : "favorite-btn position-absolute end-0 me-4"
-            }
-          />
-          <div className="container restaurant-info position-absolute bottom-0 start-50 translate-middle w-100 h-25 text-center">
-            <h5 className="card-title text-capitalize fw-bold mt-2">
-              {result.name}
-            </h5>
+        <AiTwotoneStar
+          onClick={() => handleFavorite(result._id)}
+          className={
+            props.isAuth && currentUserFavorites.includes(result._id)
+            ? "favorite-btn active-btn position-absolute end-0 me-4 mt-2"
+            : "favorite-btn position-absolute end-0 me-4 mt-2"
+          }
+        />
+        <Link
+          to={{
+            pathname: `/restaurants/${result._id}`,
+            state: { restaurant: result },
+          }}
+        >
+          <div className="card-img-overlay">
+            <div className="container restaurant-info position-absolute bottom-0 start-50 translate-middle w-100 h-25 text-center">
+              <h5 className="card-title text-capitalize fw-bold mt-2">
+                {result.name}
+              </h5>
+            </div>
           </div>
-        </div>
+        </Link>
       </div>
     );
   });
