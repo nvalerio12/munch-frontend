@@ -20,6 +20,7 @@ z-index: 8;
 transition: transform 0.3s ease-in-out;
 @media (max-width: ${({ theme }) => theme.mobile}) {
     width: 100%;
+    overflow-y: scroll;
   }
 a {
   font-size: 1rem;
@@ -82,11 +83,23 @@ a {
   transition: all 0.3s ease-in-out;
   @media (max-width: ${({ theme }) => theme.mobile}) {
       width: 100%;
+      margin-top: 25%;
     }
 }
+#profilePicInput{
+  display: none;
+}
 .profile-picture {
+  width: 150px;
+  height: 150px;
   opacity:100;
-  border-radius:50%;
+  border-radius: 100%;
+  cursor: pointer;
+  @media (max-width: ${({ theme }) => theme.mobile }) {
+    width: 150px;
+    height: 150px;
+    margin: auto;
+  }
 }
 .profile-picture:hover {
   border: 3px solid orange;
