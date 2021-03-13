@@ -101,20 +101,27 @@ const Feed = (props) => {
 
     if (result.isGroup) {
       const subResults = result.results.map((restaurant) => {
-        return (
+        return ( 
+          <>
+          <Link
+          to={{
+            pathname: `restaurants/${restaurant._id}`,
+            state: {restaurant}
+          }}
+            
+          className="restaurant-div card bg-transparent text-white col-xs col-md-3 m-3 p-0 shadow-lg rounded">
           <div
             key={restaurant._id}
-            className="restaurant-div card bg-transparent text-white col-xs col-md-3 m-3 p-0 shadow-lg rounded"
+            className=""   
           >
             <img
               src={
-                restaurant.profileUrl
-                  ? restaurant.profileUrl
-                  : "https://picsum.photos/200"
+                result.profileUrl ? result.profileUrl : "https://picsum.photos/200"
               }
               className="card-img img-fluid"
-              alt={`Profile Img for ${restaurant.name}`}
+              alt={`Profile Img for ${result.name}`}
             />
+    
             <div className="card-img-overlay">
               <AiTwotoneStar
                 onClick={handleFavorite}
@@ -127,12 +134,14 @@ const Feed = (props) => {
                  />
               <div className="container restaurant-info position-absolute bottom-0 start-50 translate-middle w-100 h-25 text-center">
                 <h5 className="card-title text-capitalize fw-bold mt-2">
-                  {restaurant.name}
+                  {result.name}
                 </h5>
               </div>
             </div>
           </div>
-        );
+          </Link>
+         </>
+        )
       });
 
       const query = props.location.search;
@@ -174,20 +183,10 @@ const Feed = (props) => {
       );
     }
     // If it's not a group, it's just the results of the search
-
-
-    return ( 
-      <>
-      <Link
-      to={{
-        pathname: `restaurants/${restaurant._id}`,
-        state: {restaurant}
-      }}
-        
-      className="restaurant-div card bg-transparent text-white col-xs col-md-3 m-3 p-0 shadow-lg rounded">
+    return (
       <div
-        key={restaurant._id}
-        className=""   
+        key={result._id}
+        className="restaurant-div card bg-transparent text-white col-xs col-md-3 m-3 p-0 shadow-lg rounded"
       >
         <img
           src={
@@ -196,7 +195,6 @@ const Feed = (props) => {
           className="card-img img-fluid"
           alt={`Profile Img for ${result.name}`}
         />
-
         <div className="card-img-overlay">
           <AiTwotoneStar
             onClick={handleFavorite}
@@ -214,9 +212,7 @@ const Feed = (props) => {
           </div>
         </div>
       </div>
-      </Link>
-     </>
-    )
+    );
 
   });
 
