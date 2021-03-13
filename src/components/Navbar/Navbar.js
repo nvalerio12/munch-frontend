@@ -17,7 +17,7 @@ const Navbar = ({ open, setOpen }) => {
         </div>
         
         </div>
-        <div className="nav-bar-spacer"></div>
+    
        
       
     </>

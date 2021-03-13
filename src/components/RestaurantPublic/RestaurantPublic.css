@@ -19,3 +19,24 @@
 .restaurant-details-text {
     align-self: flex-end;
 }
+
+.navbar-spacer {
+    opacity: .5;
+    background-color: #aaaaaa;
+    height: 6.1em;
+}
+
+.menu-item-container {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+}
+
+.card-img-container {
+    height: 100%;
+}
+
+.card-text-container {
+
+}
