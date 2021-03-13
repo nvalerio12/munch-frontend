@@ -119,7 +119,7 @@ function App() {
             user={currentUser}
             handleLogout={handleLogout}
           />
-          <Route path="/about" component={About} />
+          <Route path="/aboutus" component={About} />
         </Switch>
       </Router>
     </>

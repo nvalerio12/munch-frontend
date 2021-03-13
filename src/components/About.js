@@ -1,9 +1,13 @@
 import React from "react";
 import { button } from 'react-router-dom';
+
+import Signup from "./Signup";
+import './About.css'
+
 function About() {
    
   return (
-    <div>
+    <div className='container'>
       <container>
         <h1>About Munch?</h1>
         <p>
@@ -13,7 +17,7 @@ function About() {
           your foodie adventures.{" "}
         </p>
       </container>
-      <button href='/Signup'>Sign Up Now</button>
+      <button className='btn' href='/Signup' onClick={Signup}>Sign Up Now</button>
     </div>
   );
 }
