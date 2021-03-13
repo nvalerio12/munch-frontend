@@ -105,9 +105,13 @@ function App() {
           <Route
             path="/feed"
             exact
-            component={Feed}
-            user={currentUser}
-            isAuth={isAuthenticated}
+            render={(props) => (
+              <Feed
+                {...props} 
+                user={currentUser}
+                isAuth={isAuthenticated}
+              />
+            )}
           />
           <PrivateRoute
             path="/profile"

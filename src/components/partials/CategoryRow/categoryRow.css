@@ -34,3 +34,9 @@
 .card-img {
   max-height: 250px;
 }
+
+@media screen and (min-width: 768px) {
+  .categoryNav {
+    width: 97%;
+  }
+}
