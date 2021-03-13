@@ -1,6 +1,7 @@
 /* Home page */
 
 .home-main {
+  margin-top: -6.1em;;
     background-size: 100%;
     background-image: url('../images/homepage-bg.png');
     height: 750px;
