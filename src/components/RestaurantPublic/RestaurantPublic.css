@@ -1,3 +1,16 @@
+.testing {
+    width: 5000px;
+    height: 5000px;
+    background: transparent;
+}
+
+.pd-0 {
+    padding: 0;
+}
+
+.mg-0 {
+    margin: 0;
+}
 
 .restaurant-img-container {
     background-size:100%;
@@ -10,36 +23,73 @@
 }
 
 .restaurant-details {
+    padding: 2em;
     display:flex;
     height: 200px;
     width:100%;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.63));
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .9));
 }
 
 .restaurant-details-text {
     align-self: flex-end;
 }
 
+.menu-nav-container {
+    display: flex;
+    padding: 1em;
+    background-color: #aaaaaa;
+    color:white;
+    position: sticky;
+    top: 13%;
+    z-index: 2;
+}
+.menu-nav-container a {
+    color:white 
+}
+.menu-nav-container a:hover {
+    color:orange
+}
+
 .menu-items-container {
-    margin: 2em;
+    margin: 2em 1em 1em 1em;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     justify-self: center;
     flex-wrap: wrap;
     width: max-content;
+
+}
+
+.menu-item-card:hover {
+    transition: all 0.3s ease-in-out;
+    border: 2px solid orange;
+    transform: scale(1.1);
+    background-color: #eeeeee;
 }
 
 .menu-item-card {
     border: 1px solid black;
     width:40%;
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
 
 .menu-item-img {
     width: 150px;
     height: 150px;
+    padding:0;
+    margin: 0;
+    border-right: 1px solid orange;
+
 }
 
-.card-text-container {
+.text-col {
+    padding-top: 5%;
+    padding-left: 5%;
 
+}
+
+.text-col p {
+    align-self: center;
 }
