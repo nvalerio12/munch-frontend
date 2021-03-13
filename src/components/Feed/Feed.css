@@ -5,10 +5,12 @@
 .restaurant-div {
   cursor: pointer;
   z-index: 0;
-
-
   transition: 0.25s;
+  color: white;
+}
 
+.restaurant-div a {
+  color: white;
 }
 
 .restaurant-div:hover {
@@ -19,6 +21,7 @@
   fill: white;
   font-size: xx-large;
   transition: 0.25s;
+  z-index: 1;
 }
 
 .active-btn path:first-child {
