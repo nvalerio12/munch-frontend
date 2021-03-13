@@ -80,18 +80,19 @@ function App() {
         const { user } = response.data;
         user.type = token.type;
         setCurrentUser(user);
+        setIsAuthenticated(true);
       })
       .catch((error) => {
         console.log("===> Error When Getting User Data", error);
         alert("Could Not Get User!");
         setCurrentUser(token);
+        setIsAuthenticated(true);
       });
   }
 
   const nowCurrentUser = (userData) => {
     console.log("===> nowCurrent is here.");
-    setCurrentUser(userData);
-    setIsAuthenticated(true);
+    getUserData(userData);
   };
 
   const handleLogout = () => {
