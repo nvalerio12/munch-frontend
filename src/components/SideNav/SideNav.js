@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { bool } from "prop-types";
 import { StyledSideNav } from "./SideNav.styled";
 import { Modal, Form } from "react-bootstrap";
-import Button from '@material-ui/core/Button';
+import { Button, TextField } from '@material-ui/core/';
 import HorizontalLinearStepper from './Signup'
 import About from '../About';
 
@@ -10,6 +10,7 @@ import jwt_decode from "jwt-decode";
 import { Redirect, Link} from "react-router-dom";
 import setAuthToken from "../../utils/setAuthToken";
 import profilePicture from "../../images/profile-image-placeholder.png";
+
 
 import axios from "axios";
 const { REACT_APP_SERVER_URL } = process.env;
@@ -94,7 +95,7 @@ const SideNav = ({ open, ...props }) => {
 
   // console.log(props.isAuthenticated);
   // **************************** USER IS NOT IN ********************************
-  if (props.isAuthenticated === false) {
+  if (!props.isAuthenticated) {
     return (
       <>
         <StyledSideNav open={open} aria-hidden={!isHidden} {...props}>
@@ -130,20 +131,23 @@ const SideNav = ({ open, ...props }) => {
           <Form onSubmit={handleLoginSubmit}>
             <Modal.Body>
               <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input
+               
+                <TextField
                   type="email"
                   name="email"
+                  label="Email"
                   value={email}
                   onChange={handleEmail}
                   className="form-control"
                 />
               </div>
+              <br/>
               <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input
+               
+                <TextField
                   type="password"
                   name="password"
+                  label="Password"
                   value={password}
                   onChange={handlePassword}
                   className="form-control"

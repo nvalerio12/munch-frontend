@@ -125,19 +125,19 @@ const useStyles = makeStyles((theme) => ({
 
 // title of the steps for our stepper
 function getSteps() {
-  return ["Account", "Information", "Wallet"];
+  return ["Account", "Website"];
 }
 
 export default function CustomizedSteppers(props) {
   // first step states
-  const [userName, setUserName] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
 
-  const handleUserName = (e) => {
-    setUserName(e.target.value);
+  const handleName = (e) => {
+    setName(e.target.value);
   };
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -150,54 +150,20 @@ export default function CustomizedSteppers(props) {
   };
 
   // second step states
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [address, setAddress] = useState("");
-  const [address2, setAddress2] = useState("");
-  const [city, setCity] = useState("");
-  const [locState, setLocState] = useState("");
-  const [zipcode, setZipcode] = useState("");
+  const [profileUrl, setProfileUrl] = useState("");
+  const [coverUrl, setCoverUrl] = useState("");
+  const [category, setCategory] = useState("")
+ 
 
-  const handleFirstName = (e) => {
-    setFirstName(e.target.value);
+  const handleProfileUrl = (e) => {
+    setProfileUrl(e.target.value);
   };
-  const handleLastName = (e) => {
-    setLastName(e.target.value);
-  };
-  const handleAddress = (e) => {
-    setAddress(e.target.value);
-  };
-  const handleAddress2 = (e) => {
-    setAddress2(e.target.value);
-  };
-  const handleCity = (e) => {
-    setCity(e.target.value);
-  };
-  const handleLocState = (e) => {
-    setLocState(e.target.value);
-  };
-  const handleZipcode = (e) => {
-    setZipcode(e.target.value);
-  };
-
-  // thrid step states
-  const [cardHolderName, setCardHolderName] = useState("");
-  const [cardNum, setCardNum] = useState("");
-  const [expDate, setExpDate] = useState("");
-  const [cvc, setCvc] = useState("");
-
-  const handleCardHolderName = (e) => {
-    setCardHolderName(e.target.value);
-  };
-  const handleCardNum = (e) => {
-    setCardNum(e.target.value);
-  };
-  const handleExpDate = (e) => {
-    setExpDate(e.target.value);
-  };
-  const handleCvc = (e) => {
-    setCvc(e.target.value);
-  };
+  const handleCoverUrl = (e) => {
+    setCoverUrl(e.target.value)
+  }
+  const handleCategory = (e) => {
+    setCategory(e.target.value)
+  }
 
   // stepper states and functions
 
@@ -206,7 +172,7 @@ export default function CustomizedSteppers(props) {
   const steps = getSteps();
 
   const handleNext = () => {
-    if (userName && email && password && confirmPassword) {
+    if (name && email && password && confirmPassword) {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
     }
   };
@@ -220,33 +186,27 @@ export default function CustomizedSteppers(props) {
 //   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // at the beginning of a submit function
+    e.preventDefault(); 
+    // at the beginning of a submit function
     // make sure password and confirm password are equal
     // password length >= 8 characters
     // console.log(props);
 
     if (password === confirmPassword && password.length >= 8) {
-      const newUser = {
-        userName,
+      console.log(category)
+      const newRestaurant = {
+        name,
         email,
         password,
-        firstName,
-        lastName,
-        address,
-        address2,
-        city,
-        locState,
-        zipcode,
-        cardHolderName,
-        cardNum,
-        expDate,
-        cvc,
+        profileUrl,
+        coverUrl,
+        category,
       };
       axios
-        .post(`${REACT_APP_SERVER_URL}/users/register`, newUser)
+        .post(`${REACT_APP_SERVER_URL}/restaurants/register`, newRestaurant)
         .then((response) => {
-          // console.log("===> Yay, new user");
-          // console.log(response);
+          console.log("===> Yay, new restaurant");
+          console.log(response);
           const { token } = response.data;
 
           if (!token) throw new Error('Token Not Returned');
@@ -302,10 +262,10 @@ export default function CustomizedSteppers(props) {
                 <div className="form-group">
                   <TextField
                     required
-                    label="Username"
-                    name="userName"
-                    value={userName}
-                    onChange={handleUserName}
+                    label="Restaurant Name"
+                    name="name"
+                    value={name}
+                    onChange={handleName}
                   />
                 </div>
               </Col>
@@ -351,70 +311,30 @@ export default function CustomizedSteppers(props) {
             </Row>
           </FormControl>
         );
-      case 1:
-        // ********************* STEP 2 *************************
+      default:
         return (
           <FormControl className={classes.root} noValidate autoComplete="off">
             <Row>
-              <Col>
                 <div className="form-group">
                   <TextField
-                    required
-                    label="First Name"
-                    name="firstName"
-                    value={firstName}
-                    onChange={handleFirstName}
+                    label="Profile Url"
+                    name="profileUrl"
+                    value={profileUrl}
+                    onChange={handleProfileUrl}
                   />
                 </div>
-              </Col>
-              <Col>
-                <div className="form-group">
-                  <TextField
-                    required
-                    label="Last Name"
-                    name="lastName"
-                    value={lastName}
-                    onChange={handleLastName}
-                  />
-                </div>
-              </Col>
             </Row>
             <br />
             <Row>
               <div className="form-group addressInput">
                 <TextField
-                  className="addressInput"
-                  label="Address"
-                  name="address"
-                  value={address}
-                  onChange={handleAddress}
+                  className="Cover Url"
+                  label="Cover Url"
+                  name="coverUrl"
+                  value={coverUrl}
+                  onChange={handleCoverUrl}
                 />
               </div>
-            </Row>
-            <br />
-            <Row>
-              <Col>
-                <div className="form-group">
-                  <TextField
-                    label="Apt/Unit"
-                    name="address2"
-                    value={address2}
-                    onChange={handleAddress2}
-                  />
-                </div>
-              </Col>
-
-              <br />
-              <Col>
-                <div className="form-group">
-                  <TextField
-                    label="City"
-                    name="city"
-                    value={city}
-                    onChange={handleCity}
-                  />
-                </div>
-              </Col>
             </Row>
             <br />
             <Row>
@@ -422,132 +342,31 @@ export default function CustomizedSteppers(props) {
                 <Select
                   labelId="demo-simple-select-placeholder-label-label"
                   id="demo-simple-select-placeholder-label"
-                  value={locState}
-                  onChange={handleLocState}
+                  value={category}
+                  required
+                  onChange={handleCategory}
                   displayEmpty
                   className={classes.selectEmpty}
                 >
-                  {/***************** STATE SELECTOR  ****************************/}
-                  <MenuItem value="">State</MenuItem>
-                  <MenuItem value={"AL"}>AL</MenuItem>
-                  <MenuItem value={"AK"}>AK</MenuItem>
-                  <MenuItem value={"AS"}>AS</MenuItem>
-                  <MenuItem value={"AZ"}>AZ</MenuItem>
-                  <MenuItem value={"AR"}>AR</MenuItem>
-                  <MenuItem value={"CA"}>CA</MenuItem>
-                  <MenuItem value={"CO"}>CO</MenuItem>
-                  <MenuItem value={"CT"}>CT</MenuItem>
-                  <MenuItem value={"DE"}>DE</MenuItem>
-                  <MenuItem value={"DC"}>DC</MenuItem>
-                  <MenuItem value={"FL"}>FL</MenuItem>
-                  <MenuItem value={"GA"}>GA</MenuItem>
-                  <MenuItem value={"GU"}>GU</MenuItem>
-                  <MenuItem value={"HI"}>HI</MenuItem>
-                  <MenuItem value={"ID"}>ID</MenuItem>
-                  <MenuItem value={"IL"}>IL</MenuItem>
-                  <MenuItem value={"IN"}>IN</MenuItem>
-                  <MenuItem value={"IA"}>IA</MenuItem>
-                  <MenuItem value={"KS"}>KS</MenuItem>
-                  <MenuItem value={"LA"}>LA</MenuItem>
-                  <MenuItem value={"ME"}>ME</MenuItem>
-                  <MenuItem value={"MD"}>MD</MenuItem>
-                  <MenuItem value={"MA"}>MA</MenuItem>
-                  <MenuItem value={"MI"}>MI</MenuItem>
-                  <MenuItem value={"MN"}>MN</MenuItem>
-                  <MenuItem value={"MS"}>MS</MenuItem>
-                  <MenuItem value={"MO"}>MO</MenuItem>
-                  <MenuItem value={"MT"}>MT</MenuItem>
-                  <MenuItem value={"NE"}>NE</MenuItem>
-                  <MenuItem value={"NV"}>NV</MenuItem>
-                  <MenuItem value={"NH"}>NH</MenuItem>
-                  <MenuItem value={"NJ"}>NJ</MenuItem>
-                  <MenuItem value={"NM"}>NM</MenuItem>
-                  <MenuItem value={"NY"}>NY</MenuItem>
-                  <MenuItem value={"NC"}>NC</MenuItem>
-                  <MenuItem value={"ND"}>ND</MenuItem>
-                  <MenuItem value={"MP"}>MP</MenuItem>
-                  <MenuItem value={"OH"}>OH</MenuItem>
-                  <MenuItem value={"OK"}>OK</MenuItem>
-                  <MenuItem value={"OR"}>OR</MenuItem>
-                  <MenuItem value={"PA"}>PA</MenuItem>
-                  <MenuItem value={"PR"}>PR</MenuItem>
-                  <MenuItem value={"RI"}>RI</MenuItem>
-                  <MenuItem value={"SC"}>SC</MenuItem>
-                  <MenuItem value={"SD"}>SD</MenuItem>
-                  <MenuItem value={"TN"}>TN</MenuItem>
-                  <MenuItem value={"TX"}>TX</MenuItem>
-                  <MenuItem value={"UT"}>UT</MenuItem>
-                  <MenuItem value={"VT"}>VT</MenuItem>
-                  <MenuItem value={"VA"}>VA</MenuItem>
-                  <MenuItem value={"VI"}>VI</MenuItem>
-                  <MenuItem value={"WA"}>WA</MenuItem>
-                  <MenuItem value={"WV"}>WV</MenuItem>
-                  <MenuItem value={"WI"}>WI</MenuItem>
-                  <MenuItem value={"WY"}>WY</MenuItem>
+                  {/***************** CATEGORY SELECTOR  ****************************/}
+                  <MenuItem value="">Category</MenuItem>
+                  <MenuItem value={"Breakfast"}>Breakfast</MenuItem>
+                  <MenuItem value={"Brunch"}>Brunch</MenuItem>
+                  <MenuItem value={"Lunch"}>Lunch</MenuItem>
+                  <MenuItem value={"Dinner"}>Dinner</MenuItem>
+                  <MenuItem value={"Ramen"}>Ramen</MenuItem>
+                  <MenuItem value={"Japanese"}>Japanese</MenuItem>
+                  <MenuItem value={"Thai"}>Thai</MenuItem>
+                  <MenuItem value={"Mexican"}>Mexican</MenuItem>
+                  <MenuItem value={"Vegetarian"}>Vegetarian</MenuItem>
+                  <MenuItem value={"Vegan"}>Vegan</MenuItem>
+                  <MenuItem value={"Halal"}>Halal</MenuItem>
+                  <MenuItem value={"Mediterranean"}>Mediterranean</MenuItem>
+                  <MenuItem value={"Itlaian"}>Italian</MenuItem>
+                  <MenuItem value={"Chinese"}>Chinese</MenuItem>
+                
                   {/***************************************************/}
                 </Select>
-              </Col>
-              <Col>
-                <div className="form-group">
-                  <TextField
-                    label="Zipcode"
-                    name="zipcode"
-                    value={zipcode}
-                    onChange={handleZipcode}
-                  />
-                </div>
-              </Col>
-            </Row>
-          </FormControl>
-        );
-      default:
-          // **************************** STEP 3 *************************
-        return (
-          <FormControl className={classes.root} noValidate autoComplete="off">
-            <Row>
-              <div className="form-group cardHolderInput">
-                <TextField
-                  className="cardHolderInput"
-                  label="CardHolder's Name"
-                  name="cardHolderName"
-                  value={cardHolderName}
-                  onChange={handleCardHolderName}
-                />
-              </div>
-            </Row>
-            <br />
-            <Row>
-              <div className="form-group cardNumInput">
-                <TextField
-                  className="cardNumInput"
-                  label="Card Number"
-                  name="cardNum"
-                  value={cardNum}
-                  onChange={handleCardNum}
-                />
-              </div>
-            </Row>
-            <br />
-            <Row>
-              <Col>
-                <div className="form-group">
-                  <TextField
-                    label="Exp YY/MM"
-                    name="exp"
-                    value={expDate}
-                    onChange={handleExpDate}
-                  />
-                </div>
-              </Col>
-              <Col>
-                <div className="form-group">
-                  <TextField
-                    label="CVC"
-                    name="cvc"
-                    value={cvc}
-                    onChange={handleCvc}
-                  />
-                </div>
               </Col>
             </Row>
           </FormControl>
