@@ -12,42 +12,14 @@
   transform: scale(1.1);
 }
 
-.categoryNav {
-  width: 100%;
-  overflow-x: scroll;
-}
-
-.categoryContainer {
-  height: 150px;
-  width: 1500px;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  padding: 0px;
-}
-
-.categoryDiv .card-title {
-  font-size: small;
-}
-
-.categoryDiv {
-  cursor: pointer;
-}
-
-.categoryDiv:hover {
-  box-shadow: 0px 0px 0px 7px gold;
-  transform: scale(1.1);
-  transition: 0.25s;
-}
-
-.categoryListItem {
-  width: 75px;
-  list-style: none;
-}
-
 .favorite-btn {
   fill: white;
   font-size: xx-large;
   transition: 0.25s;
+}
+
+.active-btn path:first-child {
+  fill: gold;
 }
 
 .favorite-btn:hover {
