@@ -5,7 +5,7 @@ import { AiTwotoneStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import CategoryRow from "../partials/CategoryRow";
 import Skeleton from '@material-ui/lab/Skeleton';
-import Fade from '@material-ui/core/Fade';
+// import Fade from '@material-ui/core/Fade';
 
 
 
@@ -34,7 +34,7 @@ const Feed = (props) => {
 
   useEffect(() => {
     if (props.isAuth && props.user.type === "user") {
-      getFavoriteRestaurants();
+      setCurrentUserFavorites(props.user.favorites);
     }
   }, [props.user]);
 
@@ -57,20 +57,6 @@ const Feed = (props) => {
         setIsLoading(false);
       });
     setdidSearch(true);
-  };
-
-  const getFavoriteRestaurants = () => {
-    let url = `${REACT_APP_SERVER_URL}/users/${props.user.id}/public`;
-
-    axios
-      .get(url)
-      .then((response) => {
-        const { user } = response.data;
-        setCurrentUserFavorites(user.favorites);
-      })
-      .catch((error) => {
-        console.log("===> Error When Getting User Favorites", error);
-      });
   };
 
   const handleFavorite = (restaurantId) => {
@@ -248,9 +234,10 @@ const Feed = (props) => {
 
     const loadArray = [];
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 6; i++) {
       loadArray.push(
         <Skeleton
+          key={`rest-${i}`}
           animation="wave"
           className="restaurant-div loading card bg-light text-white col-xs col-md-3 m-3 p-0 shadow-lg rounded"
           variant="rect"
