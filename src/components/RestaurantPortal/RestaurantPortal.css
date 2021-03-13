@@ -30,13 +30,17 @@
     font-weight: bold;
     letter-spacing: 0.5rem;
     transform: rotate(3deg);
-    transition: all 0.5s linear;
-
+    transition: all 0.3s linear;
 }
 
-.login-btn-billboard:hover, .signup-btn-billboard:hover {
+.strikethrough:hover {
+    transition: all 0.3s ease-in;
     text-decoration: line-through;
-    color: orange;
+    color:white
+}
+.strike-text:hover{
+    transition: all 0.3s linear;
+    color: orange
 }
 
 .login-btn-container {

@@ -90,18 +90,21 @@ function RestaurantPortal(props) {
     <>
       <div className="munch-billboard-bg">
         <div className="billboard">
-        
-        <div className="login-btn-container">
-          <button onClick={handleLoginShow} className="login-btn-billboard">
-            #Login
-          </button>
-          <div className="seperator"></div>
-        </div>
-        <div className="signup-btn-container">
-          <button onClick={handleSignUpShow} className="signup-btn-billboard">
-            #Sign Up
-          </button>
-        </div>
+          <div className="login-btn-container">
+            <button onClick={handleLoginShow} className="login-btn-billboard">
+              <span className="strikethrough">
+                <span className="strike-text">#Login</span>
+              </span>
+            </button>
+            <div className="seperator"></div>
+          </div>
+          <div className="signup-btn-container">
+            <button onClick={handleSignUpShow} className="signup-btn-billboard">
+            <span className="strikethrough">
+                <span className="strike-text">#Sign Up</span>
+              </span>
+            </button>
+          </div>
         </div>
       </div>
 
