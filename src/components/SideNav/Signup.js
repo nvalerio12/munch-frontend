@@ -252,7 +252,6 @@ export default function CustomizedSteppers(props) {
           if (!token) throw new Error('Token Not Returned');
 
           setRedirect(true);
-          props.setIsAuthenticated(true);
           props.setSignUpShow(false)
           // save token to localStorage
           localStorage.setItem("jwtToken", token);
