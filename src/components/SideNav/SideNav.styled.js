@@ -37,6 +37,9 @@ a {
   &:hover {
     color: ${({ theme }) => theme.primaryHover};
   }
+  &:focus {
+    outline: 1px orange;
+  }
 }
 
 .login-btn, .signup-btn {
@@ -57,6 +60,9 @@ a {
   }
 &:hover {
   background-color: ${({ theme }) => theme.primaryHover};
+}
+&:active {
+  border: 1px solid orange;
 }
 }
 .profile-picture-container{
