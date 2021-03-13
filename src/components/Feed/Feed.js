@@ -99,47 +99,45 @@ const Feed = (props) => {
 
     if (result.isGroup) {
       const subResults = result.results.map((restaurant) => {
-        return ( 
+        return (
           <>
-          <Link
-          to={{
-            pathname: `restaurants/${restaurant._id}`,
-            state: {restaurant}
-          }}
-            
-          className="restaurant-div card bg-transparent text-white col-xs col-md-3 m-3 p-0 shadow-lg rounded">
-          <div
-            key={restaurant._id}
-            className=""   
-          >
-            <img
-              src={
-                result.profileUrl ? result.profileUrl : "https://picsum.photos/200"
-              }
-              className="card-img img-fluid"
-              alt={`Profile Img for ${result.name}`}
-            />
-    
-            <div className="card-img-overlay">
+            <div key={restaurant._id} className="restaurant-div card bg-transparent text-white col-xs col-md-3 m-3 p-0 shadow-lg rounded">
+              <img
+                src={
+                  result.profileUrl
+                    ? result.profileUrl
+                    : "https://picsum.photos/200"
+                }
+                className="card-img img-fluid"
+                alt={`Profile Img for ${result.name}`}
+              />
               <AiTwotoneStar
                 onClick={handleFavorite}
                 data-restaurant={restaurant._id}
                 className={
-                  props.isAuth && currentUserFavorites.includes(restaurant._id)
-                  ? "favorite-btn active-btn position-absolute end-0 me-4"
-                  : "favorite-btn position-absolute end-0 me-4"
+                  props.isAuth &&
+                  currentUserFavorites.includes(restaurant._id)
+                    ? "favorite-btn active-btn position-absolute end-0 me-4 mt-2"
+                    : "favorite-btn position-absolute end-0 me-4 mt-2"
                 }
-                 />
-              <div className="container restaurant-info position-absolute bottom-0 start-50 translate-middle w-100 h-25 text-center">
-                <h5 className="card-title text-capitalize fw-bold mt-2">
-                  {result.name}
-                </h5>
-              </div>
+              />
+              <Link
+                to={{
+                  pathname: `/restaurants/${restaurant._id}`,
+                  state: { restaurant },
+                }}
+              >
+                <div className="card-img-overlay">
+                  <div className="container restaurant-info position-absolute bottom-0 start-50 translate-middle w-100 h-25 text-center">
+                    <h5 className="card-title text-capitalize fw-bold mt-2">
+                      {result.name}
+                    </h5>
+                  </div>
+                </div>
+              </Link>
             </div>
-          </div>
-          </Link>
-         </>
-        )
+          </>
+        );
       });
 
       const query = props.location.search;
@@ -193,22 +191,29 @@ const Feed = (props) => {
           className="card-img img-fluid"
           alt={`Profile Img for ${result.name}`}
         />
-        <div className="card-img-overlay">
-          <AiTwotoneStar
-            onClick={handleFavorite}
-            data-restaurant={result._id}
-            className={
-              props.isAuth && currentUserFavorites.includes(result._id)
-              ? "favorite-btn active-btn position-absolute end-0 me-4"
-              : "favorite-btn position-absolute end-0 me-4"
-            }
-          />
-          <div className="container restaurant-info position-absolute bottom-0 start-50 translate-middle w-100 h-25 text-center">
-            <h5 className="card-title text-capitalize fw-bold mt-2">
-              {result.name}
-            </h5>
+        <AiTwotoneStar
+          onClick={handleFavorite}
+          data-restaurant={result._id}
+          className={
+            props.isAuth && currentUserFavorites.includes(result._id)
+            ? "favorite-btn active-btn position-absolute end-0 me-4 mt-2"
+            : "favorite-btn position-absolute end-0 me-4 mt-2"
+          }
+        />
+        <Link
+          to={{
+            pathname: `/restaurants/${result._id}`,
+            state: { restaurant: result },
+          }}
+        >
+          <div className="card-img-overlay">
+            <div className="container restaurant-info position-absolute bottom-0 start-50 translate-middle w-100 h-25 text-center">
+              <h5 className="card-title text-capitalize fw-bold mt-2">
+                {result.name}
+              </h5>
+            </div>
           </div>
-        </div>
+        </Link>
       </div>
     );
 
