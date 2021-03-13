@@ -57,8 +57,16 @@ function App() {
       console.log("====> Authenticated is now FALSE");
     } else {
       token = jwt_decode(localStorage.getItem("jwtToken"));
-      setAuthToken(localStorage.getItem("jwtToken"));
-      setCurrentUser(token);
+
+      // Check if over time limit
+      if (Date.now() >= token.exp * 1000) {
+        alert("Session Expired, Please Login Again");
+        handleLogout();
+      } else {
+        setAuthToken(localStorage.getItem("jwtToken"));
+        setCurrentUser(token);
+      }
+
     }
   }, []);
 

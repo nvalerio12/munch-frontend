@@ -68,6 +68,11 @@ const SideNav = ({ open, ...props }) => {
     }
   };
 
+  // Profile Picture Click
+  const handlePictureClick = () => {
+    
+  }
+
   // Login Modal
   const handleLoginClose = () => {
     setLoginShow(false); // closing the modal
@@ -188,8 +193,8 @@ const SideNav = ({ open, ...props }) => {
           <div className="profile-picture-container">
           <Link to="/">
             #{props.user.userName}
-            </Link>
-          <img className="profile-picture" src={profilePicture} alt="profile-pic"/>
+          </Link>
+          <img onClick={handlePictureClick} className="profile-picture" src="https://res.cloudinary.com/dom5vocai/image/upload/v1615610157/profile-image-placeholder_sbz3vl.png" alt="profile-pic"/>
           </div>
           <Link to="/" tabIndex={tabIndex}>
             #Home

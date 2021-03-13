@@ -2,7 +2,7 @@
 
 .home-main {
     background-size: 100%;
-    background-image: url('../images/homepage-bg.png');
+    background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615610426/homepage-bg_fupdf2.png');
     height: 750px;
     display: flex;
     justify-content: center;
