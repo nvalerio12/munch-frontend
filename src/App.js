@@ -90,7 +90,7 @@ function App() {
 
   const nowCurrentUser = (userData) => {
     console.log("===> nowCurrent is here.");
-    setCurrentUser(userData);
+    getUserData(userData);
     setIsAuthenticated(true);
   };
 
