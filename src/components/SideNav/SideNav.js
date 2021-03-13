@@ -4,7 +4,6 @@ import { StyledSideNav } from "./SideNav.styled";
 import { Modal, Form } from "react-bootstrap";
 import Button from '@material-ui/core/Button';
 import HorizontalLinearStepper from './Signup'
-import profilePicture from '../../images/profile-image-placeholder.png'
 
 import jwt_decode from "jwt-decode";
 import { Redirect, Link} from "react-router-dom";
@@ -105,8 +104,10 @@ const SideNav = ({ open, ...props }) => {
           </Button>
           <Link to="/" tabIndex={tabIndex}>
             #Home
+
           </Link>
           <Link to="/aboutus" tabIndex={tabIndex}>
+
             #About us
           </Link>
           <Link to="/feed" tabIndex={tabIndex}>
@@ -186,6 +187,7 @@ const SideNav = ({ open, ...props }) => {
     return (
       <>
         <StyledSideNav open={open} aria-hidden={!isHidden} {...props}>
+
           <div className="profile-picture-container">
           <Link to="/">
             #{props.user.userName}
