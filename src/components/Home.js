@@ -1,6 +1,7 @@
 import React from "react";
 import "./Home.css";
 import { Form, FormControl, Button, Row, Col } from "react-bootstrap";
+import CategoryRow from "./partials/CategoryRow";
 
 function Home(props) {
   return (
@@ -19,6 +20,7 @@ function Home(props) {
           </Form>
         </div>
       </div>
+      <CategoryRow />
     </div>
   );
 }
