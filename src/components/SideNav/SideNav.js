@@ -8,6 +8,7 @@ import HorizontalLinearStepper from './Signup'
 import jwt_decode from "jwt-decode";
 import { Redirect, Link} from "react-router-dom";
 import setAuthToken from "../../utils/setAuthToken";
+import profilePicture from "../../images/profile-image-placeholder.png";
 
 import axios from "axios";
 const { REACT_APP_SERVER_URL } = process.env;
