@@ -39,6 +39,7 @@ const CategoryRow = (props) => {
     for (let i = 0; i < 14; i++) {
       loadArray.push(
         <Skeleton
+          key={`cat-${i}`}
           animation="wave"
           className="categoryListItem col-md-1 m-3 p-0"
           variant="circle"
@@ -79,7 +80,7 @@ const CategoryRow = (props) => {
   });
 
   return (
-    <nav className="categoryNav">
+    <nav className="categoryNav rounded">
       <ul className="row categoryContainer">{categoryArray}</ul>
     </nav>
   );
