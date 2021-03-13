@@ -119,7 +119,7 @@ function App() {
             user={currentUser}
             handleLogout={handleLogout}
           />
-          <Route path="/aboutus" component={About} />
+          <Route path="/aboutus" exact component={About} />
         </Switch>
       </Router>
     </>

@@ -5,7 +5,7 @@ body {
     background-size: cover;
     background-position: center;
 }
-.container {
+.about-container {
     height: 75vh;
     width: 30%;
     background-color: rgba(0,0, 0, .6);
@@ -15,18 +15,18 @@ body {
     transform: translate( -50%, -50%);
 }
 
-.container h1 {
+.about-container h1 {
     color: white;
     margin-top: 60px;
 }
 
-.container p {
+.about-container p {
     color: white;
     margin-top: 60px;
     font-size: large;
 }
 
-.btn {
+.about-container .btn {
     background: no-repeat;
     outline: none;
     border: 1px solid white;
