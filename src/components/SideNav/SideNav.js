@@ -54,7 +54,7 @@ const SideNav = ({ open, ...props }) => {
         const decoded = jwt_decode(token);
         // set the current user
         props.nowCurrentUser(decoded); // function passed down as props.
-        console.log(props.nowCurrentUser);
+        // console.log(props.nowCurrentUser);
       })
       .catch((error) => {
         console.log("===> Error on login", error);
@@ -90,7 +90,7 @@ const SideNav = ({ open, ...props }) => {
   const isHidden = open ? true : false;
   const tabIndex = isHidden ? 1 : 0;
 
-  console.log(props.isAuthenticated);
+  // console.log(props.isAuthenticated);
   // **************************** USER IS NOT IN ********************************
   if (props.isAuthenticated === false) {
     return (
