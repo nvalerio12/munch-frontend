@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { bool } from "prop-types";
 import { StyledSideNav } from "./SideNav.styled";
 import { Modal, Form } from "react-bootstrap";
@@ -8,7 +8,6 @@ import HorizontalLinearStepper from './Signup'
 import jwt_decode from "jwt-decode";
 import { Link } from "react-router-dom";
 import setAuthToken from "../../utils/setAuthToken";
-import profilePicture from "../../images/profile-image-placeholder.png";
 
 
 import axios from "axios";
@@ -70,8 +69,67 @@ const SideNav = ({ open, ...props }) => {
   };
 
   // Profile Picture Click
-  const handlePictureClick = () => {
+  const handlePictureClick = (e) => {
+    const eventCapture = e.target;
     
+    let inputTag = null;
+    // Verify what was clicked
+    if (eventCapture.classList.contains("profile-pic-capture")) {
+      inputTag = eventCapture.lastChild;
+    } else if (eventCapture.classList.contains("profile-picture")) {
+      inputTag = eventCapture.parentNode.lastChild;
+    } else {
+      // We don't want to do anything in this case
+      return
+    }
+    
+    // click the input tag
+    inputTag.click();
+  }
+
+  const changeProfilePicture = e => {
+    const inputTag = e.target;
+
+    // if they submit an imgage, show a preview
+    if (inputTag.files.length > 0) {
+      const imgEl = document.querySelector('.profile-picture');
+      const oldImg = imgEl.src;
+      imgEl.src = URL.createObjectURL(inputTag.files[0]);
+
+      setTimeout(() => {
+        // Confirm Changes
+        if (window.confirm("Confirm Changes?")) {
+
+          // Prepare the file
+          let formData = new FormData();
+          formData.append("profileImg", inputTag.files[0]);
+
+          // Get user data
+          const currentID = props.currentUser._id;
+          let url = `${REACT_APP_SERVER_URL}/users/${currentID}/profileImg`;
+
+          // send PUT
+          axios
+          .put(url, formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          })
+          .then((response) => {
+            // It was successful
+            console.log("Profile Changed Successfuly.");
+          })
+          .catch((error) => {
+            console.log("===> Error When Changing Profile Picture", error);
+            alert("Could Not Change Profile Picture!");
+          });
+
+        } else {
+          imgEl.src = oldImg;
+        }
+      }, 500);
+
+    }
   }
 
   // Login Modal
@@ -193,12 +251,25 @@ const SideNav = ({ open, ...props }) => {
     return (
       <>
         <StyledSideNav open={open} aria-hidden={!isHidden} {...props}>
-
           <div className="profile-picture-container">
-          <Link to="/">
-            #{props.user.userName}
-          </Link>
-          <img onClick={handlePictureClick} className="profile-picture" src="https://res.cloudinary.com/dom5vocai/image/upload/v1615610157/profile-image-placeholder_sbz3vl.png" alt="profile-pic"/>
+            <Link to="/">#{props.user.userName}</Link>
+            <div className="profile-pic-capture" onClick={handlePictureClick}>
+              <img
+                className="profile-picture"
+                src={
+                  props.user.profileUrl ||
+                  "https://res.cloudinary.com/dom5vocai/image/upload/v1615610157/profile-image-placeholder_sbz3vl.png"
+                }
+                alt="profile-pic"
+              />
+              <input
+                onChange={changeProfilePicture}
+                type="file"
+                name="profileUrl"
+                id="profilePicInput"
+                accept="image/*"
+              />
+            </div>
           </div>
           <Link to="/" tabIndex={tabIndex}>
             #Home
