@@ -41,3 +41,6 @@
   max-height: 250px;
 }
 
+.loading {
+  transition: 1s;
+}

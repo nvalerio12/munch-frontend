@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Skeleton from '@material-ui/lab/Skeleton';
 import "./categoryRow.css";
 
 const { REACT_APP_SERVER_URL } = process.env;
 
 const CategoryRow = (props) => {
   const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (categories.length < 1) {
@@ -20,11 +22,39 @@ const CategoryRow = (props) => {
     .then((response) => {
       const { results } = response.data;
       setCategories(results);
+
+      setIsLoading(false);
     })
     .catch((error) => {
       console.log("===> Error When Getting Categories", error);
       alert("Could Not Display Categories");
+
+      setIsLoading(false);
     });
+  }
+
+  if (isLoading) {
+    const loadArray = [];
+
+    for (let i = 0; i < 14; i++) {
+      loadArray.push(
+        <Skeleton
+          animation="wave"
+          className="categoryListItem col-md-1 m-3 p-0"
+          variant="circle"
+          width={75}
+          height={75}
+        />
+      );
+    }
+
+    return (
+      <>
+        <nav className="categoryNav">
+          <ul className="row categoryContainer">{loadArray}</ul>
+        </nav>
+      </>
+    );
   }
 
   const categoryArray = categories.map((category) => {
