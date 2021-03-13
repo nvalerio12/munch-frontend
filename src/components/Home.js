@@ -1,6 +1,6 @@
 import React from "react";
 import "./Home.css";
-import { Form, FormControl, Button, Row, Col } from "react-bootstrap";
+import { Form, Button, Row, Col } from "react-bootstrap";
 import CategoryRow from "./partials/CategoryRow";
 
 function Home(props) {
@@ -11,7 +11,7 @@ function Home(props) {
           <Form>
             <Row>
               <Col className="pd-r-0 pd-l-0">
-            <FormControl type="text" placeholder="Zipcode" className="hp-search" />
+            <input type="text" placeholder="Zipcode" className="hp-search" />
               </Col>
               <Col className="pd-r-0 pd-l-0">
             <Button variant="outline-success hp-search-btn">Let's Find Food</Button>

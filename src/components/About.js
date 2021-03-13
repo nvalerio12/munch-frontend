@@ -1,7 +1,6 @@
 import React from "react";
 import { button } from 'react-router-dom';
 
-import Signup from "./Signup";
 import './About.css'
 
 function About() {
@@ -17,7 +16,7 @@ function About() {
           your foodie adventures.{" "}
         </p>
       </container>
-      <button className='btn' href='/Signup' onClick={Signup}>Sign Up Now</button>
+      <button className='btn' href='/Signup' >Sign Up Now</button>
     </div>
   );
 }

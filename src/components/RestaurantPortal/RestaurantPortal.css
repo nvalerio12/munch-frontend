@@ -1,0 +1,24 @@
+.munch-billboard-bg {
+    background-size: 100%;
+    background-image: url('../../images/munch-billboard.jpg');
+    height: 750px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    color:white;
+}
+
+.login-btn, .signup-btn {
+    background: orangered;
+    color: white;
+    border-radius: 0;
+    border: 1px solid black;
+    margin: 1em 0;
+    font-size: .75rem;
+    text-transform: uppercase;
+    padding: 1rem 0;
+    font-weight: bold;
+    letter-spacing: 0.5rem;
+    transition: background-color 0.3s linear;
+}

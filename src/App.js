@@ -6,7 +6,8 @@ import {
   About,
   Profile,
   Feed,
-  RestaurantPublic
+  RestaurantPublic,
+  RestaurantPortal
 } from "./components/"; // export from components/index.js
 
 import { ThemeProvider } from "styled-components"; // used styled components to create components :navbar and sidenav
@@ -98,7 +99,10 @@ function App() {
           </ThemeProvider>
         </>
         <Switch>
-          <Route path="/restaurants/:id" render={(props) => {
+          <Route exact path="/restaurants/portal" render={(props) => {
+            return <RestaurantPortal {...props} />
+          }}/>
+          <Route exact path="/restaurants/:id" render={(props) => {
             return <RestaurantPublic {...props} />
           }} />
           <Route path="/" exact component={Home} />
