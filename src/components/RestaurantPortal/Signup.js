@@ -350,20 +350,20 @@ export default function CustomizedSteppers(props) {
                 >
                   {/***************** CATEGORY SELECTOR  ****************************/}
                   <MenuItem value="">Category</MenuItem>
-                  <MenuItem value={"Breakfast"}>Breakfast</MenuItem>
-                  <MenuItem value={"Brunch"}>Brunch</MenuItem>
-                  <MenuItem value={"Lunch"}>Lunch</MenuItem>
-                  <MenuItem value={"Dinner"}>Dinner</MenuItem>
-                  <MenuItem value={"Ramen"}>Ramen</MenuItem>
-                  <MenuItem value={"Japanese"}>Japanese</MenuItem>
-                  <MenuItem value={"Thai"}>Thai</MenuItem>
-                  <MenuItem value={"Mexican"}>Mexican</MenuItem>
-                  <MenuItem value={"Vegetarian"}>Vegetarian</MenuItem>
-                  <MenuItem value={"Vegan"}>Vegan</MenuItem>
-                  <MenuItem value={"Halal"}>Halal</MenuItem>
-                  <MenuItem value={"Mediterranean"}>Mediterranean</MenuItem>
-                  <MenuItem value={"Itlaian"}>Italian</MenuItem>
-                  <MenuItem value={"Chinese"}>Chinese</MenuItem>
+                  <MenuItem value={"breakfast"}>Breakfast</MenuItem>
+                  <MenuItem value={"brunch"}>Brunch</MenuItem>
+                  <MenuItem value={"lunch"}>Lunch</MenuItem>
+                  <MenuItem value={"dinner"}>Dinner</MenuItem>
+                  <MenuItem value={"ramen"}>Ramen</MenuItem>
+                  <MenuItem value={"japanese"}>Japanese</MenuItem>
+                  <MenuItem value={"thai"}>Thai</MenuItem>
+                  <MenuItem value={"mexican"}>Mexican</MenuItem>
+                  <MenuItem value={"vegetarian"}>Vegetarian</MenuItem>
+                  <MenuItem value={"vegan"}>Vegan</MenuItem>
+                  <MenuItem value={"halal"}>Halal</MenuItem>
+                  <MenuItem value={"mediterranean"}>Mediterranean</MenuItem>
+                  <MenuItem value={"itlaian"}>Italian</MenuItem>
+                  <MenuItem value={"chinese"}>Chinese</MenuItem>
                 
                   {/***************************************************/}
                 </Select>
