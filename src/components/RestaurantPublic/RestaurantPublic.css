@@ -20,21 +20,24 @@
     align-self: flex-end;
 }
 
-.navbar-spacer {
-    opacity: .5;
-    background-color: #aaaaaa;
-    height: 6.1em;
-}
-
-.menu-item-container {
-    border: 1px solid black;
+.menu-items-container {
+    margin: 2em;
     display: flex;
     flex-direction: row;
-    width: 40%;
+    justify-content: space-between;
+    justify-self: center;
+    flex-wrap: wrap;
+    width: max-content;
 }
 
-.card-img-container {
-    height: 100%;
+.menu-item-card {
+    border: 1px solid black;
+    width:40%;
+}
+
+.menu-item-img {
+    width: 150px;
+    height: 150px;
 }
 
 .card-text-container {

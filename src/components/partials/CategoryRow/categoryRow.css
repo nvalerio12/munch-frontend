@@ -2,6 +2,9 @@
 .categoryNav {
   width: 100%;
   overflow-x: scroll;
+  position: sticky;
+  z-index: 2;
+  top: 15%;
 }
 
 .categoryContainer {

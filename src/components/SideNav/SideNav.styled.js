@@ -12,11 +12,11 @@ height: 100%;
 text-align: left;
 padding: 2rem;
 position: fixed;
-z-index: 1;
+z-index: 5;
 top: 0;
 left: 0;
-opacity: 0.9;
-z-index: 1;
+opacity: .99;
+z-index: 8;
 transition: transform 0.3s ease-in-out;
 @media (max-width: ${({ theme }) => theme.mobile}) {
     width: 100%;
@@ -37,6 +37,9 @@ a {
   &:hover {
     color: ${({ theme }) => theme.primaryHover};
   }
+  &:focus {
+    outline: 1px orange;
+  }
 }
 
 .login-btn, .signup-btn {
@@ -44,19 +47,24 @@ a {
   color: ${({ theme }) => theme.primaryDark};
   border-radius: 0;
   border: 1px solid black;
+  z-index: 5;
   margin: 1em 0;
   font-size: .75rem;
   text-transform: uppercase;
   padding: 1rem 0;
   font-weight: bold;
   letter-spacing: 0.5rem;
-  transition: background-color 0.3s linear;
+  transition: all 0.3s linear;
   @media (max-width: ${({ theme }) => theme.mobile}) {
     font-size: 1.5rem;
     text-align: center;
   }
 &:hover {
   background-color: ${({ theme }) => theme.primaryHover};
+}
+&:active {
+  transition: all 0.3s ease-in;
+  border: 1px solid orange;
 }
 }
 .profile-picture-container{
@@ -70,8 +78,8 @@ a {
   transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-100%)'};
   top: 0;
   left: 0;
-  opacity: 0.9;
-  transition: transform 0.3s ease-in-out;
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
   @media (max-width: ${({ theme }) => theme.mobile}) {
       width: 100%;
     }

@@ -1,19 +1,30 @@
 .navbar {
     display: flex;
-    opacity: .5;
+    opacity: 0;
     background:transparent;
     position:fixed;
     width: 100%;
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
+    z-index: 4;
 }
 .spacer {
-  opacity: .5;
+  opacity: 0;
   background:transparent;
-    height: 5em;
-  }
-  .nav-bar-spacer {
-    opacity: .5;
+}
+.nav-bar-spacer {
+    opacity: 0;
     background:transparent;
     height: 6.1em;
+}
+.scroll {
+  z-index: 4;
+  display: flex;
+  opacity: 1;
+  height: 6.1em;
+  background:#eeeeee;
+  position:fixed;
+  width: 100%;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
