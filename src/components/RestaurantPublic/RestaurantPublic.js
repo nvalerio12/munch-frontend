@@ -8,6 +8,7 @@ import {
   Button,
   Row,
   Col,
+  Nav,
   Tab,
   Tabs,
 } from "react-bootstrap";
@@ -65,20 +66,25 @@ function RestaurantPublic(props) {
     return (
       <>
         <div key={menuItem._id} className="menu-item-card">
-          <Row>
-          <Col>  
-          <img src={
+          <Row className="pd-0 mg-0">
+            <img
+              src={
                 menuItem.profileUrl
-                ? menuItem.profileUrl
-                : "https://picsum.photos/200"}
-                className="menu-item-img"
-                alt={`Delicious ${menuItem.name} img`}
-          />
-           </Col>
-           <Col>
-          <div>{menuItem.name}</div>
-           </Col>
-           </Row>
+                  ? menuItem.profileUrl
+                  : "https://picsum.photos/200"
+              }
+              className="menu-item-img"
+              alt={`Delicious ${menuItem.name} img`}
+            />
+
+            <Col>
+              <div className="text-col">
+                <h3>{menuItem.name}</h3>
+                <p>{menuItem.description}</p>
+                <p>${menuItem.price}</p>
+              </div>
+            </Col>
+          </Row>
         </div>
       </>
     );
@@ -86,6 +92,7 @@ function RestaurantPublic(props) {
 
   return (
     <>
+ 
       <div
         className="restaurant-img-container"
         style={{ "background-image": `url(${restaurant.profileUrl})` }}
@@ -97,7 +104,24 @@ function RestaurantPublic(props) {
           </div>
         </div>
       </div>
+      <Nav className="menu-nav-container" activeKey="Most Popular">
+        <Nav.Item>
+          <Nav.Link className="menu-nav-item" eventKey="Most Popular">Most Popular</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link className="menu-nav-item" eventKey="Appetizers" disabled>Appetizers</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link className="menu-nav-item" eventKey="Entrees" disabled>Entrees</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link className="menu-nav-item" eventKey="Drinks" disabled>
+            Drinks
+          </Nav.Link>
+        </Nav.Item>
+      </Nav>
       <div className="menu-items-container">{menuItems}</div>
+      <div className="testing"></div>
     </>
   );
 }
