@@ -3,6 +3,7 @@ import "./Home.css";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import CategoryRow from "./partials/CategoryRow";
 
+
 function Home(props) {
   return (
     <div>

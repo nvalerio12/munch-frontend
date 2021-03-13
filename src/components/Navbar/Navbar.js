@@ -5,20 +5,20 @@ import { StyledNavbar } from "./Navbar.styled";
 import "./Navbar.css";
 
 const Navbar = ({ open, setOpen }) => {
+  
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 60) {
-        console.log(
-          (document.querySelector(".navbar").className = "navbar scroll")
+        
+          (document.querySelector(".navbar").className = "navbar scroll"
         );
       } else {
-        console.log((document.querySelector(".navbar").className = "navbar"));
+        (document.querySelector(".navbar").className = "navbar");
       }
     };
     window.addEventListener("scroll", handleScroll);
   }, []);
 
-  console.log(window.scrollY);
 
   return (
     <>
