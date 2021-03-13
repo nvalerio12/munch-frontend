@@ -24,6 +24,9 @@ import {
 import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
+import axios from "axios";
+
+const { REACT_APP_SERVER_URL } = process.env;
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   let token = localStorage.getItem("jwtToken");
@@ -64,11 +67,26 @@ function App() {
         handleLogout();
       } else {
         setAuthToken(localStorage.getItem("jwtToken"));
-        setCurrentUser(token);
+        getUserData(token);
       }
-
     }
   }, []);
+
+  const getUserData = token => {
+    let url = `${REACT_APP_SERVER_URL}/users/${token.id}/private`;
+    axios
+      .get(url)
+      .then((response) => {
+        const { user } = response.data;
+        user.type = token.type;
+        setCurrentUser(user);
+      })
+      .catch((error) => {
+        console.log("===> Error When Getting User Data", error);
+        alert("Could Not Get User!");
+        setCurrentUser(token);
+      });
+  }
 
   const nowCurrentUser = (userData) => {
     console.log("===> nowCurrent is here.");
