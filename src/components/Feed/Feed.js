@@ -4,6 +4,9 @@ import "./Feed.css";
 import { AiTwotoneStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import CategoryRow from "../partials/CategoryRow";
+import Skeleton from '@material-ui/lab/Skeleton';
+// import Fade from '@material-ui/core/Fade';
+
 
 
 const { REACT_APP_SERVER_URL } = process.env;
@@ -12,6 +15,7 @@ const Feed = (props) => {
   const [restaurants, setRestaurants] = useState([]);
   const [didSearch, setdidSearch] = useState(false);
   const [currentUserFavorites, setCurrentUserFavorites] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     let localState = didSearch;
@@ -26,14 +30,13 @@ const Feed = (props) => {
     } else if (!localState) {
       getRestaurants();
     }
-
   }, [props.location.search]);
 
   useEffect(() => {
-    if (props.isAuth && props.user.type === 'user') {
-      getFavoriteRestaurants();
+    if (props.isAuth && props.user.type === "user") {
+      setCurrentUserFavorites(props.user.favorites);
     }
-  }, [props.user])
+  }, [props.user]);
 
   const getRestaurants = (query) => {
     let url = query
@@ -44,39 +47,29 @@ const Feed = (props) => {
       .then((response) => {
         const { results } = response.data;
         setRestaurants(results);
+
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log("===> Error When Getting Restaurants", error);
         alert("Could Not Display Restaurants!");
+
+        setIsLoading(false);
       });
     setdidSearch(true);
   };
 
-  const getFavoriteRestaurants = () => {
-    let url = `${REACT_APP_SERVER_URL}/users/${props.user.id}/public`;
-
-    axios
-      .get(url)
-      .then((response) => {
-        const { user } = response.data;
-        setCurrentUserFavorites(user.favorites);
-      })
-      .catch((error) => {
-        console.log("===> Error When Getting User Favorites", error);
-      });
-  }
-
-  const handleFavorite = restaurantId => {
+  const handleFavorite = (restaurantId) => {
     if (!props.isAuth) return alert("Please Sign In To Favorite Restaurants");
-    
+
     if (currentUserFavorites.includes(restaurantId)) {
       removeFavorite(restaurantId);
     } else {
       addFavorite(restaurantId);
     }
-  }
+  };
 
-  const addFavorite = restaurantId => {
+  const addFavorite = (restaurantId) => {
     const url = `${REACT_APP_SERVER_URL}/users/addFavorite/${restaurantId}`;
     axios
       .put(url)
@@ -87,35 +80,38 @@ const Feed = (props) => {
         console.log("===> Error When", error);
         alert(`Error: Could Not Add A Favorite.`);
       });
-  }
+  };
 
-  const removeFavorite = restaurantId => {
+  const removeFavorite = (restaurantId) => {
     const url = `${REACT_APP_SERVER_URL}/users/removeFavorite/${restaurantId}`;
     axios
       .put(url)
       .then((response) => {
-        setCurrentUserFavorites(currentUserFavorites.filter(id => id !== restaurantId));
+        setCurrentUserFavorites(
+          currentUserFavorites.filter((id) => id !== restaurantId)
+        );
       })
       .catch((error) => {
         console.log("===> Error When", error);
         alert(`Error: Could Not Remove A Favorite`);
       });
-  }
+  };
 
   let restaurantArray = restaurants.map((result) => {
     // A result is either in a category group or not
 
     if (!result) {
-      return (
-        <></>
-      );
+      return <></>;
     }
 
     if (result.isGroup) {
       const subResults = result.results.map((restaurant) => {
         return (
           <>
-            <div key={restaurant._id} className="restaurant-div card bg-transparent text-white col-xs col-md-3 m-3 p-0 shadow-lg rounded">
+            <div
+              key={restaurant._id}
+              className="restaurant-div card bg-transparent text-white col-xs col-md-3 m-3 p-0 shadow-lg rounded"
+            >
               <img
                 src={
                   result.profileUrl
@@ -128,8 +124,7 @@ const Feed = (props) => {
               <AiTwotoneStar
                 onClick={() => handleFavorite(restaurant._id)}
                 className={
-                  props.isAuth &&
-                  currentUserFavorites.includes(restaurant._id)
+                  props.isAuth && currentUserFavorites.includes(restaurant._id)
                     ? "favorite-btn active-btn position-absolute end-0 me-4 mt-2"
                     : "favorite-btn position-absolute end-0 me-4 mt-2"
                 }
@@ -209,8 +204,8 @@ const Feed = (props) => {
           onClick={() => handleFavorite(result._id)}
           className={
             props.isAuth && currentUserFavorites.includes(result._id)
-            ? "favorite-btn active-btn position-absolute end-0 me-4 mt-2"
-            : "favorite-btn position-absolute end-0 me-4 mt-2"
+              ? "favorite-btn active-btn position-absolute end-0 me-4 mt-2"
+              : "favorite-btn position-absolute end-0 me-4 mt-2"
           }
         />
         <Link
@@ -235,12 +230,42 @@ const Feed = (props) => {
     restaurantArray = <h2>No Restaurants Found!</h2>;
   }
 
+  if (isLoading) {
+
+    const loadArray = [];
+
+    for (let i = 0; i < 6; i++) {
+      loadArray.push(
+        <Skeleton
+          key={`rest-${i}`}
+          animation="wave"
+          className="restaurant-div loading card bg-light text-white col-xs col-md-3 m-3 p-0 shadow-lg rounded"
+          variant="rect"
+          width={300}
+          height={250}
+        />
+      );
+    }
+
+    return (
+      <>
+        <div className="container mt-5">
+          <h2 className="mt-5">Categories</h2>
+          <CategoryRow />
+          <div className="row justify-content-around mt-5">
+            {loadArray}
+          </div>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <div className="container mt-5">
         <h2 className="mt-5">Categories</h2>
         <CategoryRow />
-        <div className="row mt-5">{restaurantArray}</div>
+        <div className="row mt-5 justify-content-around">{restaurantArray}</div>
       </div>
     </>
   );
