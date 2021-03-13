@@ -192,6 +192,7 @@ const Feed = (props) => {
       );
     }
     // If it's not a group, it's just the results of the search
+
     return (
       <div
         key={result._id}
@@ -228,7 +229,6 @@ const Feed = (props) => {
         </Link>
       </div>
     );
-
   });
 
   if (restaurantArray.length < 1) {

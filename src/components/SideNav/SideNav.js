@@ -107,6 +107,9 @@ const SideNav = ({ open, ...props }) => {
           <Link to="/feed" tabIndex={tabIndex}>
             #Feed
           </Link>
+          <Link to="/restaurants/portal" className="sm" tabIndex={tabIndex}>
+            #Service
+          </Link>
           <Link to="/" tabIndex={tabIndex}>
             #Plaid
           </Link>

@@ -1,5 +1,6 @@
 import React from "react";
 import { button } from 'react-router-dom';
+
 import './About.css';
 
 function About() {
@@ -15,7 +16,9 @@ function About() {
           your foodie adventures.{" "}
         </p>
       </container>
+
       <button className='btn' href='/Signup'>Sign Up Now</button>
+
     </div>
   );
 }
