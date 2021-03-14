@@ -11,4 +11,58 @@
   background-repeat: no-repeat;
 }
 
+.img-box-desc-container {
+position: relative;
+margin-top: 1em;
+width: 100%;
+height: 500px;
+display: flex;
+flex-wrap: wrap;
+border: 1px solid black;
+overflow: hidden;
+}
+
+.img-cell {
+  border: 1px solid black;
+  width: 25%;
+  height: 50%;
+  transition: all .5s ease-in-out;
+  transform-origin:  top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.cell:hover {
+  background-color: blue;
+  transform-origin: top center;
+  translate: (2,2);
+  transform: scale(2,2)
+}
+
+.cell-1 {
+  background-image: url('../images/hp-cell-images/donut.jpg');
+}
+.cell-2 {
+  background-image: url('../images/hp-cell-images/eggs-bacon.jpg');
+}
+.cell-3 {
+  background-image: url('../images/hp-cell-images/group.jpg');
+}
+.cell-4 {
+  background-image: url('../images/hp-cell-images/icecream.jpg');
+}
+.cell-5 {
+  background-image: url('../images/hp-cell-images/oatmeal.jpg');
+}
+.cell-6 {
+  background-image: url('../images/hp-cell-images/pancake.jpg');
+}
+.cell-7 {
+  background-image: url('../images/hp-cell-images/panini.jpg');
+}
+.cell-8 {
+  background-image: url('../images/hp-cell-images/steak.jpg');
+}
+
+
 
