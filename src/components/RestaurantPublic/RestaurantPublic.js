@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+import { makeStyles } from "@material-ui/core/styles";
 
 import "./RestaurantPublic.css";
 import {
@@ -14,14 +17,44 @@ import {
   Modal,
 } from "react-bootstrap";
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: "100%",
+    "& > * + *": {
+      marginTop: theme.spacing(2),
+    },
+  },
+}));
+
 const { REACT_APP_SERVER_URL } = process.env;
 
 function RestaurantPublic(props) {
   const [restaurant, setRestaurant] = useState(props.location.state.restaurant);
   const [category, setCategory] = useState("");
   const [query, setQuery] = useState(props.location.pathname);
+  const [currentBag, setCurrentBag] = useState(props.currentBag);
   const [itemModalShow, setItemModalShow] = useState(false);
-  const [currentBag, setCurrentBag] = useState(props.currentBag)
+
+  // Snack bar states and functions //
+  const classes = useStyles();
+  const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+
+  //*************************************//
 
   // Item Modal
   const handleItemModalClose = () => {
@@ -71,13 +104,21 @@ function RestaurantPublic(props) {
   };
 
   const addItemToBag = async (menuItem) => {
- 
-    await props.setCurrentBag([...props.currentBag, menuItem.target.value])
-    console.log(props.currentBag)
-  }
+    handleClick()
+    
+    console.log(menuItem.target.value, typeof menuItem.target.value)
+    const itemDetails = menuItem.target.value.split(',')
+    console.log(itemDetails)
+    const updatedBag = await props.setCurrentBag([
+      ...props.currentBag,
+      [Number(itemDetails[0]), itemDetails[1]]
+    ]);
+    if (updatedBag !== undefined) {
+      handleClick();
+    }
+  };
 
   const menuItems = restaurant.menu.map((menuItem) => {
-    
     return (
       <>
         <div key={menuItem._id} className="menu-item-card">
@@ -95,7 +136,16 @@ function RestaurantPublic(props) {
               <div className="text-col">
                 <h4>{menuItem.name}</h4>
                 <p>{menuItem.description}</p>
-                <p>${menuItem.price}<button onClick={(menuItem) => addItemToBag(menuItem)} value={[menuItem.name, menuItem.price]} className="add-to-bag-btn">Add to Bag</button> </p>
+                <p>
+                  ${menuItem.price}
+                  <button
+                    onClick={(menuItem) => addItemToBag(menuItem)}
+                    value={[menuItem.price,menuItem.name]}
+                    className="add-to-bag-btn"
+                  >
+                    Add to Bag
+                  </button>{" "}
+                </p>
               </div>
             </Col>
           </Row>
@@ -108,7 +158,7 @@ function RestaurantPublic(props) {
     <>
       <div
         className="restaurant-img-container"
-        style={{ "backgroundImage": `url(${restaurant.profileUrl})` }}
+        style={{ backgroundImage: `url(${restaurant.profileUrl})` }}
       >
         <div className="restaurant-details">
           <div className="restaurant-details-text">
@@ -141,6 +191,12 @@ function RestaurantPublic(props) {
       </Nav>
       <div className="menu-items-container">{menuItems}</div>
       <div className="testing"></div>
+
+      <Snackbar open={open} autoHideDuration={1000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success">
+          Item was added to cart!
+        </Alert>
+      </Snackbar>
     </>
   );
 }
