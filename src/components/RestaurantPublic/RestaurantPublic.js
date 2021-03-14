@@ -88,7 +88,7 @@ function RestaurantPublic(props) {
     <>
       <div
         className="restaurant-img-container"
-        style={{ "background-image": `url(${restaurant.profileUrl})` }}
+        style={{ "backgroundImage": `url(${restaurant.profileUrl})` }}
       >
         <div className="restaurant-details">
           <div className="restaurant-details-text">
