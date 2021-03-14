@@ -17,20 +17,21 @@ const AccountServices = (props) => {
   
   if (props.user.type === 'user' && !triggeredDelete) {
     const handleDelete = () => {
-      const url = `${REACT_APP_SERVER_URL}/users/${props.user._id}/delete`;
-      axios
-        .delete(url)
-        .then(response => {
-          console.log(response);
-          console.log("OK");
-          setTriggeredDelete(true);
-          props.handleLogout();
-        })
-        .catch(error => {
-          console.error(error);
-          console.log("Fail");
-          alert("An Error Occured When Deleting Your Account, Please Try Again.");
-        });
+
+      if (window.confirm('Delete Account? \nThis Action is Permanent.')) {
+        const url = `${REACT_APP_SERVER_URL}/users/${props.user._id}/delete`;
+        axios
+          .delete(url)
+          .then(response => {
+            setTriggeredDelete(true);
+            props.handleLogout();
+          })
+          .catch(error => {
+            console.error(error);
+            alert("An Error Occured When Deleting Your Account, Please Try Again.");
+          });
+      }
+
     }
 
     return (
