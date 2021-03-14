@@ -1,0 +1,47 @@
+/* Search Bar CSS */
+  
+.hp-search-container {
+  display: flex;
+  justify-content: center;
+}
+
+.hp-search {
+  margin: 0;
+  width: 35vh;
+  padding-left: 1em;
+  border-radius: 0;
+  height: 3em;
+}
+
+.autocomplete-target {
+  display: block;
+  width: 300px;
+}
+
+.hp-search-container .search-item {
+  width: 55vh;
+}
+
+.autocomplete-target a {
+  color: black;
+}
+
+.autocomplete-target a:focus .search-item,
+.autocomplete-target a:hover .search-item {
+  background: darkgrey;
+  color: white;
+  transition: 0.25s;
+}
+
+.hp-search-btn {
+  width: 100%;
+  height: 3em;
+  border-style: none;
+  border-radius: 0;
+  color:#eeeeee;
+  background-color: #686d76;
+}
+
+.hp-search-btn:hover {
+  background-color: green;
+}

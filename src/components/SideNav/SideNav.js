@@ -163,19 +163,19 @@ const SideNav = ({ open, ...props }) => {
           <Button onClick={handleSignUpShow} className="login-btn">
             #Sign Up
           </Button>
-          <Link to="/" tabIndex={tabIndex}>
+          <Link onClick={() => props.setOpen(false)} to="/" tabIndex={tabIndex}>
             #Home
           </Link>
-          <Link to="/aboutus" tabIndex={tabIndex}>
+          <Link onClick={() => props.setOpen(false)} to="/aboutus" tabIndex={tabIndex}>
             #About us
           </Link>
-          <Link to="/feed" tabIndex={tabIndex}>
+          <Link onClick={() => props.setOpen(false)} to="/feed" tabIndex={tabIndex}>
             #Feed
           </Link>
-          <Link to="/restaurants/portal" className="sm" tabIndex={tabIndex}>
+          <Link onClick={() => props.setOpen(false)} to="/restaurants/portal" className="sm" tabIndex={tabIndex}>
             #Service
           </Link>
-          <Link to="/" tabIndex={tabIndex}>
+          <Link onClick={() => props.setOpen(false)} to="/" tabIndex={tabIndex}>
             #Plaid
           </Link>
         </StyledSideNav>
@@ -272,16 +272,16 @@ const SideNav = ({ open, ...props }) => {
               />
             </div>
           </div>
-          <Link to="/" tabIndex={tabIndex}>
+          <Link onClick={() => props.setOpen(false)} to="/" tabIndex={tabIndex}>
             #Home
           </Link>
-          <Link to="/aboutus" tabIndex={tabIndex}>
+          <Link onClick={() => props.setOpen(false)} to="/aboutus" tabIndex={tabIndex}>
             #About us
           </Link>
-          <Link to="/feed" tabIndex={tabIndex}>
+          <Link onClick={() => props.setOpen(false)} to="/feed" tabIndex={tabIndex}>
             #Feed
           </Link>
-          <Link to="/" tabIndex={tabIndex}>
+          <Link onClick={() => props.setOpen(false)} to="/" tabIndex={tabIndex}>
             #Plaid
           </Link>
           <Button onClick={handleLogout} className="login-btn">
