@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { bool, func } from "prop-types";
 import { StyledNavbar } from "./Navbar.styled";
 import Cart from "./Cart"
+import { BsBag } from 'react-icons/bs';
 
 
 import "./Navbar.css";
@@ -32,6 +33,7 @@ const Navbar = ({ open, setOpen }) => {
       </StyledNavbar>
       <div className="navbar">
         <div className="cart-btn">
+
       <Cart />
         </div>
       </div>

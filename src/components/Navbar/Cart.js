@@ -10,6 +10,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import { BsBag } from 'react-icons/bs';
 
 const useStyles = makeStyles({
   list: {
@@ -23,7 +24,7 @@ const useStyles = makeStyles({
 export default function TemporaryDrawer() {
   const classes = useStyles();
   const [state, setState] = React.useState({
-    bottom: false,
+    right: false,
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -44,18 +45,16 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+        {['Item1', 'Item2', 'Item3', 'Item4'].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
       </List>
       <Divider />
       <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
+        {['Item6', 'Item7', 'Item8'].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
@@ -65,9 +64,9 @@ export default function TemporaryDrawer() {
 
   return (
     <div className="cart-btn">
-      {['right',].map((anchor) => (
+      {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+          <Button onClick={toggleDrawer(anchor, true)}><BsBag size={30}/></Button>
           <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             {list(anchor)}
           </Drawer>

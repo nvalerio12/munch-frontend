@@ -8,6 +8,7 @@ import HorizontalLinearStepper from './Signup'
 import jwt_decode from "jwt-decode";
 import { Link } from "react-router-dom";
 import setAuthToken from "../../utils/setAuthToken";
+import { BsBag } from 'react-icons/bs';
 
 
 import axios from "axios";

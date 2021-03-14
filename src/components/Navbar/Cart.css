@@ -1,4 +1,6 @@
 .cart-btn {
     position: fixed;
     justify-self: end;
+    width: 100px;
+    height: 100px;
 }
