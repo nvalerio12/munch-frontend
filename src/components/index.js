@@ -6,4 +6,5 @@ export { default as Profile } from './Profile';
 export { default as RestaurantPublic } from './RestaurantPublic';
 export { default as RestaurantPortal } from './RestaurantPortal';
 export { default as Feed } from './Feed';
+export { default as AccountServices } from './AccountSettings';
 
