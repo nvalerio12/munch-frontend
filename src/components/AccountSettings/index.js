@@ -24,9 +24,7 @@ const AccountServices = (props) => {
           console.log(response);
           console.log("OK");
           setTriggeredDelete(true);
-          setTimeout(() => {
-            props.handleLogout();
-          }, 1000);
+          props.handleLogout();
         })
         .catch(error => {
           console.error(error);
