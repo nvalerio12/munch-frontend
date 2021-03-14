@@ -35,7 +35,7 @@ const AccountServices = (props) => {
     }
 
     return (
-      <div className="account-services container">
+      <div className="account-services container mb-5">
         <div className="card-intro row d-flex justify-content-start">
           <div className="col">
             <img

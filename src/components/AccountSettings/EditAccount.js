@@ -5,7 +5,8 @@ const { REACT_APP_SERVER_URL } = process.env;
 const EditAccount = (props) => {
   const [nameField, setnameField] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   if (props.user.type === 'user') {
@@ -16,8 +17,11 @@ const EditAccount = (props) => {
     const handleEmail = (e) => {
       setEmail(e.target.value);
     };
-    const handlePassword = (e) => {
-      setPassword(e.target.value);
+    const handleOldPassword = (e) => {
+      setOldPassword(e.target.value);
+    };
+    const handleNewPassword = (e) => {
+      setNewPassword(e.target.value);
     };
     const handleConfirmPassword = (e) => {
       setConfirmPassword(e.target.value);
@@ -35,11 +39,11 @@ const EditAccount = (props) => {
           </div>
           <h3>Security</h3>
           <div className="form-floating mb-3">
-            <input type="password" name="oldPassword" className="form-control" id="floatingOld" placeholder="Password" />
+            <input onChange={handleOldPassword} type="password" name="oldPassword" className="form-control" id="floatingOld" placeholder="Password" />
             <label for="floatingPassword">Old Password</label>
           </div>
           <div className="form-floating mb-3">
-            <input onChange={handlePassword} type="password" handlePassword className="form-control" id="floatingNewPassword" placeholder="New Password" />
+            <input onChange={handleNewPassword} type="password" handlePassword className="form-control" id="floatingNewPassword" placeholder="New Password" />
             <label for="floatingNewPassword">New Password</label>
           </div>
           <div className="form-floating mb-3">
