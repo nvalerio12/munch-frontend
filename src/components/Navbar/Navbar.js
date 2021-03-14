@@ -22,9 +22,24 @@ const Navbar = ({ open, setOpen, currentBag, setCurrentBag }) => {
     window.addEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    console.log('running')
+    console.log(open)
+    const handleHide = () => {
+      if (open === true) {
+          (document.querySelector(".hider").className = "hider hidden"
+        );
+      } else if (open !== true){
+        (document.querySelector(".hider").className = "hider");
+      }
+    };
+    handleHide();
+  }, [open]);
 
   return (
     <>
+      <div className="hider">
+        </div>
 
       <StyledNavbar open={open} onClick={() => setOpen(!open)}>
         <div className="threeLines" />
