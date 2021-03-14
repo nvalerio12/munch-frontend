@@ -44,19 +44,19 @@ const Navbar = ({ open, setOpen, currentBag, setCurrentBag }) => {
         <div className="threeLines" />
         <div className="threeLines" />
       </StyledNavbar>
-      <div className="navbar row">
-        <div className="cart-btn col-xs">
+      <div className="navbar">
+        <div className="cart-btn">
           <Cart currentBag={currentBag} setCurrentBag={setCurrentBag} />
         </div>
         <div className="row nav-search end-50">
-          <div className="col-1">
+          <div className="col-2">
             <img
               className="munch-logo"
               src="https://res.cloudinary.com/dom5vocai/image/upload/v1615689944/possibleLogo_nbghky.svg"
               alt="munch logo"
             />
           </div>
-          <div className="col">
+          <div className="col-10">
             <SearchBar />
           </div>
         </div>
