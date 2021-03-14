@@ -7,7 +7,8 @@ import {
   Profile,
   Feed,
   RestaurantPublic,
-  RestaurantPortal
+  RestaurantPortal,
+  AccountServices
 } from "./components/"; // export from components/index.js
 
 import { ThemeProvider } from "styled-components"; // used styled components to create components :navbar and sidenav
@@ -38,7 +39,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         return token ? (
           <Component {...rest} {...props} />
         ) : (
-          <Redirect to="/login" />
+          <Redirect to="/" />
         );
       }}
     />
@@ -147,6 +148,12 @@ function App() {
           <PrivateRoute
             path="/profile"
             component={Profile}
+            user={currentUser}
+            handleLogout={handleLogout}
+          />
+          <PrivateRoute
+            path="/account"
+            component={AccountServices}
             user={currentUser}
             handleLogout={handleLogout}
           />
