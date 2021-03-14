@@ -2,42 +2,11 @@
 
 .home-main {
   margin-top: -6.1em;;
-    background-size: 100%;
-    background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615610426/homepage-bg_fupdf2.png');
-    height: 750px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-repeat: no-repeat;
-}
-  
-.hp-search-container {
+  background-size: 100%;
+  background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615610426/homepage-bg_fupdf2.png');
+  height: 750px;
   display: flex;
   justify-content: center;
-}
-
-.pd-l-0 {
-  padding-left: 0;
-}
-.pd-r-0 {
-  padding-right: 0;
-}
-.hp-search {
-margin: 0;
-width: 35vh;
-padding-left: 1em;
-border-radius: 0;
-height: 3em;
-}
-
-.hp-search-btn {
-  width: 100%;
-  height: 3em;
-  border-style: none;
-  border-radius: 0;
-  color:#eeeeee;
-  background-color: #686d76;
-}
-.hp-search-btn:hover {
-  background-color: green;
+  align-items: center;
+  background-repeat: no-repeat;
 }
