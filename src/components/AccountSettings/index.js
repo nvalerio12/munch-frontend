@@ -1,18 +1,41 @@
 import { Link } from 'react-router-dom';
-import { Route, Switch } from 'react-router';
+import { Redirect, Route, Switch } from 'react-router';
 import './AccountSettings.css';
 import EditAccount from './EditAccount';
 import FavoriteRestaurants from './FavoriteRestaurants';
+import axios from "axios";
 import { useState } from 'react';
+
+const { REACT_APP_SERVER_URL } = process.env;
 
 const AccountServices = (props) => {
 
   // Note, There is going to be two sets of return statements
   // One for users one for restaurants.
+  const [triggeredDelete, setTriggeredDelete] = useState(false);
+
   
-  if (props.user.type === 'user') {
+  if (props.user.type === 'user' && !triggeredDelete) {
+    const handleDelete = () => {
+
+      if (window.confirm('Delete Account? \nThis Action is Permanent.')) {
+        const url = `${REACT_APP_SERVER_URL}/users/${props.user._id}/delete`;
+        axios
+          .delete(url)
+          .then(response => {
+            setTriggeredDelete(true);
+            props.handleLogout();
+          })
+          .catch(error => {
+            console.error(error);
+            alert("An Error Occured When Deleting Your Account, Please Try Again.");
+          });
+      }
+
+    }
+
     return (
-      <div className="account-services container">
+      <div className="account-services container mb-5">
         <div className="card-intro row d-flex justify-content-start">
           <div className="col">
             <img
@@ -42,7 +65,7 @@ const AccountServices = (props) => {
               <li className="list-group-item">Past Orders</li>
               <li className="list-group-item">Followers</li>
               <li className="list-group-item">Following</li>
-              <li className="btn btn-danger">Delete Account</li>
+              <li onClick={handleDelete} className="btn btn-danger">Delete Account</li>
             </ul>
           </div>
           <Switch>
@@ -60,10 +83,14 @@ const AccountServices = (props) => {
         </div>
       </div>
     );
-  } else if (props.user.type === 'restaurant') {
+  } else if (props.user.type === 'restaurant' && !triggeredDelete) {
     return (
       <div className="account-services container">
       </div>
+    );
+  } else if (triggeredDelete) {
+    return (
+      <Redirect to="/" />
     );
   } else {
     return (

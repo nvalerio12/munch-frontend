@@ -45,7 +45,62 @@
 }
 
 .hidden {
-  z-index: 5;
+  z-index: 6;
   background: black;
   opacity: 0.8;
+}
+
+.nav-search {
+  position: absolute;
+  left: 25%;
+  width: 55%;
+  max-height: 100px;
+  display: none;
+}
+
+.navbar .hp-search-container {
+  width: 100%;
+  /* display: none; */
+  justify-content: end;
+}
+
+.navbar .hp-search {
+  width: 20vh;
+}
+
+.munch-logo {
+  width: 50px;
+}
+
+.navbar .hp-search-container .search-item {
+  width: 50vh;
+}
+
+@media screen and (min-width: 400px) {  
+  .navbar .hp-search {
+    width: 20vh;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .nav-search {
+    display: flex;
+  }
+
+  .munch-logo {
+    margin-left: 7%;
+  }
+  .navbar .hp-search-container {
+    width: 100%;
+  }
+  
+  .navbar .hp-search {
+    width: 30vh;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .navbar .hp-search-container .search-item {
+    width: 47vh;
+  }
 }

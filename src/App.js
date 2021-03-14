@@ -102,8 +102,8 @@ function App() {
     if (localStorage.getItem("jwtToken")) {
       // remove token for localStorage
       localStorage.removeItem("jwtToken");
-      setCurrentUser(null);
       setIsAuthenticated(false);
+      setCurrentUser(null);
     }
   };
 

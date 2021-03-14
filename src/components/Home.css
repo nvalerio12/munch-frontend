@@ -40,28 +40,28 @@ overflow: hidden;
 }
 
 .cell-1 {
-  background-image: url('../images/hp-cell-images/donut.jpg');
+  background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615765241/donut_pz8dam.jpg');
 }
 .cell-2 {
-  background-image: url('../images/hp-cell-images/eggs-bacon.jpg');
+  background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615765242/eggs-bacon_rmvwgd.jpg');
 }
 .cell-3 {
-  background-image: url('../images/hp-cell-images/group.jpg');
+  background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615765241/group_qocdsf.jpg');
 }
 .cell-4 {
-  background-image: url('../images/hp-cell-images/icecream.jpg');
+  background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615765241/icecream_j1asfi.jpg');
 }
 .cell-5 {
-  background-image: url('../images/hp-cell-images/oatmeal.jpg');
+  background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615765241/oatmeal_pgaqrv.jpg');
 }
 .cell-6 {
-  background-image: url('../images/hp-cell-images/pancake.jpg');
+  background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615765241/pancake_jwxhpn.jpg');
 }
 .cell-7 {
-  background-image: url('../images/hp-cell-images/panini.jpg');
+  background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615765241/panini_dxa4fr.jpg');
 }
 .cell-8 {
-  background-image: url('../images/hp-cell-images/steak.jpg');
+  background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615765242/steak_hjkpba.jpg');
 }
 
 
