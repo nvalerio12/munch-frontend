@@ -23,8 +23,6 @@ const Navbar = ({ open, setOpen, currentBag, setCurrentBag }) => {
   }, []);
 
   useEffect(() => {
-    console.log('running')
-    console.log(open)
     const handleHide = () => {
       if (open === true) {
           (document.querySelector(".hider").className = "hider hidden"
@@ -38,7 +36,9 @@ const Navbar = ({ open, setOpen, currentBag, setCurrentBag }) => {
 
   return (
     <>
+    
       <div className="hider">
+
         </div>
 
       <StyledNavbar open={open} onClick={() => setOpen(!open)}>

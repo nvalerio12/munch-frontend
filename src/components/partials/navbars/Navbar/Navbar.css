@@ -46,6 +46,6 @@
 
 .hidden {
   z-index: 5;
-  background: darkgrey;
+  background: black;
   opacity: 0.8;
 }

@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { bool } from "prop-types";
 import { StyledSideNav } from "./SideNav.styled";
 import { Modal, Form } from "react-bootstrap";
-import { Button, TextField } from '@material-ui/core/';
+import { Button, TextField} from '@material-ui/core/';
 import HorizontalLinearStepper from './Signup'
 
 import jwt_decode from "jwt-decode";
 import { Link } from "react-router-dom";
-import setAuthToken from "../../utils/setAuthToken";
+import setAuthToken from "../../../../utils/setAuthToken";
 
 
 
@@ -251,6 +251,7 @@ const SideNav = ({ open, ...props }) => {
   } else {
     return (
       <>
+
         <StyledSideNav open={open} aria-hidden={!isHidden} {...props}>
           <div className="profile-picture-container">
             <Link to="/">#{props.user.userName}</Link>

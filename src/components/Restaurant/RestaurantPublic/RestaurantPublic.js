@@ -6,15 +6,10 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import "./RestaurantPublic.css";
 import {
-  Form,
-  FormControl,
-  Button,
   Row,
   Col,
   Nav,
-  Tab,
-  Tabs,
-  Modal,
+
 } from "react-bootstrap";
 
 function Alert(props) {
@@ -37,7 +32,6 @@ function RestaurantPublic(props) {
   const [category, setCategory] = useState("");
   const [query, setQuery] = useState(props.location.pathname);
   const [currentBag, setCurrentBag] = useState(props.currentBag);
-  const [itemModalShow, setItemModalShow] = useState(false);
 
   // Snack bar states and functions //
   const classes = useStyles();
@@ -55,13 +49,6 @@ function RestaurantPublic(props) {
   };
 
   //*************************************//
-
-  // Item Modal
-  const handleItemModalClose = () => {
-    setItemModalShow(false); // closing the modal
-  };
-  const handleItemModalShow = () => setItemModalShow(true); // opening modal
-
   useEffect(() => {
     if (!props) {
       getRestaurant(query);

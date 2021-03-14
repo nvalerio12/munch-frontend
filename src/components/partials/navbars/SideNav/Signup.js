@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import jwt_decode from "jwt-decode";
-import setAuthToken from "../../utils/setAuthToken";
+import setAuthToken from "../../../../utils/setAuthToken";
 
 // Stepper imports //
 import PropTypes from "prop-types";
