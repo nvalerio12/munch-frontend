@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { bool, func } from "prop-types";
 import { StyledNavbar } from "./Navbar.styled";
 import Cart from "./Cart"
+import SearchBar from '../../SearchBar';
 
 
 
@@ -36,24 +37,31 @@ const Navbar = ({ open, setOpen, currentBag, setCurrentBag }) => {
 
   return (
     <>
-    
-      <div className="hider">
-
-        </div>
+      <div className="hider"></div>
 
       <StyledNavbar open={open} onClick={() => setOpen(!open)}>
         <div className="threeLines" />
         <div className="threeLines" />
         <div className="threeLines" />
       </StyledNavbar>
-      <div className="navbar">
-        <div className="cart-btn">
-      <Cart currentBag={currentBag} setCurrentBag={setCurrentBag}/>
+      <div className="navbar row">
+        <div className="cart-btn col-xs">
+          <Cart currentBag={currentBag} setCurrentBag={setCurrentBag} />
+        </div>
+        <div className="row nav-search end-50">
+          <div className="col-1">
+            <img
+              className="munch-logo"
+              src="https://res.cloudinary.com/dom5vocai/image/upload/v1615689944/possibleLogo_nbghky.svg"
+              alt="munch logo"
+            />
+          </div>
+          <div className="col">
+            <SearchBar />
+          </div>
         </div>
       </div>
       <div className="nav-bar-spacer"></div>
-      
-     
     </>
   );
 };
