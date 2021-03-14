@@ -21,7 +21,7 @@ function RestaurantPublic(props) {
   const [category, setCategory] = useState("");
   const [query, setQuery] = useState(props.location.pathname);
   const [itemModalShow, setItemModalShow] = useState(false);
-  console.log(props)
+  const [currentBag, setCurrentBag] = useState(props.currentBag)
 
   // Item Modal
   const handleItemModalClose = () => {
@@ -70,8 +70,14 @@ function RestaurantPublic(props) {
       });
   };
 
+  const addItemToBag = async (menuItem) => {
+ 
+    await props.setCurrentBag([...props.currentBag, menuItem.target.value])
+    console.log(props.currentBag)
+  }
+
   const menuItems = restaurant.menu.map((menuItem) => {
-    console.log(menuItem);
+    
     return (
       <>
         <div key={menuItem._id} className="menu-item-card">
@@ -85,12 +91,11 @@ function RestaurantPublic(props) {
               className="menu-item-img"
               alt={`Delicious ${menuItem.name} img`}
             />
-
             <Col>
               <div className="text-col">
                 <h4>{menuItem.name}</h4>
                 <p>{menuItem.description}</p>
-                <p>${menuItem.price}</p>
+                <p>${menuItem.price}<button onClick={(menuItem) => addItemToBag(menuItem)} value={[menuItem.name, menuItem.price]} className="add-to-bag-btn">Add to Bag</button> </p>
               </div>
             </Col>
           </Row>

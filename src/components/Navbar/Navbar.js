@@ -7,7 +7,7 @@ import Cart from "./Cart"
 
 import "./Navbar.css";
 
-const Navbar = ({ open, setOpen }) => {
+const Navbar = ({ open, setOpen, currentBag, setCurrentBag }) => {
   
   useEffect(() => {
     const handleScroll = () => {
@@ -33,7 +33,7 @@ const Navbar = ({ open, setOpen }) => {
       </StyledNavbar>
       <div className="navbar">
         <div className="cart-btn">
-      <Cart />
+      <Cart currentBag={currentBag} setCurrentBag={setCurrentBag}/>
         </div>
       </div>
       <div className="nav-bar-spacer"></div>

@@ -93,3 +93,20 @@
 .text-col p {
     align-self: center;
 }
+
+.add-to-bag-btn {
+    color: grey;
+    margin-left: 2em;
+    align-self: flex-end;
+    border:0;
+    background-color: transparent;
+}
+
+.add-to-bag-btn:hover {
+    transition: all 0.3s ease-in-out;
+    color: white;
+    margin-left: 2em;
+    align-self: flex-end;
+    border:0;
+    background-color: orange;
+}

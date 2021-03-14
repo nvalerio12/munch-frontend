@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -19,8 +19,10 @@ const useStyles = makeStyles({
   },
 });
 
-export default function TemporaryDrawer() {
+export default function TemporaryDrawer(props) {
   const classes = useStyles();
+  const [ currentBag, setCurrentBag] = useState(props.currentBag)
+
   const [state, setState] = React.useState({
     right: false,
   });
@@ -33,7 +35,7 @@ export default function TemporaryDrawer() {
     setState({ ...state, [anchor]: open });
   };
 
-  const list = (anchor) => (
+  const cartList = (anchor) => (
     <div
       className={clsx(classes.list, {
         [classes.fullList]: anchor === 'top' || anchor === 'bottom',
@@ -60,19 +62,19 @@ export default function TemporaryDrawer() {
     </div>
   );
 
-  console.log(list)
+  console.log(currentBag)
 
   return (
     <div className="">
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>
-          <Badge badgeContent={list.length} color="primary">
+          <Badge badgeContent={props.currentBag.length} color="primary">
               <BsBag size={30}/>
             </Badge>
               </Button>
           <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
-            {list(anchor)}
+            {cartList(anchor)}
           </Drawer>
         </React.Fragment>
       ))}
