@@ -6,10 +6,8 @@ import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import Badge from '@material-ui/core/Badge';
 import { BsBag } from 'react-icons/bs';
 
 const useStyles = makeStyles({
@@ -62,11 +60,17 @@ export default function TemporaryDrawer() {
     </div>
   );
 
+  console.log(list)
+
   return (
     <div className="cart-btn">
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}><BsBag size={30}/></Button>
+          <Button onClick={toggleDrawer(anchor, true)}>
+          <Badge badgeContent={list.length} color="primary">
+              <BsBag size={30}/>
+            </Badge>
+              </Button>
           <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             {list(anchor)}
           </Drawer>
