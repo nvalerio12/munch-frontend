@@ -1,6 +1,5 @@
 import React from "react";
 import "./Footer.css";
-import { Container, Row, Col,  } from "react-bootstrap";
 
 function Footer(props) {
   return (
@@ -17,8 +16,10 @@ function Footer(props) {
         <div className="about-munch">
             <h3>#MEET THE TEAM</h3>
             <p> 
-                This application was produced by Joshua Wilson,
-                Nelson Navaro, and Andrew Bith as part of General Assembly's Software 
+                This application was produced by 
+                <a href="https://github.com/josh-W42"> Joshua Wilson </a>, 
+                <a href="https://github.com/nvalerio12 "> Nelson Navaro </a>, and 
+                <a href="https://github.com/andrew8bit"> Andrew Bith </a> as part of General Assembly's Software 
                 Engineering Bootcamp. 
             </p>
 
@@ -31,7 +32,7 @@ function Footer(props) {
         </div>
     </div>
     <div className="copywrite-container">
-        <p>Munch was create for personal use. Images sourced from Freepik.com All rights reserved</p>
+        <p>Munch was create for personal use. Images sourced from Freepik.com by Freepik. All rights reserved</p>
     </div>
     </>
   );

@@ -5,8 +5,8 @@
   margin-left: -3%;
   overflow-x: scroll;
   position: sticky;
+  top: 11%;
   z-index: 2;
-  top: 15%;
   background: rgba(255, 255, 255, 1);
 }
 
