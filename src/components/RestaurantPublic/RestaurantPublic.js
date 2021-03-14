@@ -11,6 +11,7 @@ import {
   Nav,
   Tab,
   Tabs,
+  Modal,
 } from "react-bootstrap";
 
 const { REACT_APP_SERVER_URL } = process.env;
@@ -19,9 +20,16 @@ function RestaurantPublic(props) {
   const [restaurant, setRestaurant] = useState(props.location.state.restaurant);
   const [category, setCategory] = useState("");
   const [query, setQuery] = useState(props.location.pathname);
+  const [itemModalShow, setItemModalShow] = useState(false);
+
+  // Item Modal
+  const handleItemModalClose = () => {
+    setItemModalShow(false); // closing the modal
+  };
+  const handleItemModalShow = () => setItemModalShow(true); // opening modal
 
   useEffect(() => {
-    if (!restaurant) {
+    if (!props) {
       getRestaurant(query);
     }
   }, []);
@@ -79,7 +87,7 @@ function RestaurantPublic(props) {
 
             <Col>
               <div className="text-col">
-                <h3>{menuItem.name}</h3>
+                <h4>{menuItem.name}</h4>
                 <p>{menuItem.description}</p>
                 <p>${menuItem.price}</p>
               </div>
@@ -92,7 +100,6 @@ function RestaurantPublic(props) {
 
   return (
     <>
- 
       <div
         className="restaurant-img-container"
         style={{ "background-image": `url(${restaurant.profileUrl})` }}
@@ -106,13 +113,19 @@ function RestaurantPublic(props) {
       </div>
       <Nav className="menu-nav-container" activeKey="Most Popular">
         <Nav.Item>
-          <Nav.Link className="menu-nav-item" eventKey="Most Popular">Most Popular</Nav.Link>
+          <Nav.Link className="menu-nav-item" eventKey="Most Popular">
+            Most Popular
+          </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link className="menu-nav-item" eventKey="Appetizers" disabled>Appetizers</Nav.Link>
+          <Nav.Link className="menu-nav-item" eventKey="Appetizers" disabled>
+            Appetizers
+          </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link className="menu-nav-item" eventKey="Entrees" disabled>Entrees</Nav.Link>
+          <Nav.Link className="menu-nav-item" eventKey="Entrees" disabled>
+            Entrees
+          </Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link className="menu-nav-item" eventKey="Drinks" disabled>
