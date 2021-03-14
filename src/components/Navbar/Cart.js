@@ -63,7 +63,7 @@ export default function TemporaryDrawer() {
   console.log(list)
 
   return (
-    <div className="cart-btn">
+    <div className="">
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>

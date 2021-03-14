@@ -21,6 +21,7 @@ function RestaurantPublic(props) {
   const [category, setCategory] = useState("");
   const [query, setQuery] = useState(props.location.pathname);
   const [itemModalShow, setItemModalShow] = useState(false);
+  console.log(props)
 
   // Item Modal
   const handleItemModalClose = () => {
