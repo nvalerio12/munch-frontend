@@ -114,8 +114,8 @@ const Feed = (props) => {
             >
               <img
                 src={
-                  result.profileUrl
-                    ? result.profileUrl
+                  restaurant.profileUrl
+                    ? restaurant.profileUrl
                     : "https://picsum.photos/200"
                 }
                 className="card-img img-fluid"
