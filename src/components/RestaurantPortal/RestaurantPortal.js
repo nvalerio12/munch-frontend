@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { bool } from "prop-types";
+
 import { Modal, Form } from "react-bootstrap";
 import { Button, TextField } from "@material-ui/core/";
 import HorizontalLinearStepper from "./Signup";
-import About from "../About";
+
 
 import jwt_decode from "jwt-decode";
-import { Redirect, Link } from "react-router-dom";
+// import { Redirect, Link } from "react-router-dom";
 import setAuthToken from "../../utils/setAuthToken";
-import profilePicture from "../../images/profile-image-placeholder.png";
+
 
 import axios from "axios";
 import "./RestaurantPortal.css";
@@ -32,11 +32,6 @@ function RestaurantPortal(props) {
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
-
-  // SignUp Specific States - we will use email and password from the login states ^
-  const [userName, setUserName] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [redirect, setRedirect] = useState(false);
 
   // Functions to Handle Sign Up States
 
@@ -64,15 +59,15 @@ function RestaurantPortal(props) {
       });
   };
 
-  const handleLogout = () => {
-    if (localStorage.getItem("jwtToken")) {
-      // remove token for localStorage
-      localStorage.removeItem("jwtToken");
-      props.setOpen(!props.open);
-      props.setCurrentUser(null);
-      props.setIsAuthenticated(false);
-    }
-  };
+  // const handleLogout = () => {
+  //   if (localStorage.getItem("jwtToken")) {
+  //     // remove token for localStorage
+  //     localStorage.removeItem("jwtToken");
+  //     props.setOpen(!props.open);
+  //     props.setCurrentUser(null);
+  //     props.setIsAuthenticated(false);
+  //   }
+  // };
 
   // Login Modal
   const handleLoginClose = () => {

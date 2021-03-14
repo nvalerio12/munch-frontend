@@ -4,13 +4,14 @@ import { StyledNavbar } from "./Navbar.styled";
 import Cart from "./Cart"
 
 
+
 import "./Navbar.css";
 
-const Navbar = ({ open, setOpen }) => {
+const Navbar = ({ open, setOpen, currentBag, setCurrentBag }) => {
   
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 60) {
+      if (window.scrollY > 20) {
         
           (document.querySelector(".navbar").className = "navbar scroll"
         );
@@ -32,7 +33,7 @@ const Navbar = ({ open, setOpen }) => {
       </StyledNavbar>
       <div className="navbar">
         <div className="cart-btn">
-      <Cart />
+      <Cart currentBag={currentBag} setCurrentBag={setCurrentBag}/>
         </div>
       </div>
       <div className="nav-bar-spacer"></div>

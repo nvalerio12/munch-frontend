@@ -49,6 +49,7 @@ function App() {
   // Set state values
   const [currentUser, setCurrentUser] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [currentBag, setCurrentBag] = useState([]);
 
   const [open, setOpen] = useState(false);
 
@@ -111,7 +112,14 @@ function App() {
           <ThemeProvider theme={theme}>
             <GlobalStyles />
             <div>
-              <Navbar open={open} setOpen={setOpen} />
+              <Navbar 
+              open={open} 
+              setOpen={setOpen}
+              user={currentUser}
+              isAuth={isAuthenticated}
+              currentBag={currentBag}
+              setCurrentBag={setCurrentBag} 
+              />
               <SideNav 
                 open={open}
                 setOpen={setOpen}
@@ -130,7 +138,12 @@ function App() {
             return <RestaurantPortal {...props} />
           }}/>
           <Route exact path="/restaurants/:id" render={(props) => {
-            return <RestaurantPublic {...props} />
+            console.log('PROPS')
+            return <RestaurantPublic {...props}   
+            user={currentUser}
+            isAuth={isAuthenticated} 
+            currentBag={currentBag}
+            setCurrentBag={setCurrentBag} />
           }} />
           <Route path="/" exact component={Home} />
           <Route
