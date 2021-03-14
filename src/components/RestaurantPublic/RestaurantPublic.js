@@ -105,9 +105,13 @@ function RestaurantPublic(props) {
 
   const addItemToBag = async (menuItem) => {
     handleClick()
+    
+    console.log(menuItem.target.value, typeof menuItem.target.value)
+    const itemDetails = menuItem.target.value.split(',')
+    console.log(itemDetails)
     const updatedBag = await props.setCurrentBag([
       ...props.currentBag,
-      menuItem.target.value,
+      [Number(itemDetails[0]), itemDetails[1]]
     ]);
     if (updatedBag !== undefined) {
       handleClick();
@@ -136,7 +140,7 @@ function RestaurantPublic(props) {
                   ${menuItem.price}
                   <button
                     onClick={(menuItem) => addItemToBag(menuItem)}
-                    value={[menuItem.name, menuItem.price]}
+                    value={[menuItem.price,menuItem.name]}
                     className="add-to-bag-btn"
                   >
                     Add to Bag

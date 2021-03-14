@@ -10,6 +10,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Badge from '@material-ui/core/Badge';
 import { BsBag } from 'react-icons/bs';
 
+import './Cart.css'
+
 const useStyles = makeStyles({
   list: {
     width: 250,
@@ -22,12 +24,14 @@ const useStyles = makeStyles({
 export default function TemporaryDrawer(props) {
   const classes = useStyles();
   const [ currentBag, setCurrentBag] = useState(props.currentBag)
+  const [ currentTotal, setCurrentTotal] = useState(0)
 
   const [state, setState] = React.useState({
     right: false,
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
+    console.log(anchor)
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
@@ -43,29 +47,27 @@ export default function TemporaryDrawer(props) {
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-        {['Item1', 'Item2', 'Item3', 'Item4'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemText primary={text} />
+    > <h1 className="cart-header"><BsBag size={30}/></h1>
+        <Divider />
+         <List>
+        {props.currentBag.map((item, index) => (
+          <ListItem button key={index}>
+            <ListItemText >
+              <div className="item-container">
+              <span className="item-price">${item[0]}</span> 
+              <span className="item-name">{item[1]}</span>
+              </div>
+              </ListItemText>
           </ListItem>
         ))}
       </List>
       <Divider />
-      <List>
-        {['Item6', 'Item7', 'Item8'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+      <Button className="checkout-btn"> Checkout </Button>
     </div>
   );
 
-  console.log(currentBag)
-
   return (
-    <div className="">
+    <div className="cart-bar">
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>
