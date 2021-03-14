@@ -7,7 +7,7 @@ import HorizontalLinearStepper from "./Signup";
 
 import jwt_decode from "jwt-decode";
 // import { Redirect, Link } from "react-router-dom";
-import setAuthToken from "../../utils/setAuthToken";
+import setAuthToken from "../../../utils/setAuthToken";
 
 
 import axios from "axios";

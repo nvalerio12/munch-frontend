@@ -8,7 +8,8 @@ import {
   Feed,
   RestaurantPublic,
   RestaurantPortal,
-  AccountServices
+  AccountServices,
+  Footer
 } from "./components/"; // export from components/index.js
 
 import { ThemeProvider } from "styled-components"; // used styled components to create components :navbar and sidenav
@@ -171,8 +172,11 @@ function App() {
             handleLogout={handleLogout}
           />
           <Route path="/aboutus" exact component={About} />
+          <Footer path="/"/>
         </Switch>
       </Router>
+      <Footer />
+  
     </>
   );
 }
