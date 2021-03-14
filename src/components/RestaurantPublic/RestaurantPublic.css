@@ -1,8 +1,8 @@
-.testing {
+/* .testing {
     width: 5000px;
     height: 5000px;
     background: transparent;
-}
+} */
 
 .pd-0 {
     padding: 0;
@@ -51,7 +51,7 @@
 }
 
 .menu-items-container {
-    margin: 2em 1em 1em 1em;
+    margin: 2em 1em 1em 0;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
