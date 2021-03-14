@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { bool } from "prop-types";
 import { StyledSideNav } from "./SideNav.styled";
 import { Modal, Form } from "react-bootstrap";
