@@ -277,8 +277,8 @@ const Feed = (props) => {
       <div className="container mt-5 feed-container">
         <SearchBar />
         <h2 className="mt-5">Categories</h2>
-        <CategoryRow createNotification={props.createNotification} />
-        <div className="row mt-5 justify-content-around">{restaurantArray}</div>
+        <CategoryRow />
+        <div className="row mt-5 justify-content-around pd-bt-5">{restaurantArray}</div>
       </div>
     </>
   );

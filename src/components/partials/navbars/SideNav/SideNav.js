@@ -259,10 +259,11 @@ const SideNav = ({ open, ...props }) => {
   } else {
     return (
       <>
-
         <StyledSideNav open={open} aria-hidden={!isHidden} {...props}>
           <div className="profile-picture-container">
-            <Link to="/">#{props.user.userName || props.user.name}</Link>
+            <div className="username-container">
+              <Link to="/">#{props.user.userName || props.user.name}</Link>
+            </div>
             <div className="profile-pic-capture" onClick={handlePictureClick}>
               <img
                 className="profile-picture"

@@ -44,10 +44,11 @@
   border-radius: 0;
   color:#eeeeee;
   background-color: #686d76;
+  transition: all 0.3s ease-in;
 }
 
 .hp-search-btn:hover {
-  background-color: green;
+  background-color: orange;
 }
 
 @media screen and (min-width: 768px) {
