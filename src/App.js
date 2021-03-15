@@ -37,6 +37,8 @@ import { makeStyles } from '@material-ui/core/styles';
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
+const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
+console.log(REACT_APP_SERVER_URL)
 
 const useStyles = makeStyles((theme) => ({
   root: {
