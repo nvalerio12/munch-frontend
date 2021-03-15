@@ -28,7 +28,7 @@ const AccountServices = (props) => {
           })
           .catch(error => {
             console.error(error);
-            alert("An Error Occured When Deleting Your Account, Please Try Again.");
+            props.createNotification("error", "An Error Occured When Deleting Your Account, Please Try Again.");
           });
       }
 
@@ -74,7 +74,8 @@ const AccountServices = (props) => {
               render={(routeProps) => (
                 <EditAccount
                   {...routeProps}
-                  user={props.user} 
+                  user={props.user}
+                  createNotification={props.createNotification}
                 />
               )}
             />

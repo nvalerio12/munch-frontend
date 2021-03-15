@@ -18,6 +18,8 @@ const Feed = (props) => {
   const [currentUserFavorites, setCurrentUserFavorites] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+
+
   useEffect(() => {
     let localState = didSearch;
     if (didSearch) {
@@ -53,15 +55,13 @@ const Feed = (props) => {
       })
       .catch((error) => {
         console.log("===> Error When Getting Restaurants", error);
-        alert("Could Not Display Restaurants!");
-
-        setIsLoading(false);
+        props.createNotification("error", "Could Not Display Restaurants!");
       });
     setdidSearch(true);
   };
 
   const handleFavorite = (restaurantId) => {
-    if (!props.isAuth) return alert("Please Sign In To Favorite Restaurants");
+    if (!props.isAuth) return props.createNotification("error", "You Must Be Logged In To Favorite a Restaurant");
 
     if (currentUserFavorites.includes(restaurantId)) {
       removeFavorite(restaurantId);
@@ -71,15 +71,18 @@ const Feed = (props) => {
   };
 
   const addFavorite = (restaurantId) => {
+    if (props.user.type === 'restaurant') return props.createNotification("error", "Please sign in as a user to do that.");
+
     const url = `${REACT_APP_SERVER_URL}/users/addFavorite/${restaurantId}`;
     axios
       .put(url)
       .then((response) => {
         setCurrentUserFavorites(currentUserFavorites.concat([restaurantId]));
+        props.createNotification("success", "Restaurant Favorited");
       })
       .catch((error) => {
         console.log("===> Error When", error);
-        alert(`Error: Could Not Add A Favorite.`);
+        props.createNotification("error", "Could Not Favorite The Restaurant");
       });
   };
 
@@ -91,10 +94,11 @@ const Feed = (props) => {
         setCurrentUserFavorites(
           currentUserFavorites.filter((id) => id !== restaurantId)
         );
+        props.createNotification("info", "Removed A Favorite Restaurant");
       })
       .catch((error) => {
         console.log("===> Error When", error);
-        alert(`Error: Could Not Remove A Favorite`);
+        props.createNotification("error", "Could Not Remove A Favorite");
       });
   };
 
@@ -259,7 +263,7 @@ const Feed = (props) => {
             height={50}
           />
           <h2 className="mt-5">Categories</h2>
-          <CategoryRow />
+          <CategoryRow createNotification={props.createNotification} />
           <div className="row justify-content-around mt-5">
             {loadArray}
           </div>

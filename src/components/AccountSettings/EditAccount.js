@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
-import { Redirect } from "react-router";
 
 const { REACT_APP_SERVER_URL } = process.env;
 
@@ -66,9 +65,9 @@ const EditAccount = (props) => {
       // look at password stuff for errors
       // if no password information is given, just skip
       if (oldPassword && newPassword && confirmPassword) {
-        if (!oldPassword || !newPassword || !confirmPassword) return alert("Incomplete Password Field(s)");
-        if (newPassword !== confirmPassword) return alert("Passwords don't match");
-        if (newPassword.length < 8) return alert("Password needs to be at least 8 characters. Please try again.");
+        if (!oldPassword || !newPassword || !confirmPassword) return props.createNotification("error", "Incomplete Password Field(s)");
+        if (newPassword !== confirmPassword) return props.createNotification("error", "Passwords Don't Match!");
+        if (newPassword.length < 8) return props.createNotification("error", "Password needs to be at least 8 characters.");
 
         editedUser.oldPassword = oldPassword;
         editedUser.newPassword = newPassword;
@@ -77,9 +76,11 @@ const EditAccount = (props) => {
       axios
         .put(`${REACT_APP_SERVER_URL}/users/${props.user._id}/edit`, editedUser)
         .then((response) => {
-          alert("Profile Edited Successfully!");
+          props.createNotification("success", `Profile Edited Successfully!`);
           // Go ahead and refresh after that. should fix token problems
-          props.history.go(0);
+          setTimeout(() => {
+            props.history.go(0);
+          }, 500);
         })
         .catch((error) => {
           try {
@@ -94,12 +95,13 @@ const EditAccount = (props) => {
                 return item;
               }
             });
-            alert(`An Error Occured: \n ${list}`);
+            props.createNotification("error", `An Error Occured: \n ${list}`);
           } catch (findError) {
             console.error(findError);
-            alert(`An Error Occured, Please Try Again`);
+            props.createNotification("error", `An Error Occured, Please Try Again`);
           }
           console.log("===> Error in Edit", error);
+          props.createNotification("error", `An Error Occured, Please Try Again`);
         });
     };
   

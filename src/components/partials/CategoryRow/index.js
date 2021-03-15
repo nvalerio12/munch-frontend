@@ -27,9 +27,7 @@ const CategoryRow = (props) => {
     })
     .catch((error) => {
       console.log("===> Error When Getting Categories", error);
-      alert("Could Not Display Categories");
-
-      setIsLoading(false);
+      props.createNotification('error', "Could Not Display Categories");
     });
   }
 
