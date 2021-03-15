@@ -274,7 +274,7 @@ const Feed = (props) => {
         <SearchBar />
         <h2 className="mt-5">Categories</h2>
         <CategoryRow />
-        <div className="row mt-5 justify-content-around">{restaurantArray}</div>
+        <div className="row mt-5 justify-content-around pd-bt-5">{restaurantArray}</div>
       </div>
     </>
   );

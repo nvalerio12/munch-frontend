@@ -98,9 +98,9 @@ const SearchBar = (props) => {
         </Col>
         <Col className="px-0">
           <Link to={`/feed?search=${searchQuery}`}>
-            <Button className="outline-success hp-search-btn">
+            <button className="outline-success hp-search-btn">
               Let's Find Food
-            </Button>
+            </button>
           </Link>
         </Col>
       </Row>
