@@ -67,6 +67,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 };
 
 function App() {
+  const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
+  console.log(REACT_APP_SERVER_URL)
   // Set state values
   const [currentUser, setCurrentUser] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(true);
