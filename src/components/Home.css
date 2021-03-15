@@ -5,6 +5,17 @@
   background-size: 100%;
   background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615610426/homepage-bg_fupdf2.png');
   height: 30vh;
+  background-size: 100%;
+  /* wait */
+  background-image: url('../images/homepage-bg.png');
+  height: 750px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+}
+  
+.hp-search-container {
   display: flex;
   justify-content: center;
   align-items: center;
