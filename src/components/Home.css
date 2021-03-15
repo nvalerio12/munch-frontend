@@ -1,10 +1,10 @@
 /* Home page */
 
 .home-main {
-  margin-top: -6.1em;;
+  margin-top: -6.1em;
   background-size: 100%;
   background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615610426/homepage-bg_fupdf2.png');
-  height: 750px;
+  height: 30vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,14 +12,14 @@
 }
 
 .img-box-desc-container {
-position: relative;
-margin-top: 1em;
-width: 100%;
-height: 500px;
-display: flex;
-flex-wrap: wrap;
-border: 1px solid black;
-overflow: hidden;
+  position: relative;
+  margin-top: 1em;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  overflow: hidden;
 }
 
 .img-cell {
@@ -27,7 +27,7 @@ overflow: hidden;
   width: 25%;
   height: 50%;
   transition: all .5s ease-in-out;
-  transform-origin:  top center;
+  transform-origin: top center;
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -35,34 +35,50 @@ overflow: hidden;
 .cell:hover {
   background-color: blue;
   transform-origin: top center;
-  translate: (2,2);
-  transform: scale(2,2)
+  translate: (2, 2);
+  transform: scale(2, 2)
 }
 
 .cell-1 {
   background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615765241/donut_pz8dam.jpg');
 }
+
 .cell-2 {
   background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615765242/eggs-bacon_rmvwgd.jpg');
 }
+
 .cell-3 {
   background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615765241/group_qocdsf.jpg');
 }
+
 .cell-4 {
   background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615765241/icecream_j1asfi.jpg');
 }
+
 .cell-5 {
   background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615765241/oatmeal_pgaqrv.jpg');
 }
+
 .cell-6 {
   background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615765241/pancake_jwxhpn.jpg');
 }
+
 .cell-7 {
   background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615765241/panini_dxa4fr.jpg');
 }
+
 .cell-8 {
   background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615765242/steak_hjkpba.jpg');
 }
 
+@media screen and (min-width: 768px) {
+  .home-main {
+    height: 60vh;
+  }
+}
 
-
+@media screen and (min-width: 1200px) {
+  .home-main {
+    height: 100vh;
+  }
+}

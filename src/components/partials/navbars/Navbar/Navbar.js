@@ -47,7 +47,7 @@ const Navbar = ({ open, setOpen, currentBag, setCurrentBag }) => {
           <Cart currentBag={currentBag} setCurrentBag={setCurrentBag} />
         </div>
         <div className="row nav-search end-50">
-          <div className="col-2">
+          <div className="col-2 ms-5 ms-md-0">
             <Link to="/">
               <img
                 className="munch-logo"
@@ -56,7 +56,7 @@ const Navbar = ({ open, setOpen, currentBag, setCurrentBag }) => {
               />
             </Link>
           </div>
-          <div className="col-10">
+          <div className="col-10 nav-searchBar">
             <SearchBar />
           </div>
         </div>
