@@ -15,29 +15,45 @@ function Home(props) {
         </div>
       </div>
       <div className="img-box-desc-container">
-        <div className="img-cell cell cell-1">
-          <p>Cell 1</p>
+        <div className="img-cell cell-top cell-1 left shadow-right">
+        <div  className="text-left">
+          <h5>#Sweet Tooth</h5>
+            </div>
         </div>
-        <div className="img-cell cell cell-2">
-          <p>Cell 2</p>
+        <div className="img-cell cell-top cell-2 middle shadow-right">
+        <div  className="text-middle">
+          <h3>#Foodies</h3>
+            </div>
         </div>
-        <div className="img-cell cell cell-3">
-          <p>Cell 3</p>
+        <div className="img-cell cell-top cell-3 middle shadow-left">
+        <div  className="text-middle">
+          <h5>Sharing is caring</h5>
+            </div>
         </div>
-        <div className="img-cell cell cell-4">
-          <p>Cell 4</p>
+        <div className="img-cell cell-top cell-4 right shadow-left">
+        <div  className="text-right">
+          <p>#Icecream Lovers</p>
+            </div>
         </div>
-        <div className="img-cell cell cell-5">
-          <p>Cell 5</p>
+        <div className="img-cell cell-bottom cell-5 left shadow-right">
+          <div  className="text-left">
+          <p>#Breakfast</p>
+            </div>
         </div>
-        <div className="img-cell cell cell-6">
-          <p>Cell 6</p>
+        <div className="img-cell cell-bottom cell-6 middle shadow-right">
+        <div  className="text-middle">
+          <h5>#Drizzle</h5>
+            </div>
         </div>
-        <div className="img-cell cell cell-7">
-          <p>Cell 7</p>
+        <div className="img-cell cell-bottom cell-7 middle shadow-left">
+        <div  className="text-middle">
+          <h3>#Lunch</h3>
+            </div>
         </div>
-        <div className="img-cell cell cell-8">
-          <p>Cell 8</p>
+        <div className="img-cell cell-bottom cell-8 right shadow-left">
+        <div  className="text-right">
+          <h5>#Date Night</h5>
+            </div>
         </div>
       </div>
     </>
