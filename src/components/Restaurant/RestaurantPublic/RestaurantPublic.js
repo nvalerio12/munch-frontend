@@ -188,6 +188,7 @@ function RestaurantPublic(props) {
           Item was added to cart!
         </Alert>
       </Snackbar>
+      <div className="pd-bt-10"></div>
     </>
   );
 }

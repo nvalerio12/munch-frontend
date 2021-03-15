@@ -251,7 +251,6 @@ const SideNav = ({ open, ...props }) => {
   } else {
     return (
       <>
-
         <StyledSideNav open={open} aria-hidden={!isHidden} {...props}>
           <div className="profile-picture-container">
             <div className="username-container">
