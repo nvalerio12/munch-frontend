@@ -120,9 +120,13 @@ function RestaurantPublic(props) {
               alt={`Delicious ${menuItem.name} img`}
             />
             <Col>
+            <div>
+              </div>
               <div className="text-col">
                 <h4>{menuItem.name}</h4>
                 <p>{menuItem.description}</p>
+              </div>
+                <div className="price-btn">
                 <p>
                   ${menuItem.price}
                   <button
@@ -133,7 +137,7 @@ function RestaurantPublic(props) {
                     Add to Bag
                   </button>{" "}
                 </p>
-              </div>
+                  </div>
             </Col>
           </Row>
         </div>
