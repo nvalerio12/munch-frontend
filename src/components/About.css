@@ -1,33 +1,34 @@
-div {
-    margin: 0;
-    padding: 0;
-    background-color: grey;
-    background-size: cover;
-    background-position: center;
-    background-image: url('../images/homepage-bg.png');
+
+.main-about {
+    background-size: 100%;
+    background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615610426/homepage-bg_fupdf2.png');
+    height: 100vh;
+    width: 100%;
+    background-size: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    color: white;
 }
-.container {
-    height: 75vh;
-    width: 30%;
-    background-color:transparent;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate( -50%, -50%);
+.about-container {
+    width: 100%;
+    padding: 5%;
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
-.container h1 {
+.about-container h1 {
     color: white;
     margin-top: 60px;
 }
 
-.container p {
+.about-container p {
     color: white;
-    margin-top: 60px;
+    margin: 20px 0px;
     font-size: large;
 }
 
-.btn {
+.about-container .btn {
     background: no-repeat;
     outline: none;
     border: 1px solid white;
@@ -43,4 +44,13 @@ div {
 .btn:hover {
     background: white;
     color: black;
+}
+
+@media screen and (min-width: 768px) {
+    .about-container {
+        width: 50%;
+        margin-bottom: 5%;
+        margin-top: 5%;
+
+    }
 }

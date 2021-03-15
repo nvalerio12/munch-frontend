@@ -1,0 +1,68 @@
+.munch-billboard-bg {
+    margin-top: -6.1em;
+    background-size: 100%;
+    background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615687515/munch-billboard_yhiicd.jpg');
+    height: 750px;
+    background-repeat: no-repeat;
+    color:white;
+    display: relative;
+}
+.billboard{
+    background:transparent;
+    width: 500px;
+    height: 400px;
+    position: relative;
+    top: 35%;
+    left: 35.5%;
+    font-size: 5em;;
+}
+
+.billboard button{
+    font-size: .3em;
+}
+.login-btn-billboard, .signup-btn-billboard {
+    background: transparent;
+    color: white;
+    border: none;
+    margin: 1em 0;
+    font-size: .75rem;
+    text-transform: uppercase;
+    padding: 1rem 0;
+    font-weight: bold;
+    letter-spacing: 0.5rem;
+    transform: rotate(3deg);
+    transition: all 0.3s linear;
+}
+
+.strikethrough:hover {
+    transition: all 0.3s ease-in;
+    text-decoration: line-through;
+    color:white
+}
+.strike-text:hover{
+    transition: all 0.3s linear;
+    color: orange
+}
+
+.login-btn-container {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.seperator {
+    position: absolute;
+    top: 90%;
+    left: -50%;
+    transform: translate(-50%, -50%);
+    transform: rotate(3deg);
+    height: 1px;
+    width: 300px;
+    border-bottom: 2px solid white;
+}
+.signup-btn-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

@@ -4,12 +4,21 @@ import "./Feed.css";
 import { AiTwotoneStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import CategoryRow from "../partials/CategoryRow";
+import Skeleton from '@material-ui/lab/Skeleton';
+import SearchBar from '../partials/SearchBar';
+// import Fade from '@material-ui/core/Fade';
+
+
 
 const { REACT_APP_SERVER_URL } = process.env;
 
 const Feed = (props) => {
   const [restaurants, setRestaurants] = useState([]);
   const [didSearch, setdidSearch] = useState(false);
+  const [currentUserFavorites, setCurrentUserFavorites] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+
 
   useEffect(() => {
     let localState = didSearch;
@@ -26,6 +35,12 @@ const Feed = (props) => {
     }
   }, [props.location.search]);
 
+  useEffect(() => {
+    if (props.isAuth && props.user.type === "user") {
+      setCurrentUserFavorites(props.user.favorites);
+    }
+  }, [props.user]);
+
   const getRestaurants = (query) => {
     let url = query
       ? `${REACT_APP_SERVER_URL}/restaurants/all${query}`
@@ -35,50 +50,106 @@ const Feed = (props) => {
       .then((response) => {
         const { results } = response.data;
         setRestaurants(results);
+
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log("===> Error When Getting Restaurants", error);
-        alert("Could Not Display Restaurants!");
+        props.createNotification("error", "Could Not Display Restaurants!");
       });
     setdidSearch(true);
+  };
+
+  const handleFavorite = (restaurantId) => {
+    if (!props.isAuth) return props.createNotification("error", "You Must Be Logged In To Favorite a Restaurant");
+
+    if (currentUserFavorites.includes(restaurantId)) {
+      removeFavorite(restaurantId);
+    } else {
+      addFavorite(restaurantId);
+    }
+  };
+
+  const addFavorite = (restaurantId) => {
+    if (props.user.type === 'restaurant') return props.createNotification("error", "Please sign in as a user to do that.");
+
+    const url = `${REACT_APP_SERVER_URL}/users/addFavorite/${restaurantId}`;
+    axios
+      .put(url)
+      .then((response) => {
+        setCurrentUserFavorites(currentUserFavorites.concat([restaurantId]));
+        props.createNotification("success", "Restaurant Favorited");
+      })
+      .catch((error) => {
+        console.log("===> Error When", error);
+        props.createNotification("error", "Could Not Favorite The Restaurant");
+      });
+  };
+
+  const removeFavorite = (restaurantId) => {
+    const url = `${REACT_APP_SERVER_URL}/users/removeFavorite/${restaurantId}`;
+    axios
+      .put(url)
+      .then((response) => {
+        setCurrentUserFavorites(
+          currentUserFavorites.filter((id) => id !== restaurantId)
+        );
+        props.createNotification("info", "Removed A Favorite Restaurant");
+      })
+      .catch((error) => {
+        console.log("===> Error When", error);
+        props.createNotification("error", "Could Not Remove A Favorite");
+      });
   };
 
   let restaurantArray = restaurants.map((result) => {
     // A result is either in a category group or not
 
     if (!result) {
-      return (
-        <>
-          <></>
-        </>
-      );
+      return <></>;
     }
 
     if (result.isGroup) {
       const subResults = result.results.map((restaurant) => {
         return (
-          <div
-            key={restaurant._id}
-            className="restaurant-div card bg-transparent text-white col-xs col-md-3 m-3 p-0 shadow-lg rounded"
-          >
-            <img
-              src={
-                restaurant.profileUrl
-                  ? restaurant.profileUrl
-                  : "https://picsum.photos/200"
-              }
-              className="card-img img-fluid"
-              alt={`Profile Img for ${restaurant.name}`}
-            />
-            <div className="card-img-overlay">
-              <AiTwotoneStar className="favorite-btn position-absolute end-0 me-4" />
-              <div className="container restaurant-info position-absolute bottom-0 start-50 translate-middle w-100 h-25 text-center">
-                <h5 className="card-title text-capitalize fw-bold mt-2">
-                  {restaurant.name}
-                </h5>
-              </div>
+          <>
+            <div
+              key={restaurant._id}
+              className="restaurant-div card bg-transparent text-white col-xs col-md-3 m-3 p-0 shadow-lg rounded"
+            >
+              <img
+                src={
+                  restaurant.profileUrl
+                    ? restaurant.profileUrl
+                    : "https://picsum.photos/200"
+                }
+                className="card-img img-fluid"
+                alt={`Profile Img for ${result.name}`}
+              />
+              <AiTwotoneStar
+                onClick={() => handleFavorite(restaurant._id)}
+                className={
+                  props.isAuth && currentUserFavorites.includes(restaurant._id)
+                    ? "favorite-btn active-btn position-absolute end-0 me-4 mt-2"
+                    : "favorite-btn position-absolute end-0 me-4 mt-2"
+                }
+              />
+              <Link
+                to={{
+                  pathname: `/restaurants/${restaurant._id}`,
+                  state: { restaurant },
+                }}
+              >
+                <div className="card-img-overlay">
+                  <div className="container restaurant-info position-absolute bottom-0 start-50 translate-middle w-100 h-25 text-center">
+                    <h5 className="card-title text-capitalize fw-bold mt-2">
+                      {restaurant.name}
+                    </h5>
+                  </div>
+                </div>
+              </Link>
             </div>
-          </div>
+          </>
         );
       });
 
@@ -134,14 +205,28 @@ const Feed = (props) => {
           className="card-img img-fluid"
           alt={`Profile Img for ${result.name}`}
         />
-        <div className="card-img-overlay">
-          <AiTwotoneStar className="favorite-btn position-absolute end-0 me-4" />
-          <div className="container restaurant-info position-absolute bottom-0 start-50 translate-middle w-100 h-25 text-center">
-            <h5 className="card-title text-capitalize fw-bold mt-2">
-              {result.name}
-            </h5>
+        <AiTwotoneStar
+          onClick={() => handleFavorite(result._id)}
+          className={
+            props.isAuth && currentUserFavorites.includes(result._id)
+              ? "favorite-btn active-btn position-absolute end-0 me-4 mt-2"
+              : "favorite-btn position-absolute end-0 me-4 mt-2"
+          }
+        />
+        <Link
+          to={{
+            pathname: `/restaurants/${result._id}`,
+            state: { restaurant: result },
+          }}
+        >
+          <div className="card-img-overlay">
+            <div className="container restaurant-info position-absolute bottom-0 start-50 translate-middle w-100 h-25 text-center">
+              <h5 className="card-title text-capitalize fw-bold mt-2">
+                {result.name}
+              </h5>
+            </div>
           </div>
-        </div>
+        </Link>
       </div>
     );
   });
@@ -150,12 +235,50 @@ const Feed = (props) => {
     restaurantArray = <h2>No Restaurants Found!</h2>;
   }
 
+  if (isLoading) {
+
+    const loadArray = [];
+
+    for (let i = 0; i < 6; i++) {
+      loadArray.push(
+        <Skeleton
+          key={`rest-${i}`}
+          animation="wave"
+          className="restaurant-div loading card text-white col-xs col-md-3 m-3 p-0 shadow-lg rounded"
+          variant="rect"
+          width={300}
+          height={250}
+        />
+      );
+    }
+
+    return (
+      <>
+        <div className="container mt-5 feed-container">
+          <Skeleton            
+            animation="wave"
+            className="loading search-skeleton m-auto shadow-lg rounded"
+            variant="rect"
+            width={350}
+            height={50}
+          />
+          <h2 className="mt-5">Categories</h2>
+          <CategoryRow createNotification={props.createNotification} />
+          <div className="row justify-content-around mt-5">
+            {loadArray}
+          </div>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
-      <div className="container mt-5">
+      <div className="container mt-5 feed-container">
+        <SearchBar />
         <h2 className="mt-5">Categories</h2>
         <CategoryRow />
-        <div className="row mt-5">{restaurantArray}</div>
+        <div className="row mt-5 justify-content-around pd-bt-5">{restaurantArray}</div>
       </div>
     </>
   );

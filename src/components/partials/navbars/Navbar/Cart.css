@@ -1,0 +1,29 @@
+.cart-btn {
+    position: fixed;
+    justify-self: end;
+    width: 100px;
+    height: 100px;
+}
+
+.cart-header {
+    text-align: center;
+}
+
+.item-price {
+color:orange;
+padding-left: 2em;
+}
+
+.item-name {
+padding-left: 2em;
+}
+
+.checkout-btn {
+   position: relative;
+   left: 30%;
+   transition: all 0.3s ease-in-out;
+}
+.checkout-btn:hover {
+    transition: all 0.3s ease-in-out;
+    color: orange;
+}

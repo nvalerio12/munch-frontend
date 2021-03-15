@@ -1,0 +1,61 @@
+.footer-container {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #dddddd;
+    overflow-y: hidden;
+    transition: all 0.3s ease-in-out;
+}
+.footer-container:hover {
+    color:#dddddd;
+    background-color: #323232;
+}
+
+.copywrite-container {
+    justify-content: center;
+    text-align: center;
+    color: #dddddd;
+    height: 50px;
+    width: 100%;
+    background-color:#323232;
+
+} 
+
+.copywrite-container p {
+    position: relative;
+    top: 50%;
+    font-size: 10px;
+}
+
+.about-munch {
+    margin-top: 3em;
+    margin-left: 2em;
+    align-self: center;
+    width: 30%;
+    height: 100%;
+    top: 20%;
+    border-right: 1px solid orange;
+}
+.about-munch p {
+    font-size: 14px;
+}
+
+.meet-the-team{
+    margin-top: 3em;
+    margin-left: 2em;
+    align-self: center;
+    width: 30%;
+    height: 100%;
+    top: 20%;
+    border-right: 1px solid orange;
+}
+
+.follow-munch{
+    margin-top: 3em;
+    margin-left: 2em;
+    align-self: center;
+    width: 30%;
+    height: 100%;
+    top: 20%;
+}

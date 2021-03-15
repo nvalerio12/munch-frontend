@@ -1,0 +1,131 @@
+/* .testing {
+    width: 5000px;
+    height: 5000px;
+    background: transparent;
+} */
+
+.pd-0 {
+    padding: 0;
+}
+
+.mg-0 {
+    margin: 0;
+}
+
+.restaurant-img-container {
+    background-size:100%;
+    background-position: center;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    padding:0;
+    color: white;
+}
+
+.restaurant-details {
+    padding: 2em;
+    display:flex;
+    height: 200px;
+    width:100%;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .9));
+}
+
+.restaurant-details-text {
+    align-self: flex-end;
+}
+
+.menu-nav-container {
+    display: flex;
+    padding: 1em;
+    background-color: #aaaaaa;
+    color:white;
+    position: sticky;
+    top: 10%;
+    z-index: 2;
+}
+.menu-nav-container a {
+    color:white 
+}
+.menu-nav-container a:hover {
+    color:orange
+}
+
+.menu-items-container {
+    margin: 2em 1em 1em 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    justify-self: center;
+    flex-wrap: wrap;
+    width: 100%;
+    overflow: none;
+
+}
+
+.menu-item-card:hover {
+    transition: all 0.3s ease-in-out;
+    border: 2px solid orange;
+    transform: scale(1.1);
+    background-color: #eeeeee;
+}
+
+.menu-item-card {
+    border: 1px solid black;
+    width:40%;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.menu-item-img {
+    width: 150px;
+    height: 150px;
+    padding:0;
+    margin: 0;
+    border-right: 1px solid orange;
+
+}
+
+.text-col {
+    padding-top: 5%;
+    padding-left: 5%;
+    max-height: 150px;
+    font-size: 12px;
+
+}
+
+.text-col  {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.add-to-bag-btn {
+    color: grey;
+    margin-left: 2em;
+    align-self: flex-end;
+    border:0;
+    background-color: transparent;
+}
+
+.add-to-bag-btn:hover {
+    transition: all 0.3s ease-in-out;
+    color: white;
+    margin-left: 2em;
+    align-self: flex-end;
+    border:0;
+    background-color: orange;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+}
+.price-btn {
+    align-self: flex-end;
+    margin-left: 2em;
+}
+
+.pd-bt-10 {
+    padding-bottom: 10em;
+}

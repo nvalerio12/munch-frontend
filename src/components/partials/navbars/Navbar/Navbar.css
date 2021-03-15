@@ -1,0 +1,115 @@
+.navbar {
+    display: flex;
+    background:transparent;
+    position:fixed;
+    width: 100%;
+    height: 5em;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    z-index: 5;
+}
+.spacer {
+  opacity: 0;
+  background:transparent;
+}
+.nav-bar-spacer {
+    opacity: 0;
+    background:transparent;
+    height: 6.1em;
+    z-index:4
+}
+.scroll {
+  z-index: 5;
+  display: flex;
+  opacity: 1;
+  height: 5em;
+  background:#eeeeee;
+  position:fixed;
+  width: 100%;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+.cart-btn {
+  position:absolute;
+  top: 15%;
+  right:5%;
+}
+
+.hider {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -10;
+}
+
+.hidden {
+  z-index: 6;
+  background: black;
+  opacity: 0.8;
+}
+
+.nav-search {
+  position: absolute;
+  left: 25%;
+  width: 50%;
+  max-height: 100px;
+}
+
+.nav-searchBar {
+  display: none;
+}
+
+.navbar .hp-search-container {
+  width: 100%;
+  justify-content: end;
+}
+
+.navbar .hp-search {
+  width: 20vh;
+}
+
+.munch-logo {
+  width: 50px;
+}
+
+.navbar .hp-search-container .search-item {
+  width: 50vh;
+}
+
+@media screen and (min-width: 400px) {  
+  .navbar .hp-search {
+    width: 20vh;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .nav-search {
+    display: flex;
+    left: 20%;
+    width: 55%;
+  }
+  .nav-searchBar {
+    display: flex;
+  }
+  .munch-logo {
+    margin-left: 7%;
+  }
+  .navbar .hp-search-container {
+    width: 100%;
+  }
+  
+  .navbar .hp-search {
+    width: 30vh;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .navbar .hp-search-container .search-item {
+    width: 47vh;
+  }
+  .nav-search {
+    left: 28%;
+  }
+}
