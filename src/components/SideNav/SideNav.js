@@ -109,10 +109,7 @@ const SideNav = ({ open, ...props }) => {
           <a href="/aboutus" tabIndex={tabIndex} onClick={About}>
             #About us
           </a>
-          <a href="/" tabIndex={tabIndex}>
-            #Contact us
-          </a>
-          <a href="/" tabIndex={tabIndex}>
+          <a href="/feed" tabIndex={tabIndex}>
             #Plaid
           </a>
         </StyledSideNav>

@@ -1,14 +1,19 @@
+* {
+    background-image: url('https://img.freepik.com/free-vector/abstract-yellow-comic-zoom_1409-923.jpg?size=626&ext=jpg&ga=GA1.2.1013392010.1615594626') no-repeat;
+}
+
+
 body {
     margin: 0;
     padding: 0;
-    background-image: url('https://img.freepik.com/free-vector/abstract-yellow-comic-zoom_1409-923.jpg?size=626&ext=jpg&ga=GA1.2.1013392010.1615594626') no-repeat;
+    background-color: grey;
     background-size: cover;
     background-position: center;
 }
 .container {
     height: 75vh;
     width: 30%;
-    background-color: rgba(0,0, 0, .6);
+    background-color:transparent;
     position: absolute;
     top: 50%;
     left: 50%;
