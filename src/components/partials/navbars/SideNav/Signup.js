@@ -261,6 +261,7 @@ export default function CustomizedSteppers(props) {
           const decoded = jwt_decode(token);
           // set the current user
           props.nowCurrentUser(decoded); // function passed down as props.
+          props.createNotification("success", `Successfully Signed Up and Logged In`);
         })
         .catch((error) => {
           try {
@@ -275,15 +276,16 @@ export default function CustomizedSteppers(props) {
                 return item;
               }
             });
-            alert(`An Error Occured: \n ${list}`);
+            props.createNotification("error", `An Error Occured: \n ${list}`);
           } catch (error) {
-            alert(`An Error Occured, Please Try Again`);
+            props.createNotification("error", `An Error Occured, Please Try Again`);
           }
           console.log("===> Error in Signup", error);
+          props.createNotification("error", `Error In Signup`);
         });
     } else {
-      if (password !== confirmPassword) return alert("Passwords don't match");
-      alert("Password needs to be at least 8 characters. Please try again.");
+      if (password !== confirmPassword) return props.createNotification("error", `Passwords Don't Match`);
+      props.createNotification("error", `Password needs to be at least 8 characters. Please try again.`);
     }
   };
 

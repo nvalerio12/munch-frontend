@@ -52,10 +52,11 @@ const SideNav = ({ open, ...props }) => {
         // set the current user
         props.nowCurrentUser(decoded); // function passed down as props.
         // console.log(props.nowCurrentUser);
+        props.createNotification("success", "Successfully Signed In");
       })
       .catch((error) => {
         console.log("===> Error on login", error);
-        alert("Either email or password is incorrect. Please try again");
+        props.createNotification("error", "Either email or password is incorrect. Please try again");
       });
   };
 
@@ -66,6 +67,7 @@ const SideNav = ({ open, ...props }) => {
       props.setOpen(!open);
       props.setCurrentUser(null);
       props.setIsAuthenticated(false);
+      props.createNotification("info", "You Are Now Logged Out.");
     }
   };
 
@@ -107,7 +109,12 @@ const SideNav = ({ open, ...props }) => {
 
           // Get user data
           const currentID = props.currentUser._id;
-          let url = `${REACT_APP_SERVER_URL}/users/${currentID}/profileImg`;
+          let url = null;
+          if (props.currentUser.type === "user") {
+            url = `${REACT_APP_SERVER_URL}/users/${currentID}/profileImg`;
+          } else if (props.currentUser.type === "restaurant") {
+            url = `${REACT_APP_SERVER_URL}/restaurants/${currentID}/profileImg`;
+          }
 
           // send PUT
           axios
@@ -118,11 +125,11 @@ const SideNav = ({ open, ...props }) => {
           })
           .then((response) => {
             // It was successful
-            console.log("Profile Changed Successfuly.");
+            props.createNotification("success", "Profile Picture Changed Successfuly.");
           })
           .catch((error) => {
             console.log("===> Error When Changing Profile Picture", error);
-            alert("Could Not Change Profile Picture!");
+            props.createNotification("error", "Could Not Change Profile Picture!");
           });
 
         } else {
@@ -240,6 +247,7 @@ const SideNav = ({ open, ...props }) => {
                 currentUser={props.currentUser}
                 setCurrentUser={props.setCurrentUser}
                 isAuthenticated={props.isAuthenticated}
+                createNotification={props.createNotification}
                 setIsAuthenticated={props.setIsAuthenticated} />
           </Modal.Body>
           <Modal.Footer>
@@ -254,7 +262,7 @@ const SideNav = ({ open, ...props }) => {
 
         <StyledSideNav open={open} aria-hidden={!isHidden} {...props}>
           <div className="profile-picture-container">
-            <Link to="/">#{props.user.userName}</Link>
+            <Link to="/">#{props.user.userName || props.user.name}</Link>
             <div className="profile-pic-capture" onClick={handlePictureClick}>
               <img
                 className="profile-picture"
@@ -281,6 +289,9 @@ const SideNav = ({ open, ...props }) => {
           </Link>
           <Link onClick={() => props.setOpen(false)} to="/feed" tabIndex={tabIndex}>
             #Feed
+          </Link>
+          <Link onClick={() => props.setOpen(false)} to="/account/edit" tabIndex={tabIndex}>
+            #Account
           </Link>
           <Link onClick={() => props.setOpen(false)} to="/" tabIndex={tabIndex}>
             #Plaid

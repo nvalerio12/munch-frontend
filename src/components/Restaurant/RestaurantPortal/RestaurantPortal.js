@@ -43,6 +43,8 @@ function RestaurantPortal(props) {
       .post(`${REACT_APP_SERVER_URL}/restaurants/login`, userData)
       .then((response) => {
         const { token } = response.data;
+
+        if (!token) throw new Error("No Token Returned");
         // save token to localStorage
         localStorage.setItem("jwtToken", token);
         // set token to headers
@@ -52,10 +54,11 @@ function RestaurantPortal(props) {
         // set the current user
         props.nowCurrentUser(decoded); // function passed down as props.
         // console.log(props.nowCurrentUser);
+        props.createNotification("success", `You Are Now Logged In.`);
       })
       .catch((error) => {
         console.log("===> Error on login", error);
-        alert("Either email or password is incorrect. Please try again");
+        props.createNotification('error', "Either email or password is incorrect. Please try again");
       });
   };
 
@@ -156,6 +159,7 @@ function RestaurantPortal(props) {
             setCurrentUser={props.setCurrentUser}
             isAuthenticated={props.isAuthenticated}
             setIsAuthenticated={props.setIsAuthenticated}
+            createNotification={props.createNotification}
           />
         </Modal.Body>
         <Modal.Footer></Modal.Footer>

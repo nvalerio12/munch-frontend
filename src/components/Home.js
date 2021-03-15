@@ -11,7 +11,7 @@ function Home(props) {
       </div>
       <div className="container mt-5">
         <div className="home-cat-stick">
-          <CategoryRow />
+          <CategoryRow createNotification={props.createNotification} />
         </div>
       </div>
       <div className="img-box-desc-container">
