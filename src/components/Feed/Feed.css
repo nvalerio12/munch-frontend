@@ -44,3 +44,9 @@
 .loading {
   transition: 1s;
 }
+
+@media screen and (min-width: 768px) {
+  .feed-container .search-skeleton {
+    display: none;
+  }
+}

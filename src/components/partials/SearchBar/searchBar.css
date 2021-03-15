@@ -5,6 +5,10 @@
   justify-content: center;
 }
 
+.home-main .hp-search-container {
+  display: flex;
+}
+
 .hp-search {
   margin: 0;
   width: 35vh;
@@ -44,4 +48,19 @@
 
 .hp-search-btn:hover {
   background-color: green;
+}
+
+@media screen and (min-width: 768px) {
+  .home-main .hp-search-container {
+    display: none;
+  }
+  .feed-container .hp-search-container {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .hp-search-container .search-item {
+    width: 52vh;
+  }
 }

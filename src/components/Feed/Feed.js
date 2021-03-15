@@ -5,6 +5,7 @@ import { AiTwotoneStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import CategoryRow from "../partials/CategoryRow";
 import Skeleton from '@material-ui/lab/Skeleton';
+import SearchBar from '../partials/SearchBar';
 // import Fade from '@material-ui/core/Fade';
 
 
@@ -239,7 +240,7 @@ const Feed = (props) => {
         <Skeleton
           key={`rest-${i}`}
           animation="wave"
-          className="restaurant-div loading card bg-light text-white col-xs col-md-3 m-3 p-0 shadow-lg rounded"
+          className="restaurant-div loading card text-white col-xs col-md-3 m-3 p-0 shadow-lg rounded"
           variant="rect"
           width={300}
           height={250}
@@ -249,7 +250,14 @@ const Feed = (props) => {
 
     return (
       <>
-        <div className="container mt-5">
+        <div className="container mt-5 feed-container">
+          <Skeleton            
+            animation="wave"
+            className="loading search-skeleton m-auto shadow-lg rounded"
+            variant="rect"
+            width={350}
+            height={50}
+          />
           <h2 className="mt-5">Categories</h2>
           <CategoryRow />
           <div className="row justify-content-around mt-5">
@@ -262,7 +270,8 @@ const Feed = (props) => {
 
   return (
     <>
-      <div className="container mt-5">
+      <div className="container mt-5 feed-container">
+        <SearchBar />
         <h2 className="mt-5">Categories</h2>
         <CategoryRow />
         <div className="row mt-5 justify-content-around">{restaurantArray}</div>

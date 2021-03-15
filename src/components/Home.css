@@ -1,10 +1,10 @@
 /* Home page */
 
 .home-main {
-  margin-top: -6.1em;;
+  margin-top: -6.1em;
   background-size: 100%;
   background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615610426/homepage-bg_fupdf2.png');
-  height: 750px;
+  height: 30vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,18 +12,18 @@
 }
 
 .img-box-desc-container {
-color: transparent;
-background-color:black;
-display: flex;
-text-align: center;
-justify-content: center;
-margin-top: 1em;
-width: 100%;
-height: 500px;
-display: flex;
-flex-wrap: wrap;
-border: 1px solid black;
-overflow: hidden;
+  color: transparent;
+  background-color:black;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin-top: 1em;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  overflow: hidden;
 }
 
 .text-middle {
@@ -33,17 +33,22 @@ align-items: flex-end;
 .text-left {
   padding: 2em;
 }
+
 .text-right {
 padding: 2em;
 }
+
 .left{
   justify-content: flex-end;
 }
+
 .middle {
   justify-content: center;
 }
+
 .right {
 }
+
 .img-cell {
   border: 1px solid black;
   display: flex;
@@ -51,70 +56,84 @@ padding: 2em;
   width: 25%;
   height: 50%;
   transition: all .5s ease-in-out;
-  transform-origin:  top center;
+  transform-origin: top center;
   background-size: cover;
   background-repeat: no-repeat;
 }
+
 .shadow-right:hover {
   box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, .5);
 }
+
 .shadow-left:hover {
   box-shadow: -20px 20px 20px 20px rgba(0, 0, 0, .5);
 }
+
 .cell-1 {
   background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615765241/donut_pz8dam.jpg');
 }
+
 .cell-1:hover {
   color: black;
- 
 }
+
 .cell-2 {
   background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615765242/eggs-bacon_rmvwgd.jpg');
-
 }
+
 .cell-2:hover{
   color: white;
 }
+
 .cell-3 {
   background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615765241/group_qocdsf.jpg');
- 
 }
+
 .cell-3:hover{
   color: orange;
 }
+
 .cell-4 {
   background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615765241/icecream_j1asfi.jpg');
 }
+
 .cell-4:hover{
   color: black;
 }
+
 .cell-5 {
   background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615765241/oatmeal_pgaqrv.jpg');
 }
+
 .cell-5:hover{
   color: black;
 }
+
 .cell-6 {
   background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615765241/pancake_jwxhpn.jpg');
 }
+
 .cell-6:hover{
   color: orange;
 }
+
 .cell-7 {
   background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615765241/panini_dxa4fr.jpg');
 }
+
 .cell-7:hover{
   color: white;
 }
+
 .cell-8 {
   background-image: url('https://res.cloudinary.com/dom5vocai/image/upload/v1615765242/steak_hjkpba.jpg');
 }
+
 .cell-8:hover{
   color: white;
 }
 
 .cell-top:hover {
-
   transform-origin: top center;
   border: 1px solid orange;
   transform: scale(2,2)
@@ -125,5 +144,14 @@ padding: 2em;
   transform: scale(2,2) translate(0, -125px)
 }
 
+@media screen and (min-width: 768px) {
+  .home-main {
+    height: 60vh;
+  }
+}
 
-
+@media screen and (min-width: 1200px) {
+  .home-main {
+    height: 100vh;
+  }
+}
