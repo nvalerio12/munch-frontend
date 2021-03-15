@@ -85,8 +85,71 @@ const AccountServices = (props) => {
       </div>
     );
   } else if (props.user.type === 'restaurant' && !triggeredDelete) {
+    const handleDelete = () => {
+
+      if (window.confirm('Delete Account? \nThis Action is Permanent.')) {
+        const url = `${REACT_APP_SERVER_URL}/restaurants/${props.user._id}/delete`;
+        axios
+          .delete(url)
+          .then(response => {
+            setTriggeredDelete(true);
+            props.handleLogout();
+          })
+          .catch(error => {
+            console.error(error);
+            props.createNotification("error", "An Error Occured When Deleting Your Account, Please Try Again.");
+          });
+      }
+
+    }
+
     return (
-      <div className="account-services container">
+      <div className="account-services container mb-5">
+        <div className="card-intro row d-flex justify-content-start">
+          <div className="col">
+            <img
+              className="profile-picture"
+              src={props.user.profileUrl}
+              alt="Your profile-img"
+            />
+          </div>
+          <div className="col column">
+            <p className="text-capitalize m-0 mt-4">
+              {props.user.name}
+            </p>
+            <p>Your Account</p>
+          </div>
+        </div>
+        <hr></hr>
+        <div className="main-account-data row">
+          <div className="col-xs col-md-3 column account-nav">
+            <ul className="list-group">
+              <Link to="/account/edit">
+                <li className="list-group-item">Edit Account</li>
+              </Link>
+              <Link to="/account/favorites">
+                <li className="list-group-item">Favorite Restaurants</li>
+              </Link>
+              <li className="list-group-item">Manage Menu</li>
+              <li className="list-group-item">Past Orders</li>
+              <li className="list-group-item">Ratings</li>
+              <li className="list-group-item">Insights</li>
+              <li onClick={handleDelete} className="btn btn-danger">Delete Account</li>
+            </ul>
+          </div>
+          <Switch>
+            <Route
+              path="/account/edit"
+              render={(routeProps) => (
+                <EditAccount
+                  {...routeProps}
+                  user={props.user}
+                  createNotification={props.createNotification}
+                />
+              )}
+            />
+          </Switch>
+        </div>
       </div>
     );
   } else if (triggeredDelete) {
