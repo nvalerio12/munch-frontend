@@ -69,6 +69,7 @@ a {
 }
 }
 .profile-picture-container{
+  max-width: 150px;
   width: 150px;
   align-self:center;
   text-align:center;
@@ -103,6 +104,9 @@ a {
 }
 .profile-picture:hover {
   border: 3px solid orange;
+}
+.username-container {
+  overflow-wrap: break-word;
 }
 
 `;

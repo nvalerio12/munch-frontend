@@ -254,7 +254,9 @@ const SideNav = ({ open, ...props }) => {
 
         <StyledSideNav open={open} aria-hidden={!isHidden} {...props}>
           <div className="profile-picture-container">
+            <div className="username-container">
             <Link to="/">#{props.user.userName}</Link>
+            </div>
             <div className="profile-pic-capture" onClick={handlePictureClick}>
               <img
                 className="profile-picture"
